@@ -1,7 +1,7 @@
-
 import { useDispatch } from "react-redux";
 import { logout } from "../../Actions/loginActions";
 import { useNavigate } from "react-router-dom";
+import profileImage from "../../assets/Images/undraw_profile.svg";
 
 export default function Header() {
   const dispatch = useDispatch();
@@ -187,6 +187,44 @@ export default function Header() {
           >
             <i class='fas fa-th-large'></i>
           </a>
+        </li>
+        <li class='nav-item'>
+          <a
+            // className='nav-link dropdown-toggle'
+            href='#'
+            id='userDropdown'
+            role='button'
+            data-toggle='dropdown'
+            aria-haspopup='true'
+            aria-expanded='false'
+          >
+            <div class='user-panel d-flex'>
+              <div class='image'>
+                <img
+                  src='dist/img/user2-160x160.jpg'
+                  class='img-circle elevation-2'
+                  alt='UserImage'
+                />
+              </div>
+              <div class='info d-none d-sm-inline-block'>
+                <a href='/' class='d-block'>
+                  Alexander Pierce
+                </a>
+              </div>
+            </div>
+          </a>
+          <div
+            className='dropdown-menu dropdown-menu-right shadow animated--grow-in'
+            aria-labelledby='userDropdown'
+          >
+            <span
+              className='dropdown-item alink'
+              onClick={() => logoutHandler()}
+            >
+              <i className='fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400'></i>
+              <span> Logout </span>
+            </span>
+          </div>
         </li>
       </ul>
     </nav>
