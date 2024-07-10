@@ -52,10 +52,10 @@ export default function Sidebar() {
             data-accordion='false'
           >
             <li class='nav-item menu-open'>
-              <a href='/' class='nav-link active'>
-                <i class='nav-icon fas fa-tachometer-alt'></i>
-                <p>Dashboard</p>
-              </a>
+              <NavLink to='/' className='nav-link'>
+                  <i class='nav-icon fas fa-tachometer-alt'></i>
+                  <p>Dashboard</p>
+              </NavLink>
             </li>
             <li class='nav-item'>
               <a href='#' class='nav-link'>
