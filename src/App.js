@@ -4,8 +4,8 @@ import store from "./store";
 import Layout from "./Pages/Layout";
 import Login from "./Pages/Login";
 import Dashboard from "./Pages/Dashboard";
+import WorkTypeComponent from "./Pages/WorkType/WorkTypeComponent";
 function App() {
-  
   return (
     <Provider store={store}>
       <div>
@@ -13,7 +13,14 @@ function App() {
           <Routes>
             <Route path='login' element={<Login />} />
             <Route path='/' element={<Layout />}>
-              <Route index element={<Dashboard />} />
+              <Route index element={<Dashboard />} />{" "}
+              <Route path='work-types' element={<WorkTypeComponent />}>
+                <Route path='add-work-type' element={<WorkTypeComponent />} />
+                <Route
+                  path='edit-work-type/:id'
+                  element={<WorkTypeComponent />}
+                />
+              </Route>
             </Route>
           </Routes>
         </BrowserRouter>
