@@ -1,0 +1,11 @@
+.button-margin{
+    margin-top: 50px;
+    margin-bottom: 25px;
+}
+.save-button{
+    margin-right: 10px;
+}
+.disable-button{
+    cursor: not-allowed !important;
+    background-color: gray;
+}
