@@ -11,9 +11,9 @@ const WorkTypeComponent = () => {
   const { id } = useParams();
 
   const isWorkTypeRoute = location.pathname === "/work-types";
-  const isAddWorkTypeRoute = location.pathname === "/worktypes/add-worktype";
+  const isAddWorkTypeRoute = location.pathname === "/work-types/add-work-type";
   const isEditWorkTypeRoute = location.pathname.startsWith(
-    "/worktypes/edit-worktype/"
+    "/work-types/edit-work-type/"
   );
   const data = useSelector((state) => state);
   const { workTypeData, workTypeSuccess, workTypeError, workTypeLoading } =
@@ -24,23 +24,7 @@ const WorkTypeComponent = () => {
   return (
     <>
       {" "}
-      <section class='content-header'>
-        <div class='container-fluid'>
-          <div class='row mb-2'>
-            <div class='col-sm-6'>
-              <h1>Work Type</h1>
-            </div>
-            <div class='col-sm-6'>
-              <ol class='breadcrumb float-sm-right'>
-                <li class='breadcrumb-item'>
-                  <a href='#'>Home</a>
-                </li>
-                <li class='breadcrumb-item active'>Work Type</li>
-              </ol>
-            </div>
-          </div>
-        </div>
-      </section>
+     
       {isAddWorkTypeRoute || isEditWorkTypeRoute ? (
         <AddWorkType
           Data={workTypeData}

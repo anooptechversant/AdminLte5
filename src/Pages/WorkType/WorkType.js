@@ -65,31 +65,51 @@ function WorkType({ Data, Success, Error, Loading }) {
   ];
 
   return (
-    <div className='container-fluid'>
-      <div className='row'>
-        <div className='col-md-6'>
-          {/* <h1 className='h3 mb-4 text-gray-800'>{pageTitle}</h1> */}
-        </div>
-      </div>
-      <div className='card'>
-        <div className='card-header'>
-          <h3 className='card-title'>Work Type</h3>
-
-          <div className='card-tools'>
-            <button className='btn btn-tool' onClick={() => handleWorkTypeAdd()}>
-              <i class='fa fa-plus'></i> Add
-            </button>
+    <>
+      {" "}
+      <section class='content-header'>
+        <div class='container-fluid'>
+          <div class='row mb-2'>
+            <div class='col-sm-6'>
+              <h1>Work Type</h1>
+            </div>
+            <div class='col-sm-6'>
+              <ol class='breadcrumb float-sm-right'>
+                <li class='breadcrumb-item'>
+                  <a href='#'>Home</a>
+                </li>
+                <li class='breadcrumb-item active'>Work Type</li>
+              </ol>
+            </div>
           </div>
         </div>
-        <WorkTypeTable
-          Columns={columns}
-          Data={Data}
-          loading={Loading}
-          Error={Error}
-          ErrorText={"No data available"}
-        />
-      </div>
-    </div>
+      </section>
+      <section class='content'>
+        <div className='container-fluid'>
+          <div className='card'>
+            <div className='card-header'>
+              <h3 className='card-title'>Work Type</h3>
+
+              <div className='card-tools'>
+                <button
+                  className='btn btn-tool'
+                  onClick={() => handleWorkTypeAdd()}
+                >
+                  <i class='fa fa-plus'></i> Add
+                </button>
+              </div>
+            </div>
+            <WorkTypeTable
+              Columns={columns}
+              Data={Data}
+              loading={Loading}
+              Error={Error}
+              ErrorText={"No data available"}
+            />
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
 
