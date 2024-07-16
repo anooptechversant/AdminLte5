@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 import Loading from "../Loader/Loading";
-import { Pagination } from "react-bootstrap";
+import Pagination from "react-bootstrap/Pagination";
+import Toasts from "./Toasts";
 // import "bootstrap/dist/css/bootstrap.min.css";
 
 const Table = ({
@@ -13,6 +14,8 @@ const Table = ({
   currentPageChange,
   TotalPages,
   itemsPerPage = 10,
+  ResponseMessage,
+  StatusData,
 }) => {
   const [currentPage, setCurrentPage] = useState(CurrentPage || 1);
   const totalPages = TotalPages || Math.ceil(Data?.length / itemsPerPage);
@@ -72,7 +75,11 @@ const Table = ({
   return (
     <>
       {loading && <Loading />}
-
+      <Toasts
+        propResponseMessage={ResponseMessage}
+        propActionType={"success"}
+        propStatusData={StatusData}
+      />
       <div className='card-body p-0'>
         <table className='table table-striped projects'>
           <thead>
