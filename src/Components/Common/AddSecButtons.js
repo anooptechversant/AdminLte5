@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "./addsecbutton.css";
 
 function AddSecButtons({ handleSubmit, isNext, propAllErrorEmpty, propValue }) {
   const [allErrorsEmpty, setAllErrorsEmpty] = useState(false);
@@ -16,32 +15,29 @@ function AddSecButtons({ handleSubmit, isNext, propAllErrorEmpty, propValue }) {
     propValue === undefined ? (isNext ? "Next" : "Save") : "Update";
 
   return (
-    <div className='row button-margin'>
-      <div className='col-md-6 button'>
+    <>
+      <div class='card-footer'>
+        
         <button
-          type='button'
+          type='submit'
           disabled={!allErrorsEmpty}
-          className='btn btn-sm btn-primary btn-icon-split save-button'
           onClick={() =>
             handleButtonClick(propValue === undefined ? "save" : "update")
           }
+          class='btn btn-primary mr-4'
         >
-          <span className='icon text-white-50'>
-            <i className='fas fa-save'></i>
-          </span>
-          <span className='text'>{buttonText}</span>
+          {buttonText}
         </button>
         <button
+          type='submit'
           onClick={() => handleButtonClick("cancel")}
-          className='btn btn-sm btn-danger btn-icon-split save-button'
+          class='btn btn-danger'
         >
-          <span className='icon text-white-50'>
-            <i className='fas fa-stop'></i>
-          </span>
-          <span className='text'>Cancel</span>
+          Cancel
         </button>
       </div>
-    </div>
+     
+    </>
   );
 }
 

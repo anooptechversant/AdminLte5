@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import WorkType from "./WorkType";
-import AddWorkType from "./AddWorkType";
 import { useLocation, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getWorkTypeData } from "../../Actions/workTypeActions";
+import AddWorkType from "./AddWorkType";
 
 const WorkTypeComponent = () => {
   const location = useLocation();

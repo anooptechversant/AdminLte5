@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from "react";
-// import Text from "../../../Components/InputComponents/Text";
-// import AddSecButtons from "../../../Components/CommonComponents/AddSecButtons";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getWorkTypeData } from "../../Actions/workTypeActions";
 import Text from "../../Components/InputComponents/Text";
 import Spinner from "../../Components/Loader/Loading";
 import AddSecButtons from "../../Components/Common/AddSecButtons";
-// import { getWorkTypeData } from "../../../Actions/workTypeActions";
-// import Spinner from "../../../Components/Loader/Loading";
-// import Toasts from "../../../Components/CommonComponents/Toasts";
+import Toasts from "../../Components/Common/Toasts";
 
 function AddWorkType({ Data, Success, Error, Loading }) {
   const { id } = useParams();
@@ -38,7 +34,7 @@ function AddWorkType({ Data, Success, Error, Loading }) {
     if (type === "save") {
       dispatch(getWorkTypeData("insert", inputWorkType, 0));
     } else if (type === "cancel") {
-      window.history.back();
+      window.history.back();  
     } else {
       if (id !== undefined) {
         dispatch(getWorkTypeData("update", inputWorkType, id));
@@ -77,36 +73,38 @@ function AddWorkType({ Data, Success, Error, Loading }) {
         <Spinner />
       ) : (
         <>
-          {/* <Toasts
+          <Toasts
             propResponseMessage={responseMessage}
             propStatusData={{ successStatusData, errorStatusData }}
             propActionType={id !== undefined ? "update" : "insert"}
-          /> */}
-          <section class='content-header'>
-            <div class='container-fluid'>
-              <div class='row mb-2'>
-                <div class='col-sm-6'>
-                  <h1>Validation</h1>
+          />
+          <section className='content-header'>
+            <div className='container-fluid'>
+              <div className='row mb-2'>
+                <div className='col-sm-6'>
+                  <h1>{editData[0] ? pageTitle.update : pageTitle.create}</h1>
                 </div>
-                <div class='col-sm-6'>
-                  <ol class='breadcrumb float-sm-right'>
-                    <li class='breadcrumb-item'>
+                <div className='col-sm-6'>
+                  <ol className='breadcrumb float-sm-right'>
+                    <li className='breadcrumb-item'>
                       <a href='#'>Home</a>
                     </li>
-                    <li class='breadcrumb-item active'>Validation</li>
+                    <li className='breadcrumb-item active'>
+                      {editData[0] ? pageTitle.update : pageTitle.create}
+                    </li>
                   </ol>
                 </div>
               </div>
             </div>
           </section>
 
-          <section class='content'>
-            <div class='container-fluid'>
-              <div class='row'>
-                <div class='col-md-12'>
-                  <div class='card card-primary'>
-                    <div class='card-header'>
-                      <h3 class='card-title'>
+          <section className='content'>
+            <div className='container-fluid'>
+              <div className='row'>
+                <div className='col-md-12'>
+                  <div className='card card-primary'>
+                    <div className='card-header'>
+                      <h3 className='card-title'>
                         <small>
                           {" "}
                           <span className='' onClick={goBack}>
@@ -118,8 +116,8 @@ function AddWorkType({ Data, Success, Error, Loading }) {
                     </div>
 
                     <form id='quickForm'>
-                      <div class='card-body'>
-                        <div class='form-group'>
+                      <div className='card-body'>
+                        <div className='form-group'>
                           <label for='exampleInputEmail1'>Work type</label>
 
                           <Text
@@ -132,21 +130,16 @@ function AddWorkType({ Data, Success, Error, Loading }) {
                         </div>
                       </div>
 
-                      <div class='card-footer'>
-                        <button type='submit' class='btn btn-primary'>
-                          Submit
-                        </button>
-                      </div>
                       <AddSecButtons
-              handleSubmit={handleAddWorkType}
-              propAllErrorEmpty={areAllErrorsEmpty}
-              propValue={id}
-            />
+                        handleSubmit={handleAddWorkType}
+                        propAllErrorEmpty={areAllErrorsEmpty}
+                        propValue={id}
+                      />
                     </form>
                   </div>
                 </div>
 
-                <div class='col-md-6'></div>
+                <div className='col-md-6'></div>
               </div>
             </div>
           </section>
