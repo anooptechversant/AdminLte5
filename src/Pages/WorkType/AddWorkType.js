@@ -34,7 +34,7 @@ function AddWorkType({ Data, Success, Error, Loading }) {
     if (type === "save") {
       dispatch(getWorkTypeData("insert", inputWorkType, 0));
     } else if (type === "cancel") {
-      window.history.back();  
+      window.history.back();
     } else {
       if (id !== undefined) {
         dispatch(getWorkTypeData("update", inputWorkType, id));
