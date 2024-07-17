@@ -1,48 +1,52 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useEffect, useState } from "react";
-import WorkTypeTable from "../../Components/Common/Table";
 import { useDispatch } from "react-redux";
+import EducationTable from "../../Components/Common/Table";
 import { useNavigate } from "react-router-dom";
-import { getWorkTypeData } from "../../Actions/workTypeActions";
+import { getEducationData } from "../../Actions/educationActions";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-function WorkType({ Data, Success, Error, Loading }) {
+function Education({ Data, Success, Error, Loading }) {
   const [tableData, setTableData] = useState(Data || []);
-
   const [show, setShow] = useState(false);
   const [itemToDelete, setItemToDelete] = useState(null);
-  const dispatch = useDispatch();
   const successStatusData = Success;
-  const errorStatusData = Error;   
-  const deleteConfirmMessage =
-    "Are you sure you want to delete this work type?";
+  const errorStatusData = Error;
+
+  const deleteConfirmMessage = "Are you sure you want to delete this Data?";
   const responseMessage = {
-    success: "Work type deleted successfully",
+    success: "Data deleted successfully",
   };
-    useEffect(() => {
-      setTableData(Data);
-    }, [Data]);
+
+  useEffect(() => {
+    setTableData(Data);
+  }, [Data]);
   const navigate = useNavigate();
-  const handleWorkTypeDelete = (id) => {
-    dispatch(getWorkTypeData("delete", id));
+  const dispatch = useDispatch();
+
+  const handleEducationDelete = (id) => {
+    dispatch(getEducationData("delete", id));
   };
-  const handleWorkTypeEdit = (id) => {
-    navigate(`/work-types/edit-work-type/${id}`);
+
+  const handleEducationEdit = (id) => {
+    navigate(`/education/edit-education/${id}`);
   };
-  const handleWorkTypeAdd = () => {
-    navigate("/work-types/add-work-type");
+
+  const handleEducationAdd = () => {
+    navigate("/education/add-education");
   };
-   const handleClose = () => setShow(false);
-   const handleShow = () => setShow(true);
-   const handleDelete = (id) => {
-     setItemToDelete(id);
-     handleShow();
-   };
-   const confirmDelete = () => {
-     handleWorkTypeDelete(itemToDelete);
-     setTableData(tableData.filter((obj) => obj.id !== itemToDelete));
-     handleClose();
-   };
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const handleDelete = (id) => {
+    setItemToDelete(id);
+    handleShow();
+  };
+
+  const confirmDelete = () => {
+    handleEducationDelete(itemToDelete);
+    setTableData(tableData.filter((obj) => obj.id !== itemToDelete));
+    handleClose();
+  };
+
   const columns = [
     {
       header: "#",
@@ -53,9 +57,9 @@ function WorkType({ Data, Success, Error, Loading }) {
     },
 
     {
-      header: "Work Type",
-      key: "worktype",
-      cell: (row) => <>{row?.worktype}</>,
+      header: "Qualification",
+      key: "qualification",
+      cell: (row) => <>{row?.qualification}</>,
       tdClassName: "",
       thClassName: "",
     },
@@ -64,27 +68,26 @@ function WorkType({ Data, Success, Error, Loading }) {
       key: "",
       cell: (row) => (
         <>
-          <a
+          <button
             className='btn btn-info btn-sm'
-            onClick={() => handleWorkTypeEdit(row.id)}
+            onClick={() => handleEducationEdit(row.id)}
           >
             <i className='fas fa-pencil-alt'></i>
             Edit
-          </a>
-          <a
+          </button>
+          <button
             className='btn btn-danger btn-sm'
             onClick={() => handleDelete(row.id)}
           >
             <i className='fas fa-trash'></i>
             Delete
-          </a>
+          </button>
         </>
       ),
       tdClassName: "project-actions text-center",
       thClassName: "text-center",
     },
   ];
-
   return (
     <>
       {" "}
@@ -92,14 +95,14 @@ function WorkType({ Data, Success, Error, Loading }) {
         <div className='container-fluid'>
           <div className='row mb-2'>
             <div className='col-sm-6'>
-              <h1>Work Type</h1>
+              <h1>Education</h1>
             </div>
             <div className='col-sm-6'>
               <ol className='breadcrumb float-sm-right'>
                 <li className='breadcrumb-item'>
                   <a href='/'>Home</a>
                 </li>
-                <li className='breadcrumb-item active'>Work Type</li>
+                <li className='breadcrumb-item active'>Education</li>
               </ol>
             </div>
           </div>
@@ -109,18 +112,18 @@ function WorkType({ Data, Success, Error, Loading }) {
         <div className='container-fluid'>
           <div className='card'>
             <div className='card-header'>
-              <h3 className='card-title'>Work Type</h3>
+              <h3 className='card-title'>Qualification</h3>
 
               <div className='card-tools'>
                 <button
                   className='btn btn-tool pointer-event'
-                  onClick={() => handleWorkTypeAdd()}
+                  onClick={() => handleEducationAdd()}
                 >
                   <i className='fa fa-plus'></i> Add
                 </button>
               </div>
             </div>
-            <WorkTypeTable
+            <EducationTable
               Columns={columns}
               Data={tableData}
               loading={Loading}
@@ -150,4 +153,4 @@ function WorkType({ Data, Success, Error, Loading }) {
   );
 }
 
-export default WorkType;
+export default Education;

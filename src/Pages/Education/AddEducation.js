@@ -1,72 +1,81 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import Text from "../../Components/InputComponents/Text";
 import { useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { getWorkTypeData } from "../../Actions/workTypeActions";
-import Text from "../../Components/InputComponents/Text";
+import { getEducationData } from "../../Actions/educationActions";
 import Spinner from "../../Components/Loader/Loading";
-import AddSecButtons from "../../Components/Common/AddSecButtons";
 import Toasts from "../../Components/Common/Toasts";
+import AddSecButtons from "../../Components/Common/AddSecButtons";
 
-function AddWorkType({ Data, Success, Error, Loading }) {
+function AddEducation({ Data, Success, Error, Loading }) {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const [inputWorkType, setInputWorkType] = useState({ worktype: "" });
-  const [validationError, setValidationError] = useState({ worktype: "" });
+  const [inputEducation, setInputEducation] = useState({ qualification: "" });
+  const [validationError, setValidationError] = useState({ qualification: "" });
   const [editData, setEditData] = useState([]);
   const [areAllErrorsEmpty, setAreAllErrorsEmpty] = useState(true);
 
-  const handleWorkTypeChange = (newWorkType) => {
-    setInputWorkType((prevState) => ({
+  const handleEducationChange = (newEducation) => {
+    setInputEducation((prevState) => ({
       ...prevState,
-      [newWorkType.name]: newWorkType.value,
+      [newEducation.name]: newEducation.value,
     }));
     setValidationError((prevState) => ({
       ...prevState,
-      [newWorkType.name]: newWorkType.value !== "" ? "" : "Required Field",
+      [newEducation.name]: newEducation.value !== "" ? "" : "Required Field",
     }));
   };
+
   useEffect(() => {
     setAreAllErrorsEmpty(
       Object.values(validationError).every((value) => !value)
     );
   }, [validationError]);
-  const handleAddWorkType = (type) => {
+
+  const handleAddEducation = (type) => {
     if (type === "save") {
-      dispatch(getWorkTypeData("insert", inputWorkType, 0));
+      dispatch(getEducationData("insert", inputEducation, 0));
     } else if (type === "cancel") {
       window.history.back();
-    } else {
-      if (id !== undefined) {
-        dispatch(getWorkTypeData("update", inputWorkType, id));
-        setEditData([{ worktype: inputWorkType.worktype }]);
-      }
+    } else if (id !== undefined) {
+      dispatch(getEducationData("update", inputEducation, id));
+      setEditData([{ qualification: inputEducation.qualification }]);
     }
   };
 
   const goBack = () => {
     window.history.back();
   };
+
   useEffect(() => {
-    setEditData(Data.filter((obj) => obj.id == id));
+    const filteredData = Data.filter((obj) => obj.id == id);
+    setEditData(filteredData);
   }, [Data, id]);
   useEffect(() => {
     if (editData.length > 0) {
-      setInputWorkType({ worktype: editData[0].workType });
-      setValidationError({ worktype: "" });
+      setInputEducation((prev) => ({
+        ...prev,
+        qualification: editData[0].qualification,
+      }));
+      setValidationError((prev) => ({
+        ...prev,
+        qualification: editData[0].qualification !== "" ? "" : "Required Field",
+      }));
     }
   }, [editData]);
+  const pageTitle = {
+    create: "Add Education",
+    update: "Update Education",
+  };
 
   const successStatusData = Success;
   const loading = Loading;
   const errorStatusData = Error;
-  const pageTitle = {
-    create: "Add Work Type",
-    update: "Update Work Type",
-  };
   const responseMessage = {
-    insert: "Work type successfully added",
-    update: "Work type Updated Successfully",
+    insert: "Education successfully added",
+    update: "Education Updated Successfully",
   };
+
   return (
     <div>
       {loading ? (
@@ -75,8 +84,8 @@ function AddWorkType({ Data, Success, Error, Loading }) {
         <>
           <Toasts
             propResponseMessage={responseMessage}
-            propStatusData={{ successStatusData, errorStatusData }}
             propActionType={id !== undefined ? "update" : "insert"}
+            propStatusData={{ successStatusData, errorStatusData }}
           />
           <section className='content-header'>
             <div className='container-fluid'>
@@ -97,7 +106,6 @@ function AddWorkType({ Data, Success, Error, Loading }) {
               </div>
             </div>
           </section>
-
           <section className='content'>
             <div className='container-fluid'>
               <div className='row'>
@@ -118,20 +126,21 @@ function AddWorkType({ Data, Success, Error, Loading }) {
                     <form id='quickForm'>
                       <div className='card-body'>
                         <div className='form-group'>
-                          <label for='exampleInputEmail1'>Work type</label>
+                          <label for='exampleInputEmail1'>Qualification</label>
 
                           <Text
-                            propOnChange={handleWorkTypeChange}
-                            propValidationError={validationError.worktype}
-                            propAttributeValue='worktype'
-                            propValue={editData[0] ? editData[0].worktype : ""}
+                            propOnChange={handleEducationChange}
+                            propValidationError={validationError.qualification}
+                            propAttributeValue='qualification'
+                            propValue={
+                              editData[0] ? editData[0].qualification : ""
+                            }
                             placeholder={""}
                           />
                         </div>
                       </div>
-
                       <AddSecButtons
-                        handleSubmit={handleAddWorkType}
+                        handleSubmit={handleAddEducation}
                         propAllErrorEmpty={areAllErrorsEmpty}
                         propValue={id}
                       />
@@ -149,4 +158,4 @@ function AddWorkType({ Data, Success, Error, Loading }) {
   );
 }
 
-export default AddWorkType;
+export default AddEducation;
