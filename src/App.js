@@ -5,6 +5,10 @@ import Layout from "./Pages/Layout";
 import Login from "./Pages/Login";
 import Dashboard from "./Pages/Dashboard";
 import WorkTypeComponent from "./Pages/WorkType/WorkTypeComponent";
+import EducationComponent from "./Pages/Education/EducationComponent";
+import RolesComponent from "./Pages/Roles/RolesComponent";
+
+// import "bootstrap/dist/css/bootstrap.min.css";
 function App() {
   return (
     <Provider store={store}>
@@ -20,6 +24,17 @@ function App() {
                   path='edit-work-type/:id'
                   element={<WorkTypeComponent />}
                 />
+              </Route>
+              <Route path='education' element={<EducationComponent />}>
+                <Route path='add-education' element={<EducationComponent />} />
+                <Route
+                  path='edit-education/:id'
+                  element={<EducationComponent />}
+                />
+              </Route>
+              <Route path='roles' element={<RolesComponent />}>
+                <Route path='edit-roles/:id' element={<RolesComponent />} />
+                <Route path='add-roles' element={<RolesComponent />} />
               </Route>
             </Route>
           </Routes>
