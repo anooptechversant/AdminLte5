@@ -53,8 +53,8 @@ export default function Sidebar() {
           >
             <li class='nav-item menu-open'>
               <NavLink to='/' className='nav-link'>
-                  <i class='nav-icon fas fa-tachometer-alt'></i>
-                  <p>Dashboard</p>
+                <i class='nav-icon fas fa-tachometer-alt'></i>
+                <p>Dashboard</p>
               </NavLink>
             </li>
             <li class='nav-item'>
@@ -82,6 +82,18 @@ export default function Sidebar() {
                   <NavLink to='/roles' className='nav-link'>
                     <i class='far fa-circle nav-icon'></i>
                     <p>Roles</p>
+                  </NavLink>
+                </li>
+                <li class='nav-item'>
+                  <NavLink to='/units' className='nav-link'>
+                    <i class='far fa-circle nav-icon'></i>
+                    <p>Units</p>
+                  </NavLink>
+                </li>
+                <li class='nav-item'>
+                  <NavLink to='/services' className='nav-link'>
+                    <i class='far fa-circle nav-icon'></i>
+                    <p>Services</p>
                   </NavLink>
                 </li>
               </ul>

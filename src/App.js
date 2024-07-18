@@ -7,6 +7,8 @@ import Dashboard from "./Pages/Dashboard";
 import WorkTypeComponent from "./Pages/WorkType/WorkTypeComponent";
 import EducationComponent from "./Pages/Education/EducationComponent";
 import RolesComponent from "./Pages/Roles/RolesComponent";
+import UnitsComponent from "./Pages/Units/UnitsComponent";
+import ServicesComponent from "./Pages/Services/ServicesComponent";
 
 // import "bootstrap/dist/css/bootstrap.min.css";
 function App() {
@@ -35,6 +37,17 @@ function App() {
               <Route path='roles' element={<RolesComponent />}>
                 <Route path='edit-roles/:id' element={<RolesComponent />} />
                 <Route path='add-roles' element={<RolesComponent />} />
+              </Route>
+              <Route path='units' element={<UnitsComponent />}>
+                <Route path='edit-units/:id' element={<UnitsComponent />} />
+                <Route path='add-units' element={<UnitsComponent />} />
+              </Route>
+              <Route path='services' element={<ServicesComponent />}>
+                <Route
+                  path='edit-services/:id'
+                  element={<ServicesComponent />}
+                />
+                <Route path='add-services' element={<ServicesComponent />} />
               </Route>
             </Route>
           </Routes>
