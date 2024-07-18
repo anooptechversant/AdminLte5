@@ -11,22 +11,11 @@ const Roles = ({ Data, Success, Error, Loading }) => {
  const [itemToDelete, setItemToDelete] = useState(null);
   const successStatusData = Success;
   const errorStatusData = Error;
-  const loadingRoles = Loading;
-  const pageTitle = "Roles";
-  const tableTitle = "Roles";
-  const addTableTitle = "Add Roles";
   const deleteConfirmMessage = "Are you sure you want to delete this Data?";
   const responseMessage = {
     success: "Data deleted successfully",
   };
-  const rolesColumns = [
-    { key: "id", name: "ID" },
-    { key: "role", name: "Role" },
-    { key: "type", name: "Type" },
-    { key: "description", name: "Description" },
 
-    // Add more columns as needed
-  ];
  useEffect(() => {
    setTableData(Data);
  }, [Data]);
