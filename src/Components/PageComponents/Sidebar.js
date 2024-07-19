@@ -98,6 +98,35 @@ export default function Sidebar() {
                 </li>
               </ul>
             </li>
+            <li class='nav-item'>
+              <a href='#' class='nav-link'>
+                <i class='nav-icon fas fa-copy'></i>
+                <p>
+                  Material Section
+                  <i class='fas fa-angle-left right'></i>
+                </p>
+              </a>
+              <ul class='nav nav-treeview'>
+                <li class='nav-item'>
+                  <NavLink to='brands' className='nav-link'>
+                    <i class='far fa-circle nav-icon '></i>
+                    <p>Brands</p>
+                  </NavLink>
+                </li>
+                <li class='nav-item'>
+                  <NavLink to='/budget' className='nav-link'>
+                    <i class='far fa-circle nav-icon'></i>
+                    <p>Budget</p>
+                  </NavLink>
+                </li>
+                <li class='nav-item'>
+                  <NavLink to='/project' className='nav-link'>
+                    <i class='far fa-circle nav-icon'></i>
+                    <p>Projects</p>
+                  </NavLink>
+                </li>
+              </ul>
+            </li>
           </ul>
         </nav>
       </div>
