@@ -1,35 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link, useParams } from "react-router-dom";
 import Text from "../../Components/InputComponents/Text";
-import { getRolesData } from "../../Actions/rolesActions";
-
+import AddSecButtons from "../../Components/Common/AddSecButtons";
+import { Link, useParams } from "react-router-dom";
+import TextArea from "../../Components/InputComponents/TextArea";
+import { getBrandData } from "../../Actions/brandActions";
 import Spinner from "../../Components/Loader/Loading";
 import Toasts from "../../Components/Common/Toasts";
-import AddSecButtons from "../../Components/Common/AddSecButtons";
-import TextArea from "../../Components/InputComponents/TextArea";
-import SelectionInput from "../../Components/InputComponents/SelectionInput";
 
-const AddRoles = ({ Data, Success, Error, Loading }) => {
+const AddBrand = ({ Data, Success, Error, Loading }) => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const [inputRoles, setInputRoles] = useState({
-    role: "",
-    type: "",
+
+  const [inputBrand, setInputBrand] = useState({
+    name: "",
     description: "",
   });
   const [validationError, setValidationError] = useState({
-    role: "",
-    type: "",
+    name: "",
     description: "",
   });
-
   const [editData, setEditData] = useState([]);
   const [areAllErrorsEmpty, setAreAllErrorsEmpty] = useState(true);
-  const typeArray = [
-    { option: "B2B", value: "B2B" },
-    { option: "B2C", value: "B2C" },
-  ];
 
   const handleInputChange = (newValue, setterFunction) => {
     setterFunction((prevState) => ({
@@ -41,23 +33,27 @@ const AddRoles = ({ Data, Success, Error, Loading }) => {
       [newValue.name]: newValue.value !== "" ? "" : "Required Field",
     }));
   };
-
   useEffect(() => {
     setAreAllErrorsEmpty(
       Object.values(validationError).every((value) => !value)
     );
   }, [validationError]);
-
-  const handleAddRoles = (type) => {
+  const handleAddBrand = (type) => {
     if (type === "save" || (type === "update" && id !== undefined)) {
       const inputData = {
-        role: inputRoles.role,
-        description: inputRoles.description,
-        type: inputRoles.type,
+        name: inputBrand.name,
+        description: inputBrand.description,
+        is_active: false,
       };
+      const inputUpdateData = {
+        name: inputBrand.name,
+        description: inputBrand.description,
+      };
+      const argData =
+        type === "save" ? inputData : type === "update" ? inputUpdateData : "";
       const argument =
         type === "save" ? "insert" : type === "update" ? "update" : "";
-      dispatch(getRolesData(argument, inputData, id));
+      dispatch(getBrandData(argument, argData, id));
       if (type === "update") {
         setEditData([inputData]);
       }
@@ -65,7 +61,6 @@ const AddRoles = ({ Data, Success, Error, Loading }) => {
       window.history.back();
     }
   };
-
   const goBack = () => {
     window.history.back();
   };
@@ -75,27 +70,25 @@ const AddRoles = ({ Data, Success, Error, Loading }) => {
   }, [Data, id]);
   useEffect(() => {
     if (editData.length > 0) {
-      const { role, description, type } = editData[0];
-      setInputRoles({ role, description, type });
+      const { name, description } = editData[0];
+      setInputBrand({ name, description });
       setValidationError((prevState) => ({
         ...prevState,
-        role: role !== "" ? "" : "Required Field",
-        description: description !== "" ? "" : "Required Field",
-        type: type !== "" ? "" : "Required Field",
+        name: name === "" ? "Required Field" : "",
+        description: description === "" ? "Required Field" : "",
       }));
     }
   }, [editData]);
-
   const pageTitle = {
-    create: "Add Role",
-    update: "Update Role",
+    create: "Add Brand",
+    update: "Update Brand",
   };
   const successStatusData = Success;
-  const loading = Loading;
   const errorStatusData = Error;
+  const loading = Loading;
   const responseMessage = {
-    insert: "Roles successfully added",
-    update: "Roles Updated Successfully",
+    insert: "Brand successfully added",
+    update: "Brand Updated Successfully",
   };
   return (
     <div>
@@ -136,8 +129,7 @@ const AddRoles = ({ Data, Success, Error, Loading }) => {
                       <div className='card-header'>
                         <h3 className='card-title'>
                           <small>
-                            {" "}
-                            <span className='' onClick={goBack}>
+                            <span className='user-select-auto' onClick={goBack}>
                               <i className='fa fa-chevron-left m-0 font-weight-bold'></i>
                               <span className='add-label'> Back</span>
                             </span>
@@ -148,14 +140,16 @@ const AddRoles = ({ Data, Success, Error, Loading }) => {
                       <form id='quickForm'>
                         <div className='card-body'>
                           <div className='form-group'>
-                            <label for='exampleInputEmail1'>Name of Role</label>
+                            <label for='exampleInputEmail1'>
+                              Name of Brand
+                            </label>
                             <Text
                               propOnChange={(newValue) =>
-                                handleInputChange(newValue, setInputRoles)
+                                handleInputChange(newValue, setInputBrand)
                               }
-                              propValidationError={validationError.role}
-                              propAttributeValue='role'
-                              propValue={editData[0] ? editData[0].role : ""}
+                              propValidationError={validationError.name}
+                              propAttributeValue='name'
+                              propValue={editData[0] ? editData[0].name : ""}
                               placeholder={""}
                             />
                             <label>
@@ -163,30 +157,19 @@ const AddRoles = ({ Data, Success, Error, Loading }) => {
                             </label>
                             <TextArea
                               propOnChange={(newValue) =>
-                                handleInputChange(newValue, setInputRoles)
+                                handleInputChange(newValue, setInputBrand)
                               }
                               propValidationError={validationError.description}
                               propAttributeValue='description'
                               propValue={
                                 editData[0] ? editData[0].description : ""
                               }
+                              placeholder={""}
                             />
-                            <label>
-                              Type <span className='errorLabel'>*</span>
-                            </label>
-                            <SelectionInput
-                              propOnChange={(newValue) =>
-                                handleInputChange(newValue, setInputRoles)
-                              }
-                              propValidationError={validationError.type}
-                              propAttributeValue='type'
-                              options={typeArray}
-                              propValue={editData[0] ? editData[0].type : ""}
-                            />{" "}
                           </div>
                         </div>
                         <AddSecButtons
-                          handleSubmit={handleAddRoles}
+                          handleSubmit={handleAddBrand}
                           propAllErrorEmpty={areAllErrorsEmpty}
                           propValue={id}
                         />
@@ -205,4 +188,4 @@ const AddRoles = ({ Data, Success, Error, Loading }) => {
   );
 };
 
-export default AddRoles;
+export default AddBrand;

@@ -9,6 +9,9 @@ import EducationComponent from "./Pages/Education/EducationComponent";
 import RolesComponent from "./Pages/Roles/RolesComponent";
 import UnitsComponent from "./Pages/Units/UnitsComponent";
 import ServicesComponent from "./Pages/Services/ServicesComponent";
+import BrandComponent from "./Pages/Brands/BrandComponent";
+import BudgetComponent from "./Pages/Budget/BudgetComponent";
+import ProjectComponent from "./Pages/Project/ProjectComponent";
 
 // import "bootstrap/dist/css/bootstrap.min.css";
 function App() {
@@ -48,6 +51,38 @@ function App() {
                   element={<ServicesComponent />}
                 />
                 <Route path='add-services' element={<ServicesComponent />} />
+              </Route>
+              <Route path='brands' element={<BrandComponent />}>
+                <Route path='edit-brand/:id' element={<BrandComponent />} />
+                <Route path='add-brand' element={<BrandComponent />} />
+              </Route>
+              <Route path='budget' element={<BudgetComponent />}>
+                <Route
+                  path='user-budget/:user_id'
+                  element={<BudgetComponent />}
+                />{" "}
+                <Route
+                  path='add-budget/:user_id'
+                  element={<BudgetComponent />}
+                />
+                <Route
+                  path='edit-budget/:user_id/:budget_id'
+                  element={<BudgetComponent />}
+                />
+              </Route>
+              <Route path='project' element={<ProjectComponent />}>
+                <Route
+                  path='user-project/:user_id'
+                  element={<ProjectComponent />}
+                />
+                <Route
+                  path='add-project/:user_id'
+                  element={<ProjectComponent />}
+                />{" "}
+                <Route
+                  path='edit-project/:user_id/:project_id'
+                  element={<ProjectComponent />}
+                />
               </Route>
             </Route>
           </Routes>

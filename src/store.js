@@ -5,6 +5,9 @@ import educationReducer from "./Features/educationSlice.js";
 import rolesReducer from "./Features/rolesSlice.js";
 import unitsReducer from "./Features/unitsSlice.js";
 import servicesReducer from "./Features/servicesSlice.js";
+import projectReducer from "./Features/projectSlice.js";
+import budgetReducer from "./Features/budgetSlice.js";
+import brandReducer from "./Features/brandSlice.js";
 
 const store = configureStore({
   reducer: {
@@ -14,6 +17,9 @@ const store = configureStore({
     roles: rolesReducer,
     units: unitsReducer,
     services: servicesReducer,
+    brand: brandReducer,
+    project: projectReducer,
+    budget: budgetReducer,
   },
 });
 
