@@ -125,6 +125,12 @@ export default function Sidebar() {
                     <p>Projects</p>
                   </NavLink>
                 </li>
+                <li class='nav-item'>
+                  <NavLink to='/category' className='nav-link'>
+                    <i class='far fa-circle nav-icon'></i>
+                    <p>Category</p>
+                  </NavLink>
+                </li>
               </ul>
             </li>
           </ul>

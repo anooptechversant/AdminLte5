@@ -12,6 +12,7 @@ import ServicesComponent from "./Pages/Services/ServicesComponent";
 import BrandComponent from "./Pages/Brands/BrandComponent";
 import BudgetComponent from "./Pages/Budget/BudgetComponent";
 import ProjectComponent from "./Pages/Project/ProjectComponent";
+import CategoryComponent from "./Pages/Category/CategoryComponent";
 
 // import "bootstrap/dist/css/bootstrap.min.css";
 function App() {
@@ -83,6 +84,13 @@ function App() {
                   path='edit-project/:user_id/:project_id'
                   element={<ProjectComponent />}
                 />
+              </Route>
+              <Route path='category' element={<CategoryComponent />}>
+                <Route
+                  path='edit-category/:id'
+                  element={<CategoryComponent />}
+                />
+                <Route path='add-category' element={<CategoryComponent />} />
               </Route>
             </Route>
           </Routes>

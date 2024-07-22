@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import BrandTable from "../../Components/Common/Table";
+import CategoryTable from "../../Components/Common/Table";
 import { useNavigate } from "react-router-dom";
-import { getBrandData } from "../../Actions/brandActions";
-
-const Brand = ({ Data, Success, Error, Loading, isActiveData }) => {
+import { getCategoryData } from "../../Actions/categoryActions";
+const Category = ({ Data, Success, Error, Loading, isActiveData }) => {
   const [resMsg, setResMsg] = useState(true);
   const [tableData, setTableData] = useState(Data || []);
- const successStatusData = Success || isActiveData;
+  const successStatusData = Success || isActiveData;
   const errorStatusData = Error;
   const responseMessage = {
     success:
       resMsg === true
-        ? "Brand activated successfully"
-        : "Brand deactivated successfully",
+        ? "Category activated successfully"
+        : "Category deactivated successfully",
   };
 
   useEffect(() => {
@@ -22,30 +21,29 @@ const Brand = ({ Data, Success, Error, Loading, isActiveData }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const handleBrandActivate = (id) => {
+  const handleCategoryActivate = (id) => {
     const data = { is_active: true };
     setResMsg(true);
-    dispatch(getBrandData("activate", data, id));
+    dispatch(getCategoryData("activate", data, id));
   };
-  const handleBrandDeactivate = (id) => {
+  const handleCategoryDeactivate = (id) => {
     const data = { is_active: false };
-
     setResMsg(false);
-    dispatch(getBrandData("deactivate", data, id));
+    dispatch(getCategoryData("deactivate", data, id));
   };
   const handleSwitchChange = (id, isActive) => {
     if (isActive) {
-      handleBrandDeactivate(id);
+      handleCategoryDeactivate(id);
     } else {
-      handleBrandActivate(id);
+      handleCategoryActivate(id);
     }
   };
-  const handleBrandEdit = (id) => {
-    navigate(`/brands/edit-brand/${id}`);
+  const handleCategoryEdit = (id) => {
+    navigate(`/category/edit-category/${id}`);
   };
 
-  const handleBrandAdd = () => {
-    navigate("/brands/add-brand");
+  const handleCategoryAdd = () => {
+    navigate("/category/add-category");
   };
 
   const columns = [
@@ -58,20 +56,18 @@ const Brand = ({ Data, Success, Error, Loading, isActiveData }) => {
     },
 
     {
-      header: "Brand Name",
+      header: "Category Name",
       key: "name",
       cell: (row) => <>{row?.name}</>,
-      tdClassName: "text-nowrap",
-      thClassName: "text-nowrap",
+      tdClassName: "",
+      thClassName: "",
     },
     {
-      header: "Description",
-      key: "description",
+      header: "Image",
+      key: "image",
       cell: (row) => (
         <>
-          {row?.description.length > 50
-            ? `${row?.description.substring(0, 50)}...`
-            : row?.description}
+          <img alt={row?.name} class='table-avatar' src={row?.image} />
         </>
       ),
       tdClassName: "",
@@ -85,18 +81,11 @@ const Brand = ({ Data, Success, Error, Loading, isActiveData }) => {
         <div className='d-flex justify-content-around'>
           <button
             className='btn btn-info btn-sm'
-            onClick={() => handleBrandEdit(row.id)}
+            onClick={() => handleCategoryEdit(row.id)}
           >
             <i className='fas fa-pencil-alt'></i>
             Edit
           </button>
-          {/* <button
-           className='btn btn-danger btn-sm'
-           onClick={() => handleDelete(row.id)}
-         >
-           <i className='fas fa-trash'></i>
-           Delete
-         </button> */}
           <div
             class={`custom-control custom-switch x  ${
               row.is_active
@@ -135,14 +124,14 @@ const Brand = ({ Data, Success, Error, Loading, isActiveData }) => {
         <div className='container-fluid'>
           <div className='row mb-2'>
             <div className='col-sm-6'>
-              <h1>Brand</h1>
+              <h1>Category</h1>
             </div>
             <div className='col-sm-6'>
               <ol className='breadcrumb float-sm-right'>
                 <li className='breadcrumb-item'>
                   <a href='/'>Home</a>
                 </li>
-                <li className='breadcrumb-item active'>Brand</li>
+                <li className='breadcrumb-item active'>Category</li>
               </ol>
             </div>
           </div>
@@ -152,18 +141,18 @@ const Brand = ({ Data, Success, Error, Loading, isActiveData }) => {
         <div className='container-fluid'>
           <div className='card'>
             <div className='card-header'>
-              <h3 className='card-title'>Brand</h3>
+              <h3 className='card-title'>Category</h3>
 
               <div className='card-tools'>
                 <button
                   className='btn btn-tool pointer-event'
-                  onClick={() => handleBrandAdd()}
+                  onClick={() => handleCategoryAdd()}
                 >
                   <i className='fa fa-plus'></i> Add
                 </button>
               </div>
             </div>
-            <BrandTable
+            <CategoryTable
               Columns={columns}
               Data={tableData}
               loading={Loading}
@@ -175,9 +164,8 @@ const Brand = ({ Data, Success, Error, Loading, isActiveData }) => {
           </div>
         </div>
       </section>
-      
     </>
   );
 };
 
-export default Brand;
+export default Category;
