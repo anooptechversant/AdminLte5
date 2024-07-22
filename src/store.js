@@ -8,6 +8,7 @@ import servicesReducer from "./Features/servicesSlice.js";
 import projectReducer from "./Features/projectSlice.js";
 import budgetReducer from "./Features/budgetSlice.js";
 import brandReducer from "./Features/brandSlice.js";
+import categoryReducer from "./Features/categorySlice.js";
 
 const store = configureStore({
   reducer: {
@@ -20,6 +21,7 @@ const store = configureStore({
     brand: brandReducer,
     project: projectReducer,
     budget: budgetReducer,
+    category: categoryReducer,
   },
 });
 
