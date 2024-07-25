@@ -9,7 +9,7 @@ import projectReducer from "./Features/projectSlice.js";
 import budgetReducer from "./Features/budgetSlice.js";
 import brandReducer from "./Features/brandSlice.js";
 import categoryReducer from "./Features/categorySlice.js";
-
+import subCategoryReducer from "./Features/subCategorySlice.js";
 const store = configureStore({
   reducer: {
     logIn: logInReducer,
@@ -22,6 +22,7 @@ const store = configureStore({
     project: projectReducer,
     budget: budgetReducer,
     category: categoryReducer,
+    subCategory: subCategoryReducer,
   },
 });
 

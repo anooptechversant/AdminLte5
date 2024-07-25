@@ -13,7 +13,7 @@ import BrandComponent from "./Pages/Brands/BrandComponent";
 import BudgetComponent from "./Pages/Budget/BudgetComponent";
 import ProjectComponent from "./Pages/Project/ProjectComponent";
 import CategoryComponent from "./Pages/Category/CategoryComponent";
-
+import SubCategoryComponent from "./Pages/SubCategory/SubCategoryComponent";
 // import "bootstrap/dist/css/bootstrap.min.css";
 function App() {
   return (
@@ -91,6 +91,16 @@ function App() {
                   element={<CategoryComponent />}
                 />
                 <Route path='add-category' element={<CategoryComponent />} />
+              </Route>
+              <Route path='sub-category' element={<SubCategoryComponent />}>
+                <Route
+                  path='edit-sub-category/:id/:category_id'
+                  element={<SubCategoryComponent />}
+                />
+                <Route
+                  path='add-sub-category'
+                  element={<SubCategoryComponent />}
+                />
               </Route>
             </Route>
           </Routes>
