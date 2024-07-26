@@ -14,6 +14,8 @@ import BudgetComponent from "./Pages/Budget/BudgetComponent";
 import ProjectComponent from "./Pages/Project/ProjectComponent";
 import CategoryComponent from "./Pages/Category/CategoryComponent";
 import SubCategoryComponent from "./Pages/SubCategory/SubCategoryComponent";
+import SupplierComponent from "./Pages/Supplier/SupplierComponent";
+
 // import "bootstrap/dist/css/bootstrap.min.css";
 function App() {
   return (
@@ -100,6 +102,21 @@ function App() {
                 <Route
                   path='add-sub-category'
                   element={<SubCategoryComponent />}
+                />
+              </Route>
+              <Route path='supplier' element={<SupplierComponent />}>
+                <Route
+                  path='view-supplier/:id'
+                  element={<SupplierComponent />}
+                />
+                <Route path='add-supplier' element={<SupplierComponent />} />
+                <Route
+                  path='edit-supplier/:id'
+                  element={<SupplierComponent />}
+                />
+                <Route
+                  path='edit-supplier-address/:ref_id/address/:address_id/:user_type'
+                  element={<SupplierComponent />}
                 />
               </Route>
             </Route>

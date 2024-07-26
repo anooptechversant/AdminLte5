@@ -10,6 +10,8 @@ import budgetReducer from "./Features/budgetSlice.js";
 import brandReducer from "./Features/brandSlice.js";
 import categoryReducer from "./Features/categorySlice.js";
 import subCategoryReducer from "./Features/subCategorySlice.js";
+import supplierReducer from "./Features/supplierSlice.js";
+
 const store = configureStore({
   reducer: {
     logIn: logInReducer,
@@ -23,6 +25,7 @@ const store = configureStore({
     budget: budgetReducer,
     category: categoryReducer,
     subCategory: subCategoryReducer,
+    supplier: supplierReducer,
   },
 });
 

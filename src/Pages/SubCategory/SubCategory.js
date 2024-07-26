@@ -8,7 +8,7 @@ import SelectionInput from "../../Components/InputComponents/SelectionInput";
 const SubCategory = (props) => {
   const { Data, CategoryData, Success, Error, Loading, Fetch, category_id } =
     props;
-      const [tableData, setTableData] = useState(Data || []);
+  const [tableData, setTableData] = useState(Data || []);
   const [inputCategory, setInputCategory] = useState({
     name: "",
   });
@@ -19,7 +19,7 @@ const SubCategory = (props) => {
   useEffect(() => {
     setTableData(Data);
   }, [Data]);
-  const successStatusData = Success ;
+  const successStatusData = Success;
   const errorStatusData = Error;
   const pageTitle = "Sub Category";
   const tableTitle = "Sub Category";
@@ -67,13 +67,13 @@ const SubCategory = (props) => {
   const handleSubCategoryAdd = () => {
     navigate("/sub-category/add-sub-category");
   };
-const handleSwitchChange = (id, isActive) => {
-  if (isActive) {
-    handleSubCategoryDeactivate(id);
-  } else {
-    handleSubCategoryActivate(id);
-  }
-};
+  const handleSwitchChange = (id, isActive) => {
+    if (isActive) {
+      handleSubCategoryDeactivate(id);
+    } else {
+      handleSubCategoryActivate(id);
+    }
+  };
   const categoryArray =
     CategoryData?.map((category) => ({
       option: category.name,
@@ -173,73 +173,72 @@ const handleSwitchChange = (id, isActive) => {
     },
   ];
   return (
-    
-      <>
-        {" "}
-        <section className='content-header'>
-          <div className='container-fluid'>
-            <div className="row">
-              <div className='col-md-6'></div>
-              <div className='col-md-6 '>
-                <div className='mb-4 d-flex justify-content-center'>
-                  <label className='d-flex mr-2'>
-                    Category <span className='errorLabel'>*</span>
-                  </label>
-                  <div className='w-100'>
-                    <SelectionInput
-                      propOnChange={handleCategoryChange}
-                      propValidationError={validationError.name}
-                      propAttributeValue='name'
-                      options={categoryArray}
-                      propValue={inputCategory?.name || ""}
-                    />
-                  </div>
+    <>
+      {" "}
+      <section className='content-header'>
+        <div className='container-fluid'>
+          <div className='row'>
+            <div className='col-md-6'></div>
+            <div className='col-md-6 '>
+              <div className='mb-4 d-flex justify-content-center'>
+                <label className='d-flex mr-2'>
+                  Category <span className='errorLabel'>*</span>
+                </label>
+                <div className='w-100'>
+                  <SelectionInput
+                    propOnChange={handleCategoryChange}
+                    propValidationError={validationError.name}
+                    propAttributeValue='name'
+                    options={categoryArray}
+                    propValue={inputCategory?.name || ""}
+                  />
                 </div>
               </div>
             </div>
-            <div className='row mb-2'>
-              <div className='col-sm-6'>
-                <h1>{pageTitle}</h1>
-              </div>
-              <div className='col-sm-6'>
-                <ol className='breadcrumb float-sm-right'>
-                  <li className='breadcrumb-item'>
-                    <a href='/'>Home</a>
-                  </li>
-                  <li className='breadcrumb-item active'>{pageTitle}</li>
-                </ol>
-              </div>
+          </div>
+          <div className='row mb-2'>
+            <div className='col-sm-6'>
+              <h1>{pageTitle}</h1>
+            </div>
+            <div className='col-sm-6'>
+              <ol className='breadcrumb float-sm-right'>
+                <li className='breadcrumb-item'>
+                  <a href='/'>Home</a>
+                </li>
+                <li className='breadcrumb-item active'>{pageTitle}</li>
+              </ol>
             </div>
           </div>
-        </section>
-        <section className='content'>
-          <div className='container-fluid'>
-            <div className='card'>
-              <div className='card-header'>
-                <h3 className='card-title'>{tableTitle}</h3>
+        </div>
+      </section>
+      <section className='content'>
+        <div className='container-fluid'>
+          <div className='card'>
+            <div className='card-header'>
+              <h3 className='card-title'>{tableTitle}</h3>
 
-                <div className='card-tools'>
-                  <button
-                    className='btn btn-tool pointer-event'
-                    onClick={() => handleSubCategoryAdd()}
-                  >
-                    <i className='fa fa-plus'></i> Add
-                  </button>
-                </div>
+              <div className='card-tools'>
+                <button
+                  className='btn btn-tool pointer-event'
+                  onClick={() => handleSubCategoryAdd()}
+                >
+                  <i className='fa fa-plus'></i> Add
+                </button>
               </div>
-              <SubCategoryTable
-                Columns={columns}
-                Data={tableData}
-                loading={Loading}
-                Error={Error}
-                ErrorText={"No data available"}
-                ResponseMessage={responseMessage}
-                StatusData={{ successStatusData, errorStatusData }}
-              />
             </div>
+            <SubCategoryTable
+              Columns={columns}
+              Data={tableData}
+              loading={Loading}
+              Error={Error}
+              ErrorText={"No data available"}
+              ResponseMessage={responseMessage}
+              StatusData={{ successStatusData, errorStatusData }}
+            />
           </div>
-        </section>
-      </>
+        </div>
+      </section>
+    </>
   );
 };
 

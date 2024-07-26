@@ -137,6 +137,12 @@ export default function Sidebar() {
                     <p>Sub Category</p>
                   </NavLink>
                 </li>
+                <li class='nav-item'>
+                  <NavLink to='/supplier' className='nav-link'>
+                    <i class='far fa-circle nav-icon'></i>
+                    <p>Supplier</p>
+                  </NavLink>
+                </li>
               </ul>
             </li>
           </ul>
