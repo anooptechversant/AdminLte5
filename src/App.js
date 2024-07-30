@@ -15,6 +15,7 @@ import ProjectComponent from "./Pages/Project/ProjectComponent";
 import CategoryComponent from "./Pages/Category/CategoryComponent";
 import SubCategoryComponent from "./Pages/SubCategory/SubCategoryComponent";
 import SupplierComponent from "./Pages/Supplier/SupplierComponent";
+import ProductComponent from "./Pages/Product/ProductComponent";
 
 // import "bootstrap/dist/css/bootstrap.min.css";
 function App() {
@@ -117,6 +118,44 @@ function App() {
                 <Route
                   path='edit-supplier-address/:ref_id/address/:address_id/:user_type'
                   element={<SupplierComponent />}
+                />
+              </Route>
+              <Route path='product' element={<ProductComponent />}>
+                <Route
+                  path='view-product/:prodId'
+                  element={<ProductComponent />}
+                />
+                <Route
+                  path='add-brand-product'
+                  element={<ProductComponent />}
+                />
+                <Route
+                  path='edit-brand-product/:brProdId'
+                  element={<ProductComponent />}
+                />
+                <Route
+                  path='add-product/:brProdId'
+                  element={<ProductComponent />}
+                />
+                <Route
+                  path='edit-product/:prodId'
+                  element={<ProductComponent />}
+                />
+                <Route
+                  path='edit-product-image/:prodId/:imageId'
+                  element={<ProductComponent />}
+                />{" "}
+                <Route
+                  path='add-product-image/:prodId'
+                  element={<ProductComponent />}
+                />
+                <Route
+                  path='add-brand-supplier/:prodId'
+                  element={<ProductComponent />}
+                />{" "}
+                <Route
+                  path='add-brand-supplier/:prodId/:add'
+                  element={<ProductComponent />}
                 />
               </Route>
             </Route>

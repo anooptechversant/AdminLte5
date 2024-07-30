@@ -68,10 +68,9 @@ const Table = ({
 
   const pageRange = getPageRange();
 
-  const paginatedData = Data.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage
-  );
+  const paginatedData = CurrentPage
+    ? Data
+    : Data?.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
   return (
     <>
       {loading && <Loading />}
