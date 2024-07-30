@@ -8,8 +8,8 @@ import { isLoggedIn } from "../Utils/loginUtil";
 import Loading from "../Components/Loader/Loading";
 
 function Layout() {
-   const data = useSelector((state) => state);
-   const { loginLoading } = data.logIn;
+  //  const data = useSelector((state) => state);
+  //  const { loginLoading } = data.logIn;
    const navigate = useNavigate();
 
    useEffect(() => {
@@ -20,7 +20,7 @@ function Layout() {
   return (
     <div class='hold-transition sidebar-mini layout-fixed'>
       <div class='wrapper'>
-        {loginLoading ? <Loading /> : null}
+        {/* {loginLoading ? <Loading /> : null} */}
 
         {/* <div class='preloader flex-column justify-content-center align-items-center'>
           <img
