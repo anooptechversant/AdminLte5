@@ -114,7 +114,7 @@ const ViewSupplier = ({ viewData, Success, Error, Loading, isActiveData }) => {
                   </div>
                   <Card.Body>
                     <Card.Title>
-                      <h1 className='h3 mb-4 text-gray-800'>{viewData.name}</h1>
+                      <h1 className='h-3 mb-4 text-gray-800'>{viewData.name}</h1>
                     </Card.Title>
                     <Card.Text>
                       <strong>Phone:</strong> {viewData.phone}
