@@ -5,7 +5,7 @@ import Card from "react-bootstrap/Card";
 import Accordion from "react-bootstrap/Accordion";
 import Spinner from "../../Components/Loader/Loading";
 import Toasts from "../../Components/Common/Toasts";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { getProductData } from "../../Actions/ProductActions";
 
 const ProductView = ({ viewData, Success, Error, Loading, isActiveData }) => {
@@ -68,187 +68,280 @@ const ProductView = ({ viewData, Success, Error, Loading, isActiveData }) => {
         <Spinner />
       ) : (
         <>
-          {viewData ? (
-            <Card className='text-center m-4 shadow-sm'>
+          <div className='container-fluid'>
+            <div>
               <Toasts
                 propResponseMessage={responseMessage}
                 propActionType={"success"}
                 propStatusData={{ successStatusData, errorStatusData }}
               />
-              <Card.Header className='d-flex justify-content-between align-items-center'>
-                <span className='btn' onClick={goBack}>
-                  <i className='fa fa-chevron-left m-0 font-weight-bold '></i>
-                  <span className='add-label'> Back</span>
-                </span>
-                <span>
-                  <span className='add-label '>Edit Brand Product</span>
-                  <span
-                    className='btn btn-primary rounded btn-sm'
-                    onClick={EditBrandHandler}
-                  >
-                    <i className='fas fa-edit edit-icon text-light'></i>
-                  </span>
-                </span>
-                {/* {viewData.brand_product.is_active
-              ? "Active Product"
-              : "Inactive Product"} */}
-              </Card.Header>
-              <Card.Body>
-                <Card.Title>
-                  <h1 className='h3 mb-4 text-gray-800'>
-                    {viewData.brand_product.product_name}
-                  </h1>
-                </Card.Title>
-                <Card.Text>
-                  <strong> Description:</strong>{" "}
-                  {viewData.brand_product.description}
-                  <br />
-                  <strong>Selling Price: </strong>₹ {viewData.selling_price}
-                  <br />
-                  <strong>Market Price: </strong>₹{" "}
-                  <del>{viewData.market_price}</del>
-                  <br />
-                  <strong>Min Purchase Quantity:</strong>{" "}
-                  {viewData.min_purchase_quantity}
-                  <br />
-                  <strong>Weight:</strong>{" "}
-                  {viewData.weight_value +
-                    " " +
-                    viewData.weight_unit +
-                    " / " +
-                    viewData.weight_description}
-                  <br />
-                  <Accordion defaultActiveKey='0' className='my-2'>
-                    <Accordion.Item eventKey='0'>
-                      <Accordion.Header>
-                        <div className='container'>
-                          <div className='row'>
-                            <div className='col-md-8'>Product Images</div>
-                            <div className='col-md-4 text-end'>
-                              <span className='add-label'>Add Image</span>
-                              <span
-                                className='btn btn-primary rounded btn-sm'
-                                onClick={AddImageHandler}
-                              >
-                                <i className='fas fa-add add-icon'></i>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </Accordion.Header>
-                      <Accordion.Body className='d-flex justify-content-evenly row'>
-                        {viewData.product_images.map((image) => (
-                          <Card
-                            key={image.id}
-                            className={`text-center  mb-4 col-md-3 ${
-                              image.is_active ? "text-success" : "text-danger"
-                            }`}
+              <section className='content-header'>
+                <div className='container-fluid'>
+                  <div className='row mb-2'>
+                    <div className='col-sm-6'>
+                      <h1>Product details</h1>
+                    </div>
+                    <div className='col-sm-6'>
+                      <ol className='breadcrumb float-sm-right'>
+                        <li className='breadcrumb-item'>
+                          <Link href='/'>Home</Link>
+                        </li>
+                        <li className='breadcrumb-item active'>
+                          Product details
+                        </li>
+                      </ol>
+                    </div>
+                  </div>
+                </div>
+              </section>
+              <section className='content'>
+                <div className='container-fluid'>
+                  {viewData ? (
+                    <Card className='text-center'>
+                      <Toasts
+                        propResponseMessage={responseMessage}
+                        propActionType={"success"}
+                        propStatusData={{ successStatusData, errorStatusData }}
+                      />
+                      {/* <Card.Header className='d-flex justify-content-between align-items-center'>
+                        <span className='btn' onClick={goBack}>
+                          <i className='fa fa-chevron-left m-0 font-weight-bold '></i>
+                          <span className='add-label'> Back</span>
+                        </span>
+                        <span>
+                          <span className='add-label '>Edit Brand Product</span>
+                          <span
+                            className='btn btn-primary rounded btn-sm'
+                            onClick={EditBrandHandler}
                           >
-                            <Card.Header className='d-flex justify-content-between'>
-                              {image.tag}{" "}
-                              <i
-                                className='fas fa-edit edit-icon text-primary'
-                                onClick={() => handleEditImage(image.id)}
-                              ></i>
-                            </Card.Header>
-                            <Card.Body>
+                            <i className='fas fa-edit edit-icon text-light'></i>
+                          </span>
+                        </span>
+                        
+                      </Card.Header> */}
+                      <div className='card card-primary'>
+                        <div className='card-header'>
+                          <h3 className='card-title'>
+                            <small>
                               {" "}
-                              <img
-                                src={image.media}
-                                alt={image.tag}
-                                className='img-fluid object-fit-contain'
-                              />
-                            </Card.Body>
-                          </Card>
-                        ))}
-                      </Accordion.Body>
-                    </Accordion.Item>
-                  </Accordion>
-                  <Accordion defaultActiveKey='1' className='my-2'>
-                    <Accordion.Item eventKey='1'>
-                      <Accordion.Header>
-                        <div className='container'>
-                          <div className='row'>
-                            <div className='col-md-8'>Suppliers</div>
-                            <div className='col-md-4 text-end'>
-                              <span className='add-label'>Add Supplier</span>
+                              <span className='' onClick={goBack}>
+                                <i className='fa fa-chevron-left m-0 font-weight-bold'></i>
+                                <span className='add-label'> Back</span>
+                              </span>
+                            </small>
+                          </h3>
+                          <div className='card-tools'>
+                            <span>
+                              <span className='add-label '>
+                                Edit Brand Product
+                              </span>
                               <span
                                 className='btn btn-primary rounded btn-sm'
-                                onClick={AddSupplierHandler}
+                                onClick={EditBrandHandler}
                               >
-                                <i className='fas fa-add add-icon'></i>
+                                <i className='fas fa-edit edit-icon text-light'></i>
                               </span>
-                            </div>
+                            </span>
                           </div>
                         </div>
-                      </Accordion.Header>
-                      <Accordion.Body className='d-flex justify-content-evenly row'>
-                        {viewData.brand_supplier.map((supplier) => (
-                          <Card
-                            key={supplier.id}
-                            className={`text-center mb-4 col-md-3 ${
-                              supplier.supplier.is_active
-                                ? "text-success"
-                                : "text-danger"
-                            }`}
-                          >
-                            <Card.Header className='d-flex justify-content-between  align-items-center'>
-                              {supplier.supplier.name}{" "}
-                              <span
-                                className='btn btn-danger btn-circle btn-sm delete'
-                                onClick={() =>
-                                  handleDeleteSupplier(supplier.id)
-                                }
+                      </div>
+                      <Card.Body>
+                        <Card.Title>
+                          <h1 className='h-3 mb-4 text-gray-800'>
+                            {viewData.brand_product.product_name}
+                          </h1>
+                        </Card.Title>
+                        <Card.Text>
+                          <strong> Description:</strong>{" "}
+                          {viewData.brand_product.description}
+                          <br />
+                          <strong>Selling Price: </strong>₹{" "}
+                          {viewData.selling_price}
+                          <br />
+                          <strong>Market Price: </strong>₹{" "}
+                          <del>{viewData.market_price}</del>
+                          <br />
+                          <strong>Min Purchase Quantity:</strong>{" "}
+                          {viewData.min_purchase_quantity}
+                          <br />
+                          <strong>Weight:</strong>{" "}
+                          {viewData.weight_value +
+                            " " +
+                            viewData.weight_unit +
+                            " / " +
+                            viewData.weight_description}
+                          <br />
+                          <div class='col-12 mt-4' id='accordion'>
+                            <div class='card card-primary card-outline'>
+                              <a
+                                class='d-block w-100'
+                                data-toggle='collapse'
+                                href='#collapseTwo'
                               >
-                                <i className='fas fa-trash '></i>
-                              </span>
-                            </Card.Header>
-                            <Card.Body>
-                              <Card.Text>
-                                <strong> Contact Person:</strong>{" "}
-                                {supplier.supplier.contact_person}
-                                <br />
-                                <strong>Phone: </strong>{" "}
-                                {supplier.supplier.phone}
-                                <br />
-                                <strong>Delivery Distance:</strong>{" "}
-                                {supplier.supplier.delivery_distance} Km
-                                <br />
-                                <strong>Category:</strong>{" "}
-                                {supplier.supplier.category}
-                                <br />
-                              </Card.Text>
-                            </Card.Body>
-                          </Card>
-                        ))}
-                      </Accordion.Body>
-                    </Accordion.Item>
-                  </Accordion>
-                </Card.Text>
-                <span className='d-flex justify-content-evenly '>
-                  <Button variant='primary' onClick={handleEdit}>
-                    <i className='fas fa-edit edit-icon text-light'></i>
-                    Edit
-                  </Button>
-                  <Button
-                    variant={viewData.is_active ? "danger" : "success"}
-                    onClick={
-                      viewData.is_active
-                        ? handleProductDeactivate
-                        : handleProductActivate
-                    }
-                  >
-                    {viewData.is_active ? "Deactivate" : "Activate"}
-                  </Button>
-                </span>
-              </Card.Body>
-              <Card.Footer className='text-muted'>
-                Updated At: {viewData.updated_at}{" "}
-              </Card.Footer>
-            </Card>
-          ) : (
-            <div className=''>No Data Available</div>
-          )}
+                                <div class='card-header'>
+                                  <div className='row'>
+                                    <div className='col-md-8'>
+                                      <h4>Product Images</h4>
+                                    </div>
+                                    <div className='col-md-4 text-end'>
+                                      <span className='add-label'>
+                                        Add Image
+                                      </span>
+                                      <span
+                                        className='btn btn-primary rounded btn-sm'
+                                        onClick={AddImageHandler}
+                                      >
+                                        <i className='fa fa-plus'></i>
+                                      </span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </a>
+                              <div
+                                id='collapseTwo'
+                                class='collapse'
+                                data-parent='#accordion'
+                              >
+                                <div className='card-body d-flex justify-content-evenly row'>
+                                  {viewData.product_images.map((image) => (
+                                    <Card
+                                      key={image.id}
+                                      className={`text-center  mb-4 col-md-3 ${
+                                        image.is_active
+                                          ? "text-success"
+                                          : "text-danger"
+                                      }`}
+                                    >
+                                      <Card.Header className='d-flex justify-content-between'>
+                                        {image.tag}{" "}
+                                        <i
+                                          className='fas fa-edit edit-icon text-primary'
+                                          onClick={() =>
+                                            handleEditImage(image.id)
+                                          }
+                                        ></i>
+                                      </Card.Header>
+                                      <Card.Body>
+                                        {" "}
+                                        <img
+                                          src={image.media}
+                                          alt={image.tag}
+                                          className='img-fluid object-fit-contain'
+                                        />
+                                      </Card.Body>
+                                    </Card>
+                                  ))}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class='col-12 mt-4' id='accordion'>
+                            <div class='card card-primary card-outline'>
+                              <a
+                                class='d-block w-100'
+                                data-toggle='collapse'
+                                href='#collapseThree'
+                              >
+                                <div class='card-header'>
+                                  <div className='row'>
+                                    <div className='col-md-8'>
+                                      {" "}
+                                      <h4>Suppliers</h4>
+                                    </div>
+                                    <div className='col-md-4 text-end'>
+                                      <span className='add-label'>
+                                        Add Supplier
+                                      </span>
+                                      <span
+                                        className='btn btn-primary rounded btn-sm'
+                                        onClick={AddSupplierHandler}
+                                      >
+                                        <i className='fa fa-plus'></i>
+                                      </span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </a>
+                              <div
+                                id='collapseThree'
+                                class='collapse'
+                                data-parent='#accordion'
+                              >
+                                <div className='card-body d-flex justify-content-evenly row'>
+                                  {viewData.brand_supplier.map((supplier) => (
+                                    <Card
+                                      key={supplier.id}
+                                      className={`text-center mb-4 col-md-3 ${
+                                        supplier.supplier.is_active
+                                          ? "text-success"
+                                          : "text-danger"
+                                      }`}
+                                    >
+                                      <Card.Header className='d-flex justify-content-between  align-items-center'>
+                                        {supplier.supplier.name}{" "}
+                                        <span
+                                          className='btn btn-danger btn-circle btn-sm delete'
+                                          onClick={() =>
+                                            handleDeleteSupplier(supplier.id)
+                                          }
+                                        >
+                                          <i className='fas fa-trash '></i>
+                                        </span>
+                                      </Card.Header>
+                                      <Card.Body>
+                                        <Card.Text>
+                                          <strong> Contact Person:</strong>{" "}
+                                          {supplier.supplier.contact_person}
+                                          <br />
+                                          <strong>Phone: </strong>{" "}
+                                          {supplier.supplier.phone}
+                                          <br />
+                                          <strong>
+                                            Delivery Distance:
+                                          </strong>{" "}
+                                          {supplier.supplier.delivery_distance}{" "}
+                                          Km
+                                          <br />
+                                          <strong>Category:</strong>{" "}
+                                          {supplier.supplier.category}
+                                          <br />
+                                        </Card.Text>
+                                      </Card.Body>
+                                    </Card>
+                                  ))}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </Card.Text>
+                        <span className='d-flex justify-content-between '>
+                          <Button variant='primary' onClick={handleEdit}>
+                            <i className='fas fa-edit edit-icon text-light'></i>
+                            Edit
+                          </Button>
+                          <Button
+                            variant={viewData.is_active ? "danger" : "success"}
+                            onClick={
+                              viewData.is_active
+                                ? handleProductDeactivate
+                                : handleProductActivate
+                            }
+                          >
+                            {viewData.is_active ? "Deactivate" : "Activate"}
+                          </Button>
+                        </span>
+                      </Card.Body>
+                      <Card.Footer className='text-muted'>
+                        Updated At: {viewData.updated_at}{" "}
+                      </Card.Footer>
+                    </Card>
+                  ) : (
+                    <div className=''>No Data Available</div>
+                  )}
+                </div>
+              </section>
+            </div>
+          </div>
         </>
       )}
     </>

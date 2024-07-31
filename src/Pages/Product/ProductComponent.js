@@ -15,7 +15,7 @@ import { getBrandData } from "../../Actions/brandActions";
 const ProductComponent = () => {
   const location = useLocation();
   const dispatch = useDispatch();
-  const { prodId } = useParams();
+  const { prodId, brProdId } = useParams();
   const [currPage, setCurrPage] = useState(1);
   const [limit, setLimit] = useState(8);
   const isProductRoute = location.pathname === "/product";
@@ -73,8 +73,8 @@ const ProductComponent = () => {
     dispatch(getBrandProductData("fetch"));
     dispatch(getCategoryData("fetch"));
     dispatch(getBrandData("fetch"));
-    if (prodId) {
-      dispatch(getProductData("single", prodId));
+    if (prodId || brProdId) {
+      dispatch(getProductData("single", prodId ?? brProdId));
     }
   }, [
     dispatch,
@@ -84,6 +84,7 @@ const ProductComponent = () => {
     limit,
     currPage,
     isViewProductRoute,
+    brProdId,
   ]);
   const currentPageChange = (currPage) => {
     setCurrPage(currPage);
