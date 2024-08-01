@@ -30,7 +30,7 @@ const AddSupplier = ({ Data, viewData, Success, Error, Loading }) => {
     delivery_distance: "",
     category: "",
     longitude: "",
-    lattitude: "",
+    latitude: "",
   });
   const [inputAddress, setInputAddress] = useState({
     full_name: "",
@@ -51,7 +51,7 @@ const AddSupplier = ({ Data, viewData, Success, Error, Loading }) => {
     delivery_distance: "",
     category: "",
     longitude: "",
-    lattitude: "",
+    latitude: "",
     full_name: "",
     contact_number: "",
     address_line1: "",
@@ -102,7 +102,7 @@ const AddSupplier = ({ Data, viewData, Success, Error, Loading }) => {
         delivery_distance: inputSupplier.delivery_distance,
         category: inputSupplier.category,
         longitude: inputSupplier.longitude,
-        lattitude: inputSupplier.lattitude,
+        latitude: inputSupplier.latitude,
 
         address: {
           full_name: inputAddress.full_name,
@@ -129,7 +129,7 @@ const AddSupplier = ({ Data, viewData, Success, Error, Loading }) => {
         delivery_distance: inputSupplier.delivery_distance,
         category: inputSupplier.category,
         longitude: inputSupplier.longitude,
-        lattitude: inputSupplier.lattitude,
+        latitude: inputSupplier.latitude,
       };
       const addressData = {
         full_name: inputAddress.full_name,
@@ -179,7 +179,7 @@ const AddSupplier = ({ Data, viewData, Success, Error, Loading }) => {
         delivery_distance,
         category,
         longitude,
-        lattitude,
+        latitude,
       } = editData[0];
 
       setInputSupplier({
@@ -189,7 +189,7 @@ const AddSupplier = ({ Data, viewData, Success, Error, Loading }) => {
         delivery_distance,
         category,
         longitude,
-        lattitude,
+        latitude,
       });
       setValidationError({
         name: "",
@@ -198,7 +198,7 @@ const AddSupplier = ({ Data, viewData, Success, Error, Loading }) => {
         delivery_distance: "",
         category: "",
         longitude: "",
-        lattitude: "",
+        latitude: "",
         full_name: "",
         contact_number: "",
         address_line1: "",
@@ -243,7 +243,7 @@ const AddSupplier = ({ Data, viewData, Success, Error, Loading }) => {
         delivery_distance: "",
         category: "",
         longitude: "",
-        lattitude: "",
+        latitude: "",
         full_name: "",
         contact_number: "",
         address_line1: "",
@@ -370,11 +370,11 @@ const AddSupplier = ({ Data, viewData, Success, Error, Loading }) => {
                                     )
                                   }
                                   propValidationError={
-                                    validationError.lattitude
+                                    validationError.latitude
                                   }
-                                  propAttributeValue='lattitude'
+                                  propAttributeValue='latitude'
                                   propValue={
-                                    editData[0] ? editData[0].lattitude : ""
+                                    editData[0] ? editData[0].latitude : ""
                                   }
                                 />
                               </div>

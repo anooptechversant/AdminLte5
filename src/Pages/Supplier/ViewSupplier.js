@@ -125,7 +125,7 @@ const ViewSupplier = ({ viewData, Success, Error, Loading, isActiveData }) => {
                       <br />
                       <strong>Longitude:</strong> {viewData.longitude}
                       <br />
-                      <strong>Latitude:</strong> {viewData.lattitude}
+                      <strong>Latitude:</strong> {viewData.latitude}
                       <br />
                       <strong>Delivery Distance:</strong>{" "}
                       {viewData.delivery_distance}
