@@ -16,6 +16,7 @@ import CategoryComponent from "./Pages/Category/CategoryComponent";
 import SubCategoryComponent from "./Pages/SubCategory/SubCategoryComponent";
 import SupplierComponent from "./Pages/Supplier/SupplierComponent";
 import ProductComponent from "./Pages/Product/ProductComponent";
+import UserComponent from "./Pages/User/UserComponent";
 
 // import "bootstrap/dist/css/bootstrap.min.css";
 function App() {
@@ -157,6 +158,18 @@ function App() {
                   path='add-brand-supplier/:prodId/:add'
                   element={<ProductComponent />}
                 />
+              </Route>
+              <Route path='users' element={<UserComponent />}>
+                <Route path='view-user/:userId' element={<UserComponent />} />
+                <Route
+                  path='add-work-type/:userId'
+                  element={<UserComponent />}
+                />{" "}
+                <Route
+                  path='edit-work-type/:userId/:id'
+                  element={<UserComponent />}
+                />
+                <Route path='user-role/:type' element={<UserComponent />} />
               </Route>
             </Route>
           </Routes>

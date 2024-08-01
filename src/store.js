@@ -13,6 +13,9 @@ import subCategoryReducer from "./Features/subCategorySlice.js";
 import supplierReducer from "./Features/supplierSlice.js";
 import brandProductReducer from "./Features/brandProductSlice.js";
 import productReducer from "./Features/ProductSlice.js";
+import userWorkTypeReducer from "./Features/userWorkTypeSlice.js";
+import userReducer from "./Features/userSlice.js";
+
 const store = configureStore({
   reducer: {
     logIn: logInReducer,
@@ -29,6 +32,8 @@ const store = configureStore({
     supplier: supplierReducer,
     brandProduct: brandProductReducer,
     product: productReducer,
+    userWorkType: userWorkTypeReducer,
+    user: userReducer,
   },
 });
 

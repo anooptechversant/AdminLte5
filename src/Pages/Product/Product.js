@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import ProductTable from "../../Components/Common/Table";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getProductData } from "../../Actions/ProductActions";
 import SelectionInput from "../../Components/InputComponents/SelectionInput";
 
@@ -191,7 +191,7 @@ const Product = ({
             <div className='col-sm-6'>
               <ol className='breadcrumb float-sm-right'>
                 <li className='breadcrumb-item'>
-                  <a href='/'>Home</a>
+                  <Link href='/'>Home</Link>
                 </li>
                 <li className='breadcrumb-item active'>{pageTitle}</li>
               </ol>

@@ -61,6 +61,23 @@ export default function Sidebar() {
               <a href='#' class='nav-link'>
                 <i class='nav-icon fas fa-copy'></i>
                 <p>
+                  Manage Users
+                  <i class='fas fa-angle-left right'></i>
+                </p>
+              </a>
+              <ul class='nav nav-treeview'>
+                <li class='nav-item'>
+                  <NavLink to='/users' className='nav-link'>
+                    <i class='far fa-circle nav-icon '></i>
+                    <p>Users</p>
+                  </NavLink>
+                </li>
+              </ul>
+            </li>
+            <li class='nav-item'>
+              <a href='#' class='nav-link'>
+                <i class='nav-icon fas fa-copy'></i>
+                <p>
                   Master Section
                   <i class='fas fa-angle-left right'></i>
                 </p>
