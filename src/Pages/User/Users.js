@@ -7,14 +7,14 @@ import SelectionInput from "../../Components/InputComponents/SelectionInput";
 export default function Users(props) {
   const { Data, Success, Error, Loading, currentPageChange, limitChange } =
     props;
+    const records = Data.records;
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [resMsg, setResMsg] = useState(true);
-const [tableData, setTableData] = useState(Data || []);
+const [tableData, setTableData] = useState(records || []);
 const [inputLimit, setInputLimit] = useState({
   limit: 8,
 });
-  const records = Data.records;
   const currentPage = Data.current_page;
   const totalPages = Data.total_pages;
 
@@ -22,7 +22,6 @@ const [inputLimit, setInputLimit] = useState({
   const errorStatusData = Error;
   const pageTitle = "User List";
   const tableTitle = "User";
-  const deleteConfirmMessage = "Are you sure you want to delete this User?";
 
   const responseMessage = {
     success:
@@ -30,16 +29,7 @@ const [inputLimit, setInputLimit] = useState({
         ? "User deleted successfully"
         : "User approved successfully",
   };
-  const productColumns = [
-    { key: "id", name: "Prod.ID" },
-    { key: "name", name: "User Name" },
-    { key: "phone_prefix", name: "Country code" },
-    { key: "phone", name: "Phone No:" },
-    { key: "email", name: "Email" },
-    // { key: "role", name: "Role" },
-
-    // Add more columns as needed
-  ];
+ 
 
   const limitArray = [
     { option: "5", value: 5 },
@@ -69,8 +59,8 @@ const [inputLimit, setInputLimit] = useState({
   };
 
    useEffect(() => {
-     setTableData(Data);
-   }, [Data]);
+     setTableData(records);
+   }, [records]);
   const columns = [
     {
       header: "#",
@@ -184,7 +174,6 @@ const [inputLimit, setInputLimit] = useState({
               CurrentPage={currentPage}
               currentPageChange={currentPageChange}
               TotalPages={totalPages}
-              // itemsPerPage={limitChange}
               ErrorText={"No data available"}
               ResponseMessage={responseMessage}
               StatusData={{ successStatusData, errorStatusData }}
