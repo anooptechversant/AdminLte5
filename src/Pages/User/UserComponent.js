@@ -21,11 +21,23 @@ const UserComponent = () => {
   const isEditWorkTypeRoute = location.pathname.startsWith(
     "/users/edit-work-type/"
   );
-  const data = useSelector((state) => state);
-  const { userData, singleUser, userLoading, userSuccess, userError } =
-    data.user;
-  const { userWorkTypeLoading, userWorkTypeSuccess, userWorkTypeError } =
-    data.userWorkType;
+
+  // Select only the necessary parts of the state
+  const userData = useSelector((state) => state.user.userData);
+  const singleUser = useSelector((state) => state.user.singleUser);
+  const userLoading = useSelector((state) => state.user.userLoading);
+  const userSuccess = useSelector((state) => state.user.userSuccess);
+  const userError = useSelector((state) => state.user.userError);
+  const userWorkTypeLoading = useSelector(
+    (state) => state.userWorkType.userWorkTypeLoading
+  );
+  const userWorkTypeSuccess = useSelector(
+    (state) => state.userWorkType.userWorkTypeSuccess
+  );
+  const userWorkTypeError = useSelector(
+    (state) => state.userWorkType.userWorkTypeError
+  );
+
   useEffect(() => {
     dispatch(getUserData("fetch", limit, currPage));
     if (userId) {
@@ -36,15 +48,15 @@ const UserComponent = () => {
   const currentPageChange = (currPage) => {
     setCurrPage(currPage);
   };
+
   const limitChange = (limit) => {
     setLimit(limit);
   };
-
   return (
     <>
       {isUserRoute ? (
         <Users
-          Data={userData.records}
+          Data={userData}
           Success={userSuccess}
           Error={userError}
           Loading={userLoading}

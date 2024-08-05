@@ -91,7 +91,7 @@ const Table = ({
             </tr>
           </thead>
           <tbody>
-            {!loading && (Error || Data.length === 0) && (
+            {!loading && (Error || Data?.length === 0) && (
               <tr className='h-[57px]'>
                 <td colSpan={100} className='px-6 py-4 text-gray-400 text-xs'>
                   {ErrorText}
