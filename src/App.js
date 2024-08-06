@@ -17,6 +17,7 @@ import SubCategoryComponent from "./Pages/SubCategory/SubCategoryComponent";
 import SupplierComponent from "./Pages/Supplier/SupplierComponent";
 import ProductComponent from "./Pages/Product/ProductComponent";
 import UserComponent from "./Pages/User/UserComponent";
+import UserTypeComponent from "./Pages/UserType/UserTypeComponent";
 
 // import "bootstrap/dist/css/bootstrap.min.css";
 function App() {
@@ -170,6 +171,9 @@ function App() {
                   element={<UserComponent />}
                 />
                 <Route path='user-role/:type' element={<UserComponent />} />
+              </Route>
+              <Route path='user-type' element={<UserTypeComponent />}>
+                <Route path='user-role/:type' element={<UserTypeComponent />} />
               </Route>
             </Route>
           </Routes>

@@ -68,24 +68,34 @@ const ViewUser = (props) => {
           </div>
         </div>
         <div className='d-flex justify-content-evenly row mt-4'>
-          <Accordion>
-            <Accordion.Item eventKey='1'>
-              <Accordion.Header>Budget</Accordion.Header>
-              <Accordion.Body className='d-flex justify-content-evenly'>
-                {Data[0]?.budget.map((budget) => (
-                  <Card key={budget.id} className={`text-center w-25`}>
-                    <Card.Header className='d-flex justify-content-center'>
-                      {budget.price}{" "}
-                      {/* <i className='fas fa-edit edit-icon text-primary'></i> */}
-                    </Card.Header>
-                    <Card.Body>
-                      <Card.Text>{budget.unit}</Card.Text>
-                    </Card.Body>
-                  </Card>
-                ))}
-              </Accordion.Body>
-            </Accordion.Item>
-          </Accordion>
+          <div class='col-12 mt-4' id='accordion'>
+            <div class='card card-primary card-outline'>
+              <a
+                class='d-block w-100'
+                data-toggle='collapse'
+                href='#collapseTwo'
+              >
+                <div class='card-header'>
+                  <h4 class='card-title w-100'>Budget</h4>
+                </div>
+              </a>
+              <div id='collapseTwo' class='collapse' data-parent='#accordion'>
+                <div class='card-body'>
+                  {Data[0]?.budget.map((budget) => (
+                    <Card key={budget.id} className={`text-center w-25`}>
+                      <Card.Header className='d-flex justify-content-center'>
+                        {budget.price}{" "}
+                        {/* <i className='fas fa-edit edit-icon text-primary'></i> */}
+                      </Card.Header>
+                      <Card.Body>
+                        <Card.Text>{budget.unit}</Card.Text>
+                      </Card.Body>
+                    </Card>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </Modal.Body>
       <Modal.Footer>

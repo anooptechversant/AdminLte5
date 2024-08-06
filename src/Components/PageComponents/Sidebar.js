@@ -72,6 +72,12 @@ export default function Sidebar() {
                     <p>Users</p>
                   </NavLink>
                 </li>
+                <li class='nav-item'>
+                  <NavLink to='/user-type/user-role/B2B' className='nav-link'>
+                    <i class='far fa-circle nav-icon '></i>
+                    <p>UnApproved Users</p>
+                  </NavLink>
+                </li>
               </ul>
             </li>
             <li class='nav-item'>
