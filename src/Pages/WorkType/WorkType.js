@@ -13,15 +13,15 @@ function WorkType({ Data, Success, Error, Loading }) {
   const [itemToDelete, setItemToDelete] = useState(null);
   const dispatch = useDispatch();
   const successStatusData = Success;
-  const errorStatusData = Error;   
+  const errorStatusData = Error;
   const deleteConfirmMessage =
     "Are you sure you want to delete this work type?";
   const responseMessage = {
     success: "Work type deleted successfully",
   };
-    useEffect(() => {
-      setTableData(Data);
-    }, [Data]);
+  useEffect(() => {
+    setTableData(Data);
+  }, [Data]);
   const navigate = useNavigate();
   const handleWorkTypeDelete = (id) => {
     dispatch(getWorkTypeData("delete", id));
@@ -32,17 +32,17 @@ function WorkType({ Data, Success, Error, Loading }) {
   const handleWorkTypeAdd = () => {
     navigate("/work-types/add-work-type");
   };
-   const handleClose = () => setShow(false);
-   const handleShow = () => setShow(true);
-   const handleDelete = (id) => {
-     setItemToDelete(id);
-     handleShow();
-   };
-   const confirmDelete = () => {
-     handleWorkTypeDelete(itemToDelete);
-     setTableData(tableData.filter((obj) => obj.id !== itemToDelete));
-     handleClose();
-   };
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const handleDelete = (id) => {
+    setItemToDelete(id);
+    handleShow();
+  };
+  const confirmDelete = () => {
+    handleWorkTypeDelete(itemToDelete);
+    setTableData(tableData.filter((obj) => obj.id !== itemToDelete));
+    handleClose();
+  };
   const columns = [
     {
       header: "#",
@@ -63,22 +63,20 @@ function WorkType({ Data, Success, Error, Loading }) {
       header: <span>Actions</span>,
       key: "",
       cell: (row) => (
-        <>
+        <div className='d-flex justify-content-around'>
           <a
             className='btn btn-info btn-sm'
             onClick={() => handleWorkTypeEdit(row.id)}
           >
             <i className='fas fa-pencil-alt'></i>
-            Edit
           </a>
           <a
             className='btn btn-danger btn-sm'
             onClick={() => handleDelete(row.id)}
           >
             <i className='fas fa-trash'></i>
-            Delete
           </a>
-        </>
+        </div>
       ),
       tdClassName: "project-actions text-center",
       thClassName: "text-center",

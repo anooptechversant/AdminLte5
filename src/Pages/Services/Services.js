@@ -16,7 +16,6 @@ const Services = ({ Data, Success, Error, Loading }) => {
     success: "Service deleted successfully",
   };
 
-
   useEffect(() => {
     setTableData(Data);
   }, [Data]);
@@ -82,7 +81,7 @@ const Services = ({ Data, Success, Error, Loading }) => {
       header: <span>Actions</span>,
       key: "",
       cell: (row) => (
-        <>
+        <div className='d-flex justify-content-around'>
           <button
             className='btn btn-info btn-sm'
             onClick={() => handleServiceEdit(row.id)}
@@ -97,7 +96,7 @@ const Services = ({ Data, Success, Error, Loading }) => {
             <i className='fas fa-trash'></i>
             Delete
           </button>
-        </>
+        </div>
       ),
       tdClassName: "project-actions text-center",
       thClassName: "text-center",

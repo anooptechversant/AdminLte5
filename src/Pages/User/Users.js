@@ -7,14 +7,14 @@ import SelectionInput from "../../Components/InputComponents/SelectionInput";
 export default function Users(props) {
   const { Data, Success, Error, Loading, currentPageChange, limitChange } =
     props;
-    const records = Data.records;
+  const records = Data.records;
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [resMsg, setResMsg] = useState(true);
-const [tableData, setTableData] = useState(records || []);
-const [inputLimit, setInputLimit] = useState({
-  limit: 8,
-});
+  const [tableData, setTableData] = useState(records || []);
+  const [inputLimit, setInputLimit] = useState({
+    limit: 8,
+  });
   const currentPage = Data.current_page;
   const totalPages = Data.total_pages;
 
@@ -29,7 +29,6 @@ const [inputLimit, setInputLimit] = useState({
         ? "User deleted successfully"
         : "User approved successfully",
   };
- 
 
   const limitArray = [
     { option: "5", value: 5 },
@@ -39,15 +38,15 @@ const [inputLimit, setInputLimit] = useState({
     { option: "50", value: 50 },
     { option: "100", value: 100 },
   ];
- const handleInputChange = (newValue, setterFunction) => {
-   setterFunction((prevState) => ({
-     ...prevState,
-     [newValue.name]: newValue.value,
-   }));
-   if (limitChange) {
-     limitChange(newValue.value);
-   }
- };
+  const handleInputChange = (newValue, setterFunction) => {
+    setterFunction((prevState) => ({
+      ...prevState,
+      [newValue.name]: newValue.value,
+    }));
+    if (limitChange) {
+      limitChange(newValue.value);
+    }
+  };
 
   const handleRolesDelete = (id) => {
     setResMsg(true);
@@ -58,9 +57,9 @@ const [inputLimit, setInputLimit] = useState({
     navigate(`/users/view-user/${id}`);
   };
 
-   useEffect(() => {
-     setTableData(records);
-   }, [records]);
+  useEffect(() => {
+    setTableData(records);
+  }, [records]);
   const columns = [
     {
       header: "#",
@@ -108,7 +107,6 @@ const [inputLimit, setInputLimit] = useState({
             onClick={() => handleDetailedView(row.id)}
           >
             <i class='fas fa-solid fa-eye'></i>
-            view
           </button>
         </div>
       ),

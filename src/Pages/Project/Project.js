@@ -95,7 +95,6 @@ const Project = ({ Data, Success, Error, Loading }) => {
             onClick={() => handleProjectView(row.id)}
           >
             <i class='fas fa-solid fa-eye'></i>
-            view
           </button>
           {user_id && (
             <button
@@ -103,7 +102,6 @@ const Project = ({ Data, Success, Error, Loading }) => {
               onClick={() => handleProjectEdit(row.id)}
             >
               <i className='fas fa-pencil-alt'></i>
-              Edit
             </button>
           )}
           <button
@@ -111,7 +109,6 @@ const Project = ({ Data, Success, Error, Loading }) => {
             onClick={() => handleDelete(row.id)}
           >
             <i className='fas fa-trash'></i>
-            Delete
           </button>
         </div>
       ),

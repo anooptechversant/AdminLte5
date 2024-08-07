@@ -84,7 +84,7 @@ const Category = ({ Data, Success, Error, Loading, isActiveData }) => {
             onClick={() => handleCategoryEdit(row.id)}
           >
             <i className='fas fa-pencil-alt'></i>
-            Edit
+            
           </button>
           <div
             class={`custom-control custom-switch x  ${

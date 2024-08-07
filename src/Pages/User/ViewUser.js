@@ -30,7 +30,7 @@ const ViewUser = (props) => {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <div className='d-flex  row'>
+        <div className='d-flex row'>
           <div className='col-md-6 d-flex justify-content-center'>
             <div>
               <h4>

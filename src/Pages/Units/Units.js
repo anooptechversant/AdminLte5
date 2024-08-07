@@ -62,22 +62,22 @@ const Units = ({ Data, Success, Error, Loading }) => {
       header: <span>Actions</span>,
       key: "",
       cell: (row) => (
-        <>
+          <div className='d-flex justify-content-around'>
           <button
             className='btn btn-info btn-sm'
             onClick={() => handleUnitEdit(row.id)}
           >
             <i className='fas fa-pencil-alt'></i>
-            Edit
+            
           </button>
           <button
             className='btn btn-danger btn-sm'
             onClick={() => handleDelete(row.id)}
           >
             <i className='fas fa-trash'></i>
-            Delete
+            
           </button>
-        </>
+        </div>
       ),
       tdClassName: "project-actions text-center",
       thClassName: "text-center",

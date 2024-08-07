@@ -6,9 +6,9 @@ import { getRolesData } from "../../Actions/rolesActions";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 const Roles = ({ Data, Success, Error, Loading }) => {
- const [tableData, setTableData] = useState(Data || []);
- const [show, setShow] = useState(false);
- const [itemToDelete, setItemToDelete] = useState(null);
+  const [tableData, setTableData] = useState(Data || []);
+  const [show, setShow] = useState(false);
+  const [itemToDelete, setItemToDelete] = useState(null);
   const successStatusData = Success;
   const errorStatusData = Error;
   const deleteConfirmMessage = "Are you sure you want to delete this Data?";
@@ -16,9 +16,9 @@ const Roles = ({ Data, Success, Error, Loading }) => {
     success: "Data deleted successfully",
   };
 
- useEffect(() => {
-   setTableData(Data);
- }, [Data]);
+  useEffect(() => {
+    setTableData(Data);
+  }, [Data]);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -34,75 +34,73 @@ const Roles = ({ Data, Success, Error, Loading }) => {
     navigate("/roles/add-roles");
   };
 
-const handleClose = () => setShow(false);
-const handleShow = () => setShow(true);
-const handleDelete = (id) => {
-  setItemToDelete(id);
-  handleShow();
-};
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const handleDelete = (id) => {
+    setItemToDelete(id);
+    handleShow();
+  };
 
-const confirmDelete = () => {
-  handleRolesDelete(itemToDelete);
-  setTableData(tableData.filter((obj) => obj.id !== itemToDelete));
-  handleClose();
-};
+  const confirmDelete = () => {
+    handleRolesDelete(itemToDelete);
+    setTableData(tableData.filter((obj) => obj.id !== itemToDelete));
+    handleClose();
+  };
 
-const columns = [
-  {
-    header: "#",
-    key: "SL.No",
-    cell: (row, i) => <>{i + 1}</>,
-    tdClassName: "",
-    thClassName: "w-1",
-  },
+  const columns = [
+    {
+      header: "#",
+      key: "SL.No",
+      cell: (row, i) => <>{i + 1}</>,
+      tdClassName: "",
+      thClassName: "w-1",
+    },
 
-  {
-    header: "Role",
-    key: "role",
-    cell: (row) => <>{row?.role}</>,
-    tdClassName: "",
-    thClassName: "",
-  },
-  {
-    header: "Type",
-    key: "type",
-    cell: (row) => <>{row?.type}</>,
-    tdClassName: "",
-    thClassName: "",
-  },
-  {
-    header: "Description",
-    key: "description",
-    cell: (row) => <>{row?.description}</>,
-    tdClassName: "",
-    thClassName: "",
-  },
- 
-  {
-    header: <span>Actions</span>,
-    key: "",
-    cell: (row) => (
-      <>
-        <button
-          className='btn btn-info btn-sm'
-          onClick={() => handleRolesEdit(row.id)}
-        >
-          <i className='fas fa-pencil-alt'></i>
-          Edit
-        </button>
-        <button
-          className='btn btn-danger btn-sm'
-          onClick={() => handleDelete(row.id)}
-        >
-          <i className='fas fa-trash'></i>
-          Delete
-        </button>
-      </>
-    ),
-    tdClassName: "project-actions text-center",
-    thClassName: "text-center",
-  },
-];
+    {
+      header: "Role",
+      key: "role",
+      cell: (row) => <>{row?.role}</>,
+      tdClassName: "",
+      thClassName: "",
+    },
+    {
+      header: "Type",
+      key: "type",
+      cell: (row) => <>{row?.type}</>,
+      tdClassName: "",
+      thClassName: "",
+    },
+    {
+      header: "Description",
+      key: "description",
+      cell: (row) => <>{row?.description}</>,
+      tdClassName: "",
+      thClassName: "",
+    },
+
+    {
+      header: <span>Actions</span>,
+      key: "",
+      cell: (row) => (
+        <div className='d-flex justify-content-around'>
+          <button
+            className='btn btn-info btn-sm'
+            onClick={() => handleRolesEdit(row.id)}
+          >
+            <i className='fas fa-pencil-alt'></i>
+          </button>
+          <button
+            className='btn btn-danger btn-sm'
+            onClick={() => handleDelete(row.id)}
+          >
+            <i className='fas fa-trash'></i>
+          </button>
+        </div>
+      ),
+      tdClassName: "project-actions text-center",
+      thClassName: "text-center",
+    },
+  ];
   return (
     <>
       {" "}

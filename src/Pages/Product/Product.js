@@ -146,7 +146,6 @@ const Product = ({
             onClick={() => handleProductView(row.id)}
           >
             <i class='fas fa-solid fa-eye'></i>
-            view
           </button>
           <div
             class={`custom-control custom-switch x  ${
