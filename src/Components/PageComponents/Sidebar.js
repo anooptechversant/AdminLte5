@@ -1,182 +1,125 @@
 import { NavLink } from "react-router-dom";
 
-export default function Sidebar() {
+const SidebarItem = ({ to, icon, text }) => (
+  <li className='nav-item'>
+    <NavLink to={to} className='nav-link'>
+      <i className={`far fa-circle nav-icon ${icon ? "fas " + icon : ""}`}></i>
+      <p>{text}</p>
+    </NavLink>
+  </li>
+);
+
+const SidebarMenu = ({ title, icon, items }) => (
+  <li className='nav-item'>
+    <a href='#' className='nav-link'>
+      <i className={`nav-icon fas ${icon}`}></i>
+      <p>
+        {title}
+        <i className='fas fa-angle-left right'></i>
+      </p>
+    </a>
+    <ul className='nav nav-treeview'>
+      {items.map((item, index) => (
+        <SidebarItem key={index} {...item} />
+      ))}
+    </ul>
+  </li>
+);
+
+const Sidebar = () => {
   return (
-    <aside class='main-sidebar sidebar-dark-primary elevation-4'>
-      <a href='/' class='brand-link'>
+    <aside className='main-sidebar sidebar-dark-primary elevation-4'>
+      <a href='/' className='brand-link'>
         <img
           src='dist/img/AdminLTELogo.png'
           alt='AdminLTE Logo'
-          class='brand-image img-circle elevation-3'
+          className='brand-image img-circle elevation-3'
           style={{ opacity: 0.8 }}
         />
-        <span class='brand-text font-weight-light'>AdminLTE 3</span>
+        <span className='brand-text font-weight-light'>AdminLTE 3</span>
       </a>
-      <div class='sidebar'>
-        <div class='user-panel mt-3 pb-3 mb-3 d-flex'>
-          <div class='image'>
+      <div className='sidebar'>
+        <div className='user-panel mt-3 pb-3 mb-3 d-flex'>
+          <div className='image'>
             <img
               src='dist/img/user2-160x160.jpg'
-              class='img-circle elevation-2'
+              className='img-circle elevation-2'
               alt='UserImage'
             />
           </div>
-          <div class='info'>
-            <a href='/' class='d-block'>
+          <div className='info'>
+            <a href='/' className='d-block'>
               Alexander Pierce
             </a>
           </div>
         </div>
 
-        <div class='form-inline'>
-          <div class='input-group' data-widget='sidebar-search'>
+        <div className='form-inline'>
+          <div className='input-group' data-widget='sidebar-search'>
             <input
-              class='form-control form-control-sidebar'
+              className='form-control form-control-sidebar'
               type='search'
               placeholder='Search'
               aria-label='Search'
             />
-            <div class='input-group-append'>
-              <button class='btn btn-sidebar'>
-                <i class='fas fa-search fa-fw'></i>
+            <div className='input-group-append'>
+              <button className='btn btn-sidebar'>
+                <i className='fas fa-search fa-fw'></i>
               </button>
             </div>
           </div>
         </div>
 
-        <nav class='mt-2'>
+        <nav className='mt-2'>
           <ul
-            class='nav nav-pills nav-sidebar flex-column'
+            className='nav nav-pills nav-sidebar flex-column'
             data-widget='treeview'
             role='menu'
             data-accordion='false'
           >
-            <li class='nav-item menu-open'>
+            <li className='nav-item menu-open'>
               <NavLink to='/' className='nav-link'>
-                <i class='nav-icon fas fa-tachometer-alt'></i>
+                <i className='nav-icon fas fa-tachometer-alt'></i>
                 <p>Dashboard</p>
               </NavLink>
             </li>
-            <li class='nav-item'>
-              <a href='#' class='nav-link'>
-                <i class='nav-icon fas fa-copy'></i>
-                <p>
-                  Manage Users
-                  <i class='fas fa-angle-left right'></i>
-                </p>
-              </a>
-              <ul class='nav nav-treeview'>
-                <li class='nav-item'>
-                  <NavLink to='/users' className='nav-link'>
-                    <i class='far fa-circle nav-icon '></i>
-                    <p>Users</p>
-                  </NavLink>
-                </li>
-                <li class='nav-item'>
-                  <NavLink to='/user-type/user-role/B2B' className='nav-link'>
-                    <i class='far fa-circle nav-icon '></i>
-                    <p>UnApproved Users</p>
-                  </NavLink>
-                </li>
-              </ul>
-            </li>
-            <li class='nav-item'>
-              <a href='#' class='nav-link'>
-                <i class='nav-icon fas fa-copy'></i>
-                <p>
-                  Master Section
-                  <i class='fas fa-angle-left right'></i>
-                </p>
-              </a>
-              <ul class='nav nav-treeview'>
-                <li class='nav-item'>
-                  <NavLink to='/work-types' className='nav-link'>
-                    <i class='far fa-circle nav-icon '></i>
-                    <p>WorkType</p>
-                  </NavLink>
-                </li>
-                <li class='nav-item'>
-                  <NavLink to='/education' className='nav-link'>
-                    <i class='far fa-circle nav-icon'></i>
-                    <p>Education</p>
-                  </NavLink>
-                </li>
-                <li class='nav-item'>
-                  <NavLink to='/roles' className='nav-link'>
-                    <i class='far fa-circle nav-icon'></i>
-                    <p>Roles</p>
-                  </NavLink>
-                </li>
-                <li class='nav-item'>
-                  <NavLink to='/units' className='nav-link'>
-                    <i class='far fa-circle nav-icon'></i>
-                    <p>Units</p>
-                  </NavLink>
-                </li>
-                <li class='nav-item'>
-                  <NavLink to='/services' className='nav-link'>
-                    <i class='far fa-circle nav-icon'></i>
-                    <p>Services</p>
-                  </NavLink>
-                </li>
-              </ul>
-            </li>
-            <li class='nav-item'>
-              <a href='#' class='nav-link'>
-                <i class='nav-icon fas fa-copy'></i>
-                <p>
-                  Material Section
-                  <i class='fas fa-angle-left right'></i>
-                </p>
-              </a>
-              <ul class='nav nav-treeview'>
-                <li class='nav-item'>
-                  <NavLink to='brands' className='nav-link'>
-                    <i class='far fa-circle nav-icon '></i>
-                    <p>Brands</p>
-                  </NavLink>
-                </li>
-                <li class='nav-item'>
-                  <NavLink to='/budget' className='nav-link'>
-                    <i class='far fa-circle nav-icon'></i>
-                    <p>Budget</p>
-                  </NavLink>
-                </li>
-                <li class='nav-item'>
-                  <NavLink to='/project' className='nav-link'>
-                    <i class='far fa-circle nav-icon'></i>
-                    <p>Projects</p>
-                  </NavLink>
-                </li>
-                <li class='nav-item'>
-                  <NavLink to='/category' className='nav-link'>
-                    <i class='far fa-circle nav-icon'></i>
-                    <p>Category</p>
-                  </NavLink>
-                </li>
-                <li class='nav-item'>
-                  <NavLink to='/sub-category' className='nav-link'>
-                    <i class='far fa-circle nav-icon'></i>
-                    <p>Sub Category</p>
-                  </NavLink>
-                </li>
-                <li class='nav-item'>
-                  <NavLink to='/supplier' className='nav-link'>
-                    <i class='far fa-circle nav-icon'></i>
-                    <p>Supplier</p>
-                  </NavLink>
-                </li>
-                <li class='nav-item'>
-                  <NavLink to='/product' className='nav-link'>
-                    <i class='far fa-circle nav-icon'></i>
-                    <p>Product</p>
-                  </NavLink>
-                </li>
-              </ul>
-            </li>
+            <SidebarMenu
+              title='Manage Users'
+              icon='fa-copy'
+              items={[
+                { to: "/users", text: "Users" },
+                { to: "/user-type/user-role/B2B", text: "UnApproved Users" },
+              ]}
+            />
+            <SidebarMenu
+              title='Master Section'
+              icon='fa-copy'
+              items={[
+                { to: "/work-types", text: "WorkType" },
+                { to: "/education", text: "Education" },
+                { to: "/roles", text: "Roles" },
+                { to: "/units", text: "Units" },
+                { to: "/services", text: "Services" },
+              ]}
+            />
+            <SidebarMenu
+              title='Material Section'
+              icon='fa-copy'
+              items={[
+                { to: "brands", text: "Brands" },
+                { to: "/budget", text: "Budget" },
+                { to: "/project", text: "Projects" },
+                { to: "/category", text: "Category" },
+                { to: "/sub-category", text: "Sub Category" },
+                { to: "/supplier", text: "Supplier" },
+                { to: "/product", text: "Product" },
+              ]}
+            />
           </ul>
         </nav>
       </div>
     </aside>
   );
-}
+};
+
+export default Sidebar;

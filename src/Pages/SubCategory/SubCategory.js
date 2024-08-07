@@ -139,7 +139,6 @@ const SubCategory = (props) => {
             onClick={() => handleSubCategoryEdit(row.id)}
           >
             <i className='fas fa-pencil-alt'></i>
-            Edit
           </button>
           <div
             class={`custom-control custom-switch x  ${

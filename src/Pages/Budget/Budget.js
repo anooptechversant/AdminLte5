@@ -14,7 +14,7 @@ const Budget = ({ Data, Success, Error, Loading }) => {
   const [itemToDelete, setItemToDelete] = useState(null);
   const successStatusData = Success;
   const errorStatusData = Error;
- 
+
   const handleBudgetDelete = (id) => {
     dispatch(getBudgetData("delete", user_id, id));
   };
@@ -82,7 +82,6 @@ const Budget = ({ Data, Success, Error, Loading }) => {
               onClick={() => handleBudgetEdit(row.id)}
             >
               <i className='fas fa-pencil-alt'></i>
-              Edit
             </button>
           )}
           <button
@@ -90,7 +89,6 @@ const Budget = ({ Data, Success, Error, Loading }) => {
             onClick={() => handleDelete(row.id)}
           >
             <i className='fas fa-trash'></i>
-            Delete
           </button>
         </div>
       ),

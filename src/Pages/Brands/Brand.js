@@ -7,7 +7,7 @@ import { getBrandData } from "../../Actions/brandActions";
 const Brand = ({ Data, Success, Error, Loading, isActiveData }) => {
   const [resMsg, setResMsg] = useState(true);
   const [tableData, setTableData] = useState(Data || []);
- const successStatusData = Success || isActiveData;
+  const successStatusData = Success || isActiveData;
   const errorStatusData = Error;
   const responseMessage = {
     success:
@@ -88,7 +88,6 @@ const Brand = ({ Data, Success, Error, Loading, isActiveData }) => {
             onClick={() => handleBrandEdit(row.id)}
           >
             <i className='fas fa-pencil-alt'></i>
-            Edit
           </button>
           {/* <button
            className='btn btn-danger btn-sm'
@@ -175,7 +174,6 @@ const Brand = ({ Data, Success, Error, Loading, isActiveData }) => {
           </div>
         </div>
       </section>
-      
     </>
   );
 };
