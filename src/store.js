@@ -12,9 +12,10 @@ import categoryReducer from "./Features/categorySlice.js";
 import subCategoryReducer from "./Features/subCategorySlice.js";
 import supplierReducer from "./Features/supplierSlice.js";
 import brandProductReducer from "./Features/brandProductSlice.js";
-import productReducer from "./Features/ProductSlice.js";
+import productReducer from "./Features/productSlice.js";
 import userWorkTypeReducer from "./Features/userWorkTypeSlice.js";
 import userReducer from "./Features/userSlice.js";
+import orderReducer from "./Features/orderSlice.js";
 
 const store = configureStore({
   reducer: {
@@ -34,6 +35,7 @@ const store = configureStore({
     product: productReducer,
     userWorkType: userWorkTypeReducer,
     user: userReducer,
+    order: orderReducer,
   },
 });
 

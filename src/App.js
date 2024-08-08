@@ -18,167 +18,131 @@ import SupplierComponent from "./Pages/Supplier/SupplierComponent";
 import ProductComponent from "./Pages/Product/ProductComponent";
 import UserComponent from "./Pages/User/UserComponent";
 import UserTypeComponent from "./Pages/UserType/UserTypeComponent";
+import OrderComponent from "./Pages/Order/OrderComponent";
 
-// import "bootstrap/dist/css/bootstrap.min.css";
+const routesConfig = [
+  { path: "login", element: <Login /> },
+  {
+    path: "/",
+    element: <Layout />,
+    children: [
+      { path: "", element: <Dashboard /> },
+      { path: "work-types", element: <WorkTypeComponent /> },
+      { path: "work-types/add-work-type", element: <WorkTypeComponent /> },
+      { path: "work-types/edit-work-type/:id", element: <WorkTypeComponent /> },
+      { path: "education", element: <EducationComponent /> },
+      { path: "education/add-education", element: <EducationComponent /> },
+      { path: "education/edit-education/:id", element: <EducationComponent /> },
+      { path: "roles", element: <RolesComponent /> },
+      { path: "roles/add-roles", element: <RolesComponent /> },
+      { path: "roles/edit-roles/:id", element: <RolesComponent /> },
+      { path: "units", element: <UnitsComponent /> },
+      { path: "units/add-units", element: <UnitsComponent /> },
+      { path: "units/edit-units/:id", element: <UnitsComponent /> },
+      { path: "services", element: <ServicesComponent /> },
+      { path: "services/add-services", element: <ServicesComponent /> },
+      { path: "services/edit-services/:id", element: <ServicesComponent /> },
+      { path: "brands", element: <BrandComponent /> },
+      { path: "brands/add-brand", element: <BrandComponent /> },
+      { path: "brands/edit-brand/:id", element: <BrandComponent /> },
+      { path: "budget", element: <BudgetComponent /> },
+      { path: "budget/user-budget/:user_id", element: <BudgetComponent /> },
+      { path: "budget/add-budget/:user_id", element: <BudgetComponent /> },
+      {
+        path: "budget/edit-budget/:user_id/:budget_id",
+        element: <BudgetComponent />,
+      },
+      { path: "project", element: <ProjectComponent /> },
+      { path: "project/user-project/:user_id", element: <ProjectComponent /> },
+      { path: "project/add-project/:user_id", element: <ProjectComponent /> },
+      {
+        path: "project/edit-project/:user_id/:project_id",
+        element: <ProjectComponent />,
+      },
+      { path: "category", element: <CategoryComponent /> },
+      { path: "category/add-category", element: <CategoryComponent /> },
+      { path: "category/edit-category/:id", element: <CategoryComponent /> },
+      { path: "sub-category", element: <SubCategoryComponent /> },
+      {
+        path: "sub-category/add-sub-category",
+        element: <SubCategoryComponent />,
+      },
+      {
+        path: "sub-category/edit-sub-category/:id/:category_id",
+        element: <SubCategoryComponent />,
+      },
+      { path: "supplier", element: <SupplierComponent /> },
+      { path: "supplier/add-supplier", element: <SupplierComponent /> },
+      { path: "supplier/edit-supplier/:id", element: <SupplierComponent /> },
+      { path: "supplier/view-supplier/:id", element: <SupplierComponent /> },
+      {
+        path: "supplier/edit-supplier-address/:ref_id/address/:address_id/:user_type",
+        element: <SupplierComponent />,
+      },
+      { path: "product", element: <ProductComponent /> },
+      { path: "product/view-product/:prodId", element: <ProductComponent /> },
+      { path: "product/add-brand-product", element: <ProductComponent /> },
+      {
+        path: "product/edit-brand-product/:brProdId",
+        element: <ProductComponent />,
+      },
+      { path: "product/add-product/:brProdId", element: <ProductComponent /> },
+      { path: "product/edit-product/:prodId", element: <ProductComponent /> },
+      {
+        path: "product/edit-product-image/:prodId/:imageId",
+        element: <ProductComponent />,
+      },
+      {
+        path: "product/add-product-image/:prodId",
+        element: <ProductComponent />,
+      },
+      {
+        path: "product/add-brand-supplier/:prodId",
+        element: <ProductComponent />,
+      },
+      {
+        path: "product/add-brand-supplier/:prodId/:add",
+        element: <ProductComponent />,
+      },
+      { path: "users", element: <UserComponent /> },
+      { path: "users/view-user/:userId", element: <UserComponent /> },
+      { path: "users/add-work-type/:userId", element: <UserComponent /> },
+      { path: "users/edit-work-type/:userId/:id", element: <UserComponent /> },
+      { path: "users/user-role/:type", element: <UserComponent /> },
+      { path: "user-type", element: <UserTypeComponent /> },
+      { path: "user-type/user-role/:type", element: <UserTypeComponent /> },
+      { path: "orders", element: <OrderComponent /> },
+      { path: "orders/view-order/:id", element: <OrderComponent /> },
+      {
+        path: "orders/update-order/:order_details_id/:track_id/:id",
+        element: <OrderComponent />,
+      },
+    ],
+  },
+];
+
+function renderRoutes(routes) {
+  return routes.map((route, index) => {
+    const { path, element, children } = route;
+
+    if (children) {
+      return (
+        <Route key={index} path={path} element={element}>
+          {renderRoutes(children)}
+        </Route>
+      );
+    }
+
+    return <Route key={index} path={path} element={element} />;
+  });
+}
+
 function App() {
   return (
     <Provider store={store}>
-      <div>
-        <BrowserRouter>
-          <Routes>
-            <Route path='login' element={<Login />} />
-            <Route path='/' element={<Layout />}>
-              <Route index element={<Dashboard />} />{" "}
-              <Route path='work-types' element={<WorkTypeComponent />}>
-                <Route path='add-work-type' element={<WorkTypeComponent />} />
-                <Route
-                  path='edit-work-type/:id'
-                  element={<WorkTypeComponent />}
-                />
-              </Route>
-              <Route path='education' element={<EducationComponent />}>
-                <Route path='add-education' element={<EducationComponent />} />
-                <Route
-                  path='edit-education/:id'
-                  element={<EducationComponent />}
-                />
-              </Route>
-              <Route path='roles' element={<RolesComponent />}>
-                <Route path='edit-roles/:id' element={<RolesComponent />} />
-                <Route path='add-roles' element={<RolesComponent />} />
-              </Route>
-              <Route path='units' element={<UnitsComponent />}>
-                <Route path='edit-units/:id' element={<UnitsComponent />} />
-                <Route path='add-units' element={<UnitsComponent />} />
-              </Route>
-              <Route path='services' element={<ServicesComponent />}>
-                <Route
-                  path='edit-services/:id'
-                  element={<ServicesComponent />}
-                />
-                <Route path='add-services' element={<ServicesComponent />} />
-              </Route>
-              <Route path='brands' element={<BrandComponent />}>
-                <Route path='edit-brand/:id' element={<BrandComponent />} />
-                <Route path='add-brand' element={<BrandComponent />} />
-              </Route>
-              <Route path='budget' element={<BudgetComponent />}>
-                <Route
-                  path='user-budget/:user_id'
-                  element={<BudgetComponent />}
-                />{" "}
-                <Route
-                  path='add-budget/:user_id'
-                  element={<BudgetComponent />}
-                />
-                <Route
-                  path='edit-budget/:user_id/:budget_id'
-                  element={<BudgetComponent />}
-                />
-              </Route>
-              <Route path='project' element={<ProjectComponent />}>
-                <Route
-                  path='user-project/:user_id'
-                  element={<ProjectComponent />}
-                />
-                <Route
-                  path='add-project/:user_id'
-                  element={<ProjectComponent />}
-                />{" "}
-                <Route
-                  path='edit-project/:user_id/:project_id'
-                  element={<ProjectComponent />}
-                />
-              </Route>
-              <Route path='category' element={<CategoryComponent />}>
-                <Route
-                  path='edit-category/:id'
-                  element={<CategoryComponent />}
-                />
-                <Route path='add-category' element={<CategoryComponent />} />
-              </Route>
-              <Route path='sub-category' element={<SubCategoryComponent />}>
-                <Route
-                  path='edit-sub-category/:id/:category_id'
-                  element={<SubCategoryComponent />}
-                />
-                <Route
-                  path='add-sub-category'
-                  element={<SubCategoryComponent />}
-                />
-              </Route>
-              <Route path='supplier' element={<SupplierComponent />}>
-                <Route
-                  path='view-supplier/:id'
-                  element={<SupplierComponent />}
-                />
-                <Route path='add-supplier' element={<SupplierComponent />} />
-                <Route
-                  path='edit-supplier/:id'
-                  element={<SupplierComponent />}
-                />
-                <Route
-                  path='edit-supplier-address/:ref_id/address/:address_id/:user_type'
-                  element={<SupplierComponent />}
-                />
-              </Route>
-              <Route path='product' element={<ProductComponent />}>
-                <Route
-                  path='view-product/:prodId'
-                  element={<ProductComponent />}
-                />
-                <Route
-                  path='add-brand-product'
-                  element={<ProductComponent />}
-                />
-                <Route
-                  path='edit-brand-product/:brProdId'
-                  element={<ProductComponent />}
-                />
-                <Route
-                  path='add-product/:brProdId'
-                  element={<ProductComponent />}
-                />
-                <Route
-                  path='edit-product/:prodId'
-                  element={<ProductComponent />}
-                />
-                <Route
-                  path='edit-product-image/:prodId/:imageId'
-                  element={<ProductComponent />}
-                />{" "}
-                <Route
-                  path='add-product-image/:prodId'
-                  element={<ProductComponent />}
-                />
-                <Route
-                  path='add-brand-supplier/:prodId'
-                  element={<ProductComponent />}
-                />{" "}
-                <Route
-                  path='add-brand-supplier/:prodId/:add'
-                  element={<ProductComponent />}
-                />
-              </Route>
-              <Route path='users' element={<UserComponent />}>
-                <Route path='view-user/:userId' element={<UserComponent />} />
-                <Route
-                  path='add-work-type/:userId'
-                  element={<UserComponent />}
-                />{" "}
-                <Route
-                  path='edit-work-type/:userId/:id'
-                  element={<UserComponent />}
-                />
-                <Route path='user-role/:type' element={<UserComponent />} />
-              </Route>
-              <Route path='user-type' element={<UserTypeComponent />}>
-                <Route path='user-role/:type' element={<UserTypeComponent />} />
-              </Route>
-            </Route>
-          </Routes>
-        </BrowserRouter>
-      </div>
+      <BrowserRouter>
+        <Routes>{renderRoutes(routesConfig)}</Routes>
+      </BrowserRouter>
     </Provider>
   );
 }
