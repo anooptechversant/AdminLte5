@@ -6,7 +6,7 @@ import FileInput from "../../Components/InputComponents/FileInput";
 import SelectionInput from "../../Components/InputComponents/SelectionInput";
 import Spinner from "../../Components/Loader/Loading";
 import Toasts from "../../Components/Common/Toasts";
-import { getProdImage } from "../../Actions/ProductActions";
+import { getProdImage } from "../../Actions/productActions";
 const AddImage = ({ Data, Success, Error, Loading }) => {
   const { prodId, imageId } = useParams();
   const dispatch = useDispatch();

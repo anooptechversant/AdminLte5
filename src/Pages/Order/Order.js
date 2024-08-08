@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import ProductTable from "../../Components/Common/Table";
+import OrderTable from "../../Components/Common/Table";
 import { Link, useNavigate } from "react-router-dom";
-import { getProductData } from "../../Actions/productActions";
 import SelectionInput from "../../Components/InputComponents/SelectionInput";
 
-const Product = ({
+const Order = ({
   Data,
   Success,
   Error,
@@ -14,73 +12,49 @@ const Product = ({
   propCurrentPage,
   currentPageChange,
   limitChange,
+  setOrderStatus,
 }) => {
-  const [resMsg, setResMsg] = useState(true);
+  const [inputStatus, setInputStatus] = useState({
+    order_status: "",
+  });
   const [tableData, setTableData] = useState(Data || []);
   const [inputLimit, setInputLimit] = useState({
     limit: 8,
   });
-  // console.log(tableData);
+
+  const orderData = Data;
   const successStatusData = Success;
   const errorStatusData = Error;
-  const pageTitle = "Product";
-  const tableTitle = "Product";
-  const responseMessage = {
-    success:
-      resMsg === true
-        ? "Product activated successfully"
-        : "Product deactivated successfully",
-  };
-  const productColumns = [
+  const loadingProduct = Loading;
+  const pageTitle = "Orders";
+  const tableTitle = "Orders";
+  const orderColumns = [
     { key: "id", name: "ID" },
-    { key: "brand_product.product_name", name: "Product Name" },
-    { key: "brand_product.brand.name", name: "Brand" },
-    // { key: "supplier_name", name: "Supplier" },
-    { key: "market_price", name: "Market Price" },
-    { key: "selling_price", name: "Selling Price" },
-    // { key: "price", name: "Prize" },
-    // { key: "min_purchase_quantity", name: " Quantity" },
-    // { key: "weight_value", name: "Weight Value" },
-    // { key: "weight_unit", name: "Weight Unit" },
-    // { key: "weight_description", name: "Weight Description" },
+    { key: "order_status", name: "Order Status" },
+    { key: "delivery_date", name: "Delivery Date" },
+    { key: "payment_type", name: "Payment Method" },
+    { key: "product_name", name: "Product Name" },
+    { key: "quantity", name: "Prod.QNTY" },
+
     // Add more columns as needed
   ];
-  useEffect(() => {
-    setTableData(Data);
-  }, [Data]);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  const handleProductActivate = (id) => {
-    const data = { is_active: true };
-    setResMsg(true);
-
-    dispatch(getProductData("activate", data, id));
-  };
-  const handleProductDeactivate = (id) => {
-    const data = { is_active: false };
-    setResMsg(false);
-
-    dispatch(getProductData("deactivate", data, id));
-  };
-
-  const handleProductEdit = (id) => {
-    navigate(`/product/edit-product/${id}`);
-  };
   const handleProductView = (id) => {
-    navigate(`/product/view-product/${id}`);
+    navigate(`/orders/view-order/${id}`);
   };
-
-  const handleProductAdd = () => {
-    navigate("/product/add-brand-product");
+  const handleStatusChange = (newValue) => {
+    setInputStatus((prevState) => ({
+      ...prevState,
+      order_status: newValue.value,
+    }));
   };
-  const handleSwitchChange = (id, isActive) => {
-    if (isActive) {
-      handleProductDeactivate(id);
-    } else {
-      handleProductActivate(id);
+  useEffect(() => {
+    // Call the API when inputStatus.order_status changes
+    if (inputStatus.order_status !== "") {
+      setOrderStatus(inputStatus.order_status);
     }
-  };
+  }, [inputStatus.order_status, setOrderStatus]);
+
   const limitArray = [
     { option: "5", value: 5 },
     { option: "8", value: 8 },
@@ -98,7 +72,19 @@ const Product = ({
       limitChange(newValue.value);
     }
   };
-
+  const statusArray = [
+    { option: "PENDING", value: "PENDING" },
+    { option: "PLACED", value: "PLACED" },
+    { option: "CONFIRMED", value: "CONFIRMED" },
+    { option: "SHIPPED", value: "SHIPPED" },
+    { option: "DELIVERED", value: "DELIVERED" },
+    { option: "CANCELLED", value: "CANCELLED" },
+    { option: "REFUNDED", value: "REFUNDED" },
+    { option: "RETURNED", value: "RETURNED" },
+  ];
+  useEffect(() => {
+    setTableData(Data);
+  }, [Data]);
   const columns = [
     {
       header: "#",
@@ -109,30 +95,37 @@ const Product = ({
     },
 
     {
-      header: "Product Name",
-      key: "brand_product.product_name",
-      cell: (row) => <>{row?.brand_product.product_name}</>,
-      tdClassName: "",
-      thClassName: "",
-    },
-    {
-      header: "Brand",
-      key: "brand_product.brand.name",
-      cell: (row) => <>{row?.brand_product.brand.name}</>,
-      tdClassName: "",
-      thClassName: "",
-    },
-    {
-      header: "Market Price",
-      key: "market_price",
-      cell: (row) => <>{row?.market_price}</>,
+      header: "Order Status",
+      key: "order_status",
+      cell: (row) => <>{row?.order_status}</>,
       tdClassName: "",
       thClassName: "text-nowrap",
     },
     {
-      header: "Selling Price",
-      key: "selling_price",
-      cell: (row) => <>{row?.selling_price}</>,
+      header: "Delivery Date",
+      key: "delivery_date",
+      cell: (row) => <>{row?.delivery_date}</>,
+      tdClassName: "",
+      thClassName: "text-nowrap",
+    },
+    {
+      header: "Payment Method.",
+      key: "payment_type",
+      cell: (row) => <>{row?.payment_type}</>,
+      tdClassName: "",
+      thClassName: "text-nowrap",
+    },
+    {
+      header: "Product Name",
+      key: "product_name",
+      cell: (row) => <>{row?.product_name}</>,
+      tdClassName: "",
+      thClassName: "text-nowrap",
+    },
+    {
+      header: "Product Quantity",
+      key: "quantity",
+      cell: (row) => <>{row?.quantity}</>,
       tdClassName: "",
       thClassName: "text-nowrap",
     },
@@ -147,31 +140,6 @@ const Product = ({
           >
             <i class='fas fa-solid fa-eye'></i>
           </button>
-          <div
-            class={`custom-control custom-switch x  ${
-              row.is_active
-                ? " custom-switch-on-success"
-                : "custom-switch-off-danger"
-            } `}
-          >
-            <input
-              type='checkbox'
-              class='custom-control-input'
-              id='customSwitch3'
-              checked={row.is_active}
-              onChange={() => {
-                handleSwitchChange(row.id, row.is_active);
-              }}
-            />
-            <label
-              class={`custom-control-label ${
-                row.is_active ? "text-success" : "text-danger"
-              } `}
-              for='customSwitch3'
-            >
-              {row.is_active ? "Active" : "Inactive"}
-            </label>
-          </div>
         </div>
       ),
       tdClassName: "project-actions text-center",
@@ -204,7 +172,20 @@ const Product = ({
             <div className='card-header'>
               <h3 className='card-title'>{tableTitle}</h3>
 
-              <div className='card-tools d-flex justify-content-end'>
+              <div className='card-tools d-flex justify-content-around'>
+                <label className='d-flex mr-2'>
+                  Status <span className='errorLabel'>*</span>
+                </label>
+                {/* <div className='w-100'> */}
+
+                <SelectionInput
+                  propOnChange={handleStatusChange}
+                  propValidationError={""}
+                  propAttributeValue='order_status'
+                  firstOption={statusArray[0].value}
+                  options={statusArray}
+                  propValue={inputStatus.order_status}
+                />
                 <span
                   className='mr-4'
                   style={{ maxWidth: "30%", minWidth: "10%" }}
@@ -219,15 +200,15 @@ const Product = ({
                     propValue={inputLimit.limit}
                   />
                 </span>
-                <button
+                {/* <button
                   className='btn btn-tool pointer-event'
                   onClick={() => handleProductAdd()}
                 >
                   <i className='fa fa-plus'></i> Add
-                </button>
+                </button> */}
               </div>
             </div>
-            <ProductTable
+            <OrderTable
               Columns={columns}
               Data={tableData}
               loading={Loading}
@@ -235,9 +216,8 @@ const Product = ({
               CurrentPage={propCurrentPage}
               currentPageChange={currentPageChange}
               TotalPages={propTotalPages}
-              // itemsPerPage={limitChange}
               ErrorText={"No data available"}
-              ResponseMessage={responseMessage}
+              ResponseMessage={"responseMessage is empty"}
               StatusData={{ successStatusData, errorStatusData }}
             />
           </div>
@@ -247,4 +227,4 @@ const Product = ({
   );
 };
 
-export default Product;
+export default Order;
