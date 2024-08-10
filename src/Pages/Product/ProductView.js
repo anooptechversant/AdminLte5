@@ -6,7 +6,7 @@ import Accordion from "react-bootstrap/Accordion";
 import Spinner from "../../Components/Loader/Loading";
 import Toasts from "../../Components/Common/Toasts";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { getProductData } from "../../Actions/productActions";
+import { getProductData } from "../../Actions/ProductActions";
 
 const ProductView = ({ viewData, Success, Error, Loading, isActiveData }) => {
   const navigate = useNavigate();

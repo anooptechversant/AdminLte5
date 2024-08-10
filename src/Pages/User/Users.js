@@ -74,14 +74,14 @@ export default function Users(props) {
       key: "name",
       cell: (row) => <>{row?.name}</>,
       tdClassName: "",
-      thClassName: "",
+      thClassName: "text-nowrap",
     },
     {
       header: "Country code",
       key: "phone_prefix",
       cell: (row) => <>{row?.phone_prefix}</>,
       tdClassName: "",
-      thClassName: "",
+      thClassName: "text-nowrap",
     },
     {
       header: "Phone No.",

@@ -9,7 +9,7 @@ import {
   productFail,
   productIsActiveSuccess,
   prodImageSuccess,
-} from "../Features/productSlice";
+} from "../Features/ProductSlice";
 
 export const getProductData = (arg, data, id) => async (dispatch) => {
   try {

@@ -79,7 +79,7 @@ const Table = ({
         propActionType={"success"}
         propStatusData={StatusData}
       />
-      <div className='card-body p-0'>
+      <div className='card-body p-0 table-responsive'>
         <table className='table table-striped projects'>
           <thead>
             <tr>

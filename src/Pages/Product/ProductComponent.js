@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getProductData } from "../../Actions/productActions";
+import { getProductData } from "../../Actions/ProductActions";
 import AddProduct from "./AddProduct";
 import Product from "./Product";
 import ProductView from "./ProductView";
