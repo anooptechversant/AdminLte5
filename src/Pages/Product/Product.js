@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import ProductTable from "../../Components/Common/Table";
 import { Link, useNavigate } from "react-router-dom";
-import { getProductData } from "../../Actions/productActions";
+import { getProductData } from "../../Actions/ProductActions";
 import SelectionInput from "../../Components/InputComponents/SelectionInput";
 
 const Product = ({

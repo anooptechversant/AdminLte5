@@ -5,7 +5,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import SelectionInput from "../../Components/InputComponents/SelectionInput";
 import Spinner from "../../Components/Loader/Loading";
 import Toasts from "../../Components/Common/Toasts";
-import { getProductData } from "../../Actions/productActions";
+import { getProductData } from "../../Actions/ProductActions";
 import { getUnitData } from "../../Actions/unitsActions";
 import { getSupplierData } from "../../Actions/supplierActions";
 
