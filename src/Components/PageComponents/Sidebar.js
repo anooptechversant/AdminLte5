@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 const SidebarItem = ({ to, icon, text }) => (
   <li className='nav-item'>
@@ -9,22 +9,28 @@ const SidebarItem = ({ to, icon, text }) => (
   </li>
 );
 
-const SidebarMenu = ({ title, icon, items }) => (
-  <li className='nav-item'>
-    <a href='#' className='nav-link'>
-      <i className={`nav-icon fas ${icon}`}></i>
-      <p>
-        {title}
-        <i className='fas fa-angle-left right'></i>
-      </p>
-    </a>
-    <ul className='nav nav-treeview'>
-      {items.map((item, index) => (
-        <SidebarItem key={index} {...item} />
-      ))}
-    </ul>
-  </li>
-);
+const SidebarMenu = ({ title, icon, items }) => {
+  const location = useLocation();
+
+  const isActive = items.some((item) => location.pathname.startsWith(item.to));
+
+  return (
+    <li className={`nav-item ${isActive ? "menu-open" : ""}`}>
+      <a className={`nav-link ${isActive ? "active" : ""}`}>
+        <i className={`nav-icon fas ${icon}`}></i>
+        <p>
+          {title}
+          <i className='fas fa-angle-left right'></i>
+        </p>
+      </a>
+      <ul className='nav nav-treeview'>
+        {items.map((item, index) => (
+          <SidebarItem key={index} {...item} />
+        ))}
+      </ul>
+    </li>
+  );
+};
 
 const Sidebar = () => {
   return (
@@ -77,7 +83,7 @@ const Sidebar = () => {
             role='menu'
             data-accordion='false'
           >
-            <li className='nav-item menu-open'>
+            <li className='nav-item'>
               <NavLink to='/' className='nav-link'>
                 <i className='nav-icon fas fa-tachometer-alt'></i>
                 <p>Dashboard</p>
