@@ -83,15 +83,6 @@ const ViewSupplier = ({ viewData, Success, Error, Loading, isActiveData }) => {
             <div className='container-fluid'>
               {viewData ? (
                 <Card className='text-center '>
-                  {/* <Card.Header className='d-flex justify-content-between align-items-center'>
-                    <span className='btn' onClick={goBack}>
-                      <i className='fa fa-chevron-left m-0 font-weight-bold '></i>
-                      <span className='add-label'> Back</span>
-                    </span>
-                    {viewData.is_active
-                      ? "Active Supplier"
-                      : "Inactive Supplier"}
-                  </Card.Header> */}
                   <div className='card card-primary'>
                     <div className='card-header'>
                       <h3 className='card-title'>
@@ -114,7 +105,9 @@ const ViewSupplier = ({ viewData, Success, Error, Loading, isActiveData }) => {
                   </div>
                   <Card.Body>
                     <Card.Title>
-                      <h1 className='h-3 mb-4 text-gray-800'>{viewData.name}</h1>
+                      <h1 className='h-3 mb-4 text-gray-800'>
+                        {viewData.name}
+                      </h1>
                     </Card.Title>
                     <Card.Text>
                       <strong>Phone:</strong> {viewData.phone}
