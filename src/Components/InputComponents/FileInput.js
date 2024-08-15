@@ -44,7 +44,7 @@ export default function FileInput({
           <img src={propValue} alt={`Imag Preview`} width={90} height={80} />
         )
       )}
-      <div class='custom-file'>
+      <div className='custom-file'>
         <input
           type='file'
           className={`custom-file-input  ${
@@ -54,10 +54,10 @@ export default function FileInput({
           onChange={handleFileInputChange}
           name={propAttributeValue}
         />
-        <label class='custom-file-label' for='exampleInputFile'>
+        <label className='custom-file-label' for='exampleInputFile'>
           Choose file
         </label>
-      {/* <input
+        {/* <input
         type='file'
         className='form-control form-control-user'
         id='exampleFileInput'
@@ -65,10 +65,10 @@ export default function FileInput({
         name={propAttributeValue}
       /> */}
 
-      {validationError && (
-        <span className='invalid-feedback'>{validationError}</span>
-      )}
-      </div>  
+        {validationError && (
+          <span className='invalid-feedback'>{validationError}</span>
+        )}
+      </div>
     </div>
   );
 }

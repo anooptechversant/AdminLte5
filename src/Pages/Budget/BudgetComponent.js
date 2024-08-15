@@ -21,16 +21,15 @@ const BudgetComponent = () => {
   const isEditBudgetRoute = location.pathname.startsWith(
     "/budget/edit-budget/"
   );
-  const data = useSelector((state) => state);
   const {
     budgetData,
     userBudgetData,
     budgetLoading,
     budgetSuccess,
     budgetError,
-  } = data.budget;
-  const { unitData } = data.units;
-  const { servicesData } = data.services;
+  } = useSelector((state) => state.budget);
+  const { unitData } = useSelector((state) => state.units);
+  const { servicesData } = useSelector((state) => state.services);
 
   useEffect(() => {
     dispatch(getBudgetData("fetch"));

@@ -17,15 +17,10 @@ const UserTypeComponent = () => {
   const isB2BUserRoute = location.pathname.startsWith(
     "/user-type/user-role/B2B"
   );
-  const data = useSelector((state) => state);
-  const {
-    unapprovedUsers,
-    singleUser,
-    userLoading,
-    userSuccess,
-    userError,
-  } = data.user;
-  const { rolesData } = data.roles;
+   const { unapprovedUsers, singleUser, userLoading, userSuccess, userError } =
+     useSelector((state) => state.user);
+   const { rolesData } = useSelector((state) => state.roles);
+ 
  
   useEffect(() => {
      dispatch(getRolesData("fetch"));

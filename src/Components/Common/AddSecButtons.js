@@ -16,27 +16,25 @@ function AddSecButtons({ handleSubmit, isNext, propAllErrorEmpty, propValue }) {
 
   return (
     <>
-      <div class='card-footer'>
-        
+      <div className='card-footer'>
         <button
           type='button'
           disabled={!allErrorsEmpty}
           onClick={() =>
             handleButtonClick(propValue === undefined ? "save" : "update")
           }
-          class='btn btn-primary mr-4'
+          className='btn btn-primary mr-4'
         >
           {buttonText}
         </button>
         <button
           type='button'
           onClick={() => handleButtonClick("cancel")}
-          class='btn btn-danger'
+          className='btn btn-danger'
         >
           Cancel
         </button>
       </div>
-     
     </>
   );
 }

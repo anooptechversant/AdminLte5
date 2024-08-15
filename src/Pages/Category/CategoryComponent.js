@@ -15,14 +15,14 @@ const CategoryComponent = () => {
   const isEditCategoryRoute = location.pathname.startsWith(
     "/category/edit-category/"
   );
-  const data = useSelector((state) => state);
   const {
     categoryData,
     categorySuccess,
     categoryError,
     categoryLoading,
     categoryIsActive,
-  } = data.category;
+  } = useSelector((state) => state.category);
+
   useEffect(() => {
     dispatch(getCategoryData("fetch"));
   }, [dispatch, id, isCategoryRoute, categoryIsActive]);

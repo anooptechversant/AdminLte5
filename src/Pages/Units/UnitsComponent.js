@@ -11,9 +11,10 @@ const UnitsComponent = () => {
   const isUnitsRoute = location.pathname === "/units";
   const isAddUnitsRoute = location.pathname === "/units/add-units";
   const isEditUnitsRoute = location.pathname.startsWith("/units/edit-units/");
-  const data = useSelector((state) => state);
+  const { unitData, unitSuccess, unitError, unitLoading } = useSelector(
+    (state) => state.units
+  );
 
-  const { unitData, unitSuccess, unitError, unitLoading } = data.units;
   useEffect(() => {
     dispatch(getUnitData("fetch"));
   }, [dispatch, id, isUnitsRoute]);

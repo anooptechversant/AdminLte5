@@ -171,14 +171,14 @@ const ProductView = ({ viewData, Success, Error, Loading, isActiveData }) => {
                             " / " +
                             viewData.weight_description}
                           <br />
-                          <div class='col-12 mt-4' id='accordion'>
-                            <div class='card card-primary card-outline'>
+                          <div className='col-12 mt-4' id='accordion'>
+                            <div className='card card-primary card-outline'>
                               <a
-                                class='d-block w-100'
+                                className='d-block w-100'
                                 data-toggle='collapse'
                                 href='#collapseTwo'
                               >
-                                <div class='card-header'>
+                                <div className='card-header'>
                                   <div className='row'>
                                     <div className='col-md-8'>
                                       <h4>Product Images</h4>
@@ -199,7 +199,7 @@ const ProductView = ({ viewData, Success, Error, Loading, isActiveData }) => {
                               </a>
                               <div
                                 id='collapseTwo'
-                                class='collapse'
+                                className='collapse'
                                 data-parent='#accordion'
                               >
                                 <div className='card-body d-flex justify-content-evenly row'>
@@ -235,14 +235,14 @@ const ProductView = ({ viewData, Success, Error, Loading, isActiveData }) => {
                               </div>
                             </div>
                           </div>
-                          <div class='col-12 mt-4' id='accordion'>
-                            <div class='card card-primary card-outline'>
+                          <div className='col-12 mt-4' id='accordion'>
+                            <div className='card card-primary card-outline'>
                               <a
-                                class='d-block w-100'
+                                className='d-block w-100'
                                 data-toggle='collapse'
                                 href='#collapseThree'
                               >
-                                <div class='card-header'>
+                                <div className='card-header'>
                                   <div className='row'>
                                     <div className='col-md-8'>
                                       {" "}
@@ -264,7 +264,7 @@ const ProductView = ({ viewData, Success, Error, Loading, isActiveData }) => {
                               </a>
                               <div
                                 id='collapseThree'
-                                class='collapse'
+                                className='collapse'
                                 data-parent='#accordion'
                               >
                                 <div className='card-body d-flex justify-content-evenly row'>

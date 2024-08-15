@@ -26,10 +26,10 @@ const Supplier = ({ Data, Success, Error, Loading }) => {
 
     // Add more columns as needed
   ];
-  
- useEffect(() => {
-   setTableData(Data);
- }, [Data]);
+
+  useEffect(() => {
+    setTableData(Data);
+  }, [Data]);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -42,7 +42,6 @@ const Supplier = ({ Data, Success, Error, Loading }) => {
 
     dispatch(getSupplierData("deactivate", data, id));
   };
-
 
   const handleSupplierView = (id) => {
     navigate(`/supplier/view-supplier/${id}`);
@@ -58,86 +57,85 @@ const Supplier = ({ Data, Success, Error, Loading }) => {
       handleSupplierActivate(id);
     }
   };
- const columns = [
-   {
-     header: "#",
-     key: "SL.No",
-     cell: (row, i) => <>{i + 1}</>,
-     tdClassName: "",
-     thClassName: "w-1",
-   },
+  const columns = [
+    {
+      header: "#",
+      key: "SL.No",
+      cell: (row, i) => <>{i + 1}</>,
+      tdClassName: "",
+      thClassName: "w-1",
+    },
 
-   {
-     header: "Supplier Name",
-     key: "name",
-     cell: (row) => <>{row?.name}</>,
-     tdClassName: "",
-     thClassName: "",
-   },
-   {
-     header: "Phone No",
-     key: "phone",
-     cell: (row) => <>{row?.phone}</>,
-     tdClassName: "",
-     thClassName: "",
-   },
-   {
-     header: "Category",
-     key: "category",
-     cell: (row) => <>{row?.category}</>,
-     tdClassName: "",
-     thClassName: "",
-   },
-   {
-     header: "Contact Person",
-     key: "contact_person",
-     cell: (row) => <>{row?.contact_person}</>,
-     tdClassName: "",
-     thClassName: "",
-   },
-   {
-     header: <span>Actions</span>,
-     key: "",
-     cell: (row) => (
-       <div className='d-flex justify-content-around'>
-         <button
-           className='btn btn-info btn-sm'
-           onClick={() => handleSupplierView(row.id)}
-         >
-           <i class='fas fa-solid fa-eye'></i>
-           
-         </button>
-         <div
-           class={`custom-control custom-switch x  ${
-             row.is_active
-               ? " custom-switch-on-success"
-               : "custom-switch-off-danger"
-           } `}
-         >
-           <input
-             type='checkbox'
-             class='custom-control-input'
-             id='customSwitch3'
-             checked={row.is_active}
-             onChange={() => {
-               handleSwitchChange(row.id, row.is_active);
-             }}
-           />
-           <label
-             class={`custom-control-label ${
-               row.is_active ? "text-success" : "text-danger"
-             } `}
-             for='customSwitch3'
-           >
-             {row.is_active ? "Active" : "Inactive"}
-           </label>
-         </div>
-       </div>
-     ),
-     tdClassName: "project-actions text-center",
-     thClassName: "text-center",
-   },
- ];
+    {
+      header: "Supplier Name",
+      key: "name",
+      cell: (row) => <>{row?.name}</>,
+      tdClassName: "",
+      thClassName: "",
+    },
+    {
+      header: "Phone No",
+      key: "phone",
+      cell: (row) => <>{row?.phone}</>,
+      tdClassName: "",
+      thClassName: "",
+    },
+    {
+      header: "Category",
+      key: "category",
+      cell: (row) => <>{row?.category}</>,
+      tdClassName: "",
+      thClassName: "",
+    },
+    {
+      header: "Contact Person",
+      key: "contact_person",
+      cell: (row) => <>{row?.contact_person}</>,
+      tdClassName: "",
+      thClassName: "",
+    },
+    {
+      header: <span>Actions</span>,
+      key: "",
+      cell: (row) => (
+        <div className='d-flex justify-content-around'>
+          <button
+            className='btn btn-info btn-sm'
+            onClick={() => handleSupplierView(row.id)}
+          >
+            <i className='fas fa-solid fa-eye'></i>
+          </button>
+          <div
+            className={`custom-control custom-switch x  ${
+              row.is_active
+                ? " custom-switch-on-success"
+                : "custom-switch-off-danger"
+            } `}
+          >
+            <input
+              type='checkbox'
+              className='custom-control-input'
+              id='customSwitch3'
+              checked={row.is_active}
+              onChange={() => {
+                handleSwitchChange(row.id, row.is_active);
+              }}
+            />
+            <label
+              className={`custom-control-label ${
+                row.is_active ? "text-success" : "text-danger"
+              } `}
+              for='customSwitch3'
+            >
+              {row.is_active ? "Active" : "Inactive"}
+            </label>
+          </div>
+        </div>
+      ),
+      tdClassName: "project-actions text-center",
+      thClassName: "text-center",
+    },
+  ];
   return (
     <>
       {" "}

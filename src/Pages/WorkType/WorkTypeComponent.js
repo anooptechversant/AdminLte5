@@ -15,16 +15,16 @@ const WorkTypeComponent = () => {
   const isEditWorkTypeRoute = location.pathname.startsWith(
     "/work-types/edit-work-type/"
   );
-  const data = useSelector((state) => state);
+
   const { workTypeData, workTypeSuccess, workTypeError, workTypeLoading } =
-    data.workType;
+    useSelector((state) => state.workType);
+
   useEffect(() => {
     dispatch(getWorkTypeData("fetch"));
   }, [dispatch, id, isWorkTypeRoute]);
+
   return (
     <>
-      {" "}
-     
       {isAddWorkTypeRoute || isEditWorkTypeRoute ? (
         <AddWorkType
           Data={workTypeData}

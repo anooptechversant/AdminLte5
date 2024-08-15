@@ -40,7 +40,7 @@ function Login() {
         <div className='card card-outline card-primary'>
           <div className='card-header text-center'>
             <a href='../../index2.html' className='h1'>
-              <b>Admin</b>LTE
+              <b>Brickar</b>
             </a>
           </div>
           <div className='card-body'>
@@ -88,7 +88,7 @@ function Login() {
               </div>
             </form>
 
-            <div className='social-auth-links text-center mt-2 mb-3'>
+            {/* <div className='social-auth-links text-center mt-2 mb-3'>
               <a href='#' className='btn btn-block btn-primary'>
                 <i className='fab fa-facebook mr-2'></i> Sign in using Facebook
               </a>
@@ -105,7 +105,7 @@ function Login() {
               <a href='register.html' className='text-center'>
                 Register a new membership
               </a>
-            </p>
+            </p> */}
           </div>
         </div>
       </div>

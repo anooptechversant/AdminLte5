@@ -97,7 +97,7 @@ const Brand = ({ Data, Success, Error, Loading, isActiveData }) => {
            Delete
          </button> */}
           <div
-            class={`custom-control custom-switch x  ${
+            className={`custom-control custom-switch x  ${
               row.is_active
                 ? " custom-switch-on-success"
                 : "custom-switch-off-danger"
@@ -105,7 +105,7 @@ const Brand = ({ Data, Success, Error, Loading, isActiveData }) => {
           >
             <input
               type='checkbox'
-              class='custom-control-input'
+              className='custom-control-input'
               id='customSwitch3'
               checked={row.is_active}
               onChange={() => {
@@ -113,7 +113,7 @@ const Brand = ({ Data, Success, Error, Loading, isActiveData }) => {
               }}
             />
             <label
-              class={`custom-control-label ${
+              className={`custom-control-label ${
                 row.is_active ? "text-success" : "text-danger"
               } `}
               for='customSwitch3'

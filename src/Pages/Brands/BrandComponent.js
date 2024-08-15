@@ -12,10 +12,11 @@ const BrandComponent = () => {
   const isBrandRoute = location.pathname === "/brands";
   const isAddBrandRoute = location.pathname === "/brands/add-brand";
   const isEditBrandRoute = location.pathname.startsWith("/brands/edit-brand/");
-  const data = useSelector((state) => state);
-  const { brandData, brandSuccess, brandError, brandLoading, brandIsActive } =
-    data.brand;
 
+  // Select only the education slice from the state
+  const { brandData, brandSuccess, brandError, brandLoading, brandIsActive } =
+    useSelector((state) => state.brand);
+    
   useEffect(() => {
     dispatch(getBrandData("fetch"));
   }, [dispatch, id, brandIsActive, isBrandRoute]);

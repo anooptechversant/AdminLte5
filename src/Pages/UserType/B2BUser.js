@@ -173,13 +173,13 @@ const B2BUser = (props) => {
             className='btn btn-info btn-sm text-nowrap'
             onClick={() => handleUserView(row.id)}
           >
-            <i class='fas fa-solid fa-eye'></i>
+            <i className='fas fa-solid fa-eye'></i>
           </button>
           <button
             className='btn btn-warning btn-sm text-nowrap'
             onClick={() => handleApprove(row.id)}
           >
-            <i class='fas fa-check'></i>
+            <i className='fas fa-check'></i>
           </button>{" "}
           <button
             className='btn btn-danger btn-sm'

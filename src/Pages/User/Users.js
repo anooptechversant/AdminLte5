@@ -106,7 +106,7 @@ export default function Users(props) {
             className='btn btn-info btn-sm text-nowrap'
             onClick={() => handleDetailedView(row.id)}
           >
-            <i class='fas fa-solid fa-eye'></i>
+            <i className='fas fa-solid fa-eye'></i>
           </button>
         </div>
       ),

@@ -12,11 +12,14 @@ const RolesComponent = () => {
   const isRolesRoute = location.pathname === "/roles";
   const isAddRolesRoute = location.pathname === "/roles/add-roles";
   const isEditRolesRoute = location.pathname.startsWith("/roles/edit-roles/");
-  const data = useSelector((state) => state);
-  const { rolesData, rolesSuccess, rolesError, rolesLoading } = data.roles;
+  const { rolesData, rolesSuccess, rolesError, rolesLoading } = useSelector(
+    (state) => state.roles
+  );
+
   useEffect(() => {
     dispatch(getRolesData("fetch"));
   }, [dispatch, id, isRolesRoute]);
+
   return (
     <>
       {isAddRolesRoute || isEditRolesRoute ? (
