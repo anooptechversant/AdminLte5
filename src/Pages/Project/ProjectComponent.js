@@ -20,18 +20,19 @@ const ProjectComponent = () => {
   const isEditProjectRoute = location.pathname.startsWith(
     "/project/edit-project/"
   );
-  const data = useSelector((state) => state);
   const {
     projectData,
     projectByUserID,
     projectSuccess,
     projectError,
     projectLoading,
-  } = data.project;
+  } = useSelector((state) => state.project);
+
   useEffect(() => {
     dispatch(getProjectData("fetch"));
     if (user_id) dispatch(getProjectData("single", user_id));
   }, [dispatch, user_id, isProjectRoute, isUserProjectRoute]);
+  
   return (
     <>
       {isProjectRoute || isUserProjectRoute ? (

@@ -67,7 +67,7 @@ const Category = ({ Data, Success, Error, Loading, isActiveData }) => {
       key: "image",
       cell: (row) => (
         <>
-          <img alt={row?.name} class='table-avatar' src={row?.image} />
+          <img alt={row?.name} className='table-avatar' src={row?.image} />
         </>
       ),
       tdClassName: "",
@@ -84,10 +84,9 @@ const Category = ({ Data, Success, Error, Loading, isActiveData }) => {
             onClick={() => handleCategoryEdit(row.id)}
           >
             <i className='fas fa-pencil-alt'></i>
-            
           </button>
           <div
-            class={`custom-control custom-switch x  ${
+            className={`custom-control custom-switch x  ${
               row.is_active
                 ? " custom-switch-on-success"
                 : "custom-switch-off-danger"
@@ -95,7 +94,7 @@ const Category = ({ Data, Success, Error, Loading, isActiveData }) => {
           >
             <input
               type='checkbox'
-              class='custom-control-input'
+              className='custom-control-input'
               id='customSwitch3'
               checked={row.is_active}
               onChange={() => {
@@ -103,7 +102,7 @@ const Category = ({ Data, Success, Error, Loading, isActiveData }) => {
               }}
             />
             <label
-              class={`custom-control-label ${
+              className={`custom-control-label ${
                 row.is_active ? "text-success" : "text-danger"
               } `}
               for='customSwitch3'

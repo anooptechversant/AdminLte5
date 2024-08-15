@@ -22,7 +22,6 @@ const SupplierComponent = () => {
   const isAddressEditRoute = location.pathname.startsWith(
     "/supplier/edit-supplier-address/"
   );
-  const data = useSelector((state) => state);
   const {
     supplierData,
     supplierSuccess,
@@ -30,7 +29,8 @@ const SupplierComponent = () => {
     supplierLoading,
     singleSupplierData,
     supplierIsActive,
-  } = data.supplier;
+  } = useSelector((state) => state.supplier);
+
   useEffect(() => {
     dispatch(getSupplierData("fetch"));
   }, [dispatch, id, isSupplierRoute, supplierIsActive]);

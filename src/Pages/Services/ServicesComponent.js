@@ -14,10 +14,9 @@ const ServicesComponent = () => {
   const isEditServicesRoute = location.pathname.startsWith(
     "/services/edit-services/"
   );
-  const data = useSelector((state) => state);
-  const { servicesData, servicesSuccess, servicesError, servicesLoading } =
-    data.services;
-  const { rolesData } = data.roles;
+   const { servicesData, servicesSuccess, servicesError, servicesLoading } = useSelector((state) => state.services);
+const { rolesData } = useSelector((state) => state.roles);
+
   useEffect(() => {
     dispatch(getServicesData("fetch"));
     dispatch(getRolesData("fetch"));

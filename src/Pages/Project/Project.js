@@ -94,7 +94,7 @@ const Project = ({ Data, Success, Error, Loading }) => {
             className='btn btn-info btn-sm'
             onClick={() => handleProjectView(row.id)}
           >
-            <i class='fas fa-solid fa-eye'></i>
+            <i className='fas fa-solid fa-eye'></i>
           </button>
           {user_id && (
             <button

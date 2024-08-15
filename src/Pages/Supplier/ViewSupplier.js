@@ -123,23 +123,23 @@ const ViewSupplier = ({ viewData, Success, Error, Loading, isActiveData }) => {
                       <strong>Delivery Distance:</strong>{" "}
                       {viewData.delivery_distance}
                       <br />
-                      <div class='col-12 mt-4' id='accordion'>
-                        <div class='card card-primary card-outline'>
+                      <div className='col-12 mt-4' id='accordion'>
+                        <div className='card card-primary card-outline'>
                           <a
-                            class='d-block w-100'
+                            className='d-block w-100'
                             data-toggle='collapse'
                             href='#collapseTwo'
                           >
-                            <div class='card-header'>
-                              <h4 class='card-title w-100'>Address</h4>
+                            <div className='card-header'>
+                              <h4 className='card-title w-100'>Address</h4>
                             </div>
                           </a>
                           <div
                             id='collapseTwo'
-                            class='collapse'
+                            className='collapse'
                             data-parent='#accordion'
                           >
-                            <div class='card-body'>
+                            <div className='card-body'>
                               {viewData.address.map((address) => (
                                 <Card
                                   key={address.id}

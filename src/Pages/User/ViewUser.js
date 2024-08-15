@@ -68,19 +68,23 @@ const ViewUser = (props) => {
           </div>
         </div>
         <div className='d-flex justify-content-evenly row mt-4'>
-          <div class='col-12 mt-4' id='accordion'>
-            <div class='card card-primary card-outline'>
+          <div className='col-12 mt-4' id='accordion'>
+            <div className='card card-primary card-outline'>
               <a
-                class='d-block w-100'
+                className='d-block w-100'
                 data-toggle='collapse'
                 href='#collapseTwo'
               >
-                <div class='card-header'>
-                  <h4 class='card-title w-100'>Budget</h4>
+                <div className='card-header'>
+                  <h4 className='card-title w-100'>Budget</h4>
                 </div>
               </a>
-              <div id='collapseTwo' class='collapse' data-parent='#accordion'>
-                <div class='card-body'>
+              <div
+                id='collapseTwo'
+                className='collapse'
+                data-parent='#accordion'
+              >
+                <div className='card-body'>
                   {Data[0]?.budget.map((budget) => (
                     <Card key={budget.id} className={`text-center w-25`}>
                       <Card.Header className='d-flex justify-content-center'>

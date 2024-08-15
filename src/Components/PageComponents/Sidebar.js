@@ -15,7 +15,7 @@ const SidebarMenu = ({ title, icon, items }) => {
   const isActive = items.some((item) => location.pathname.startsWith(item.to));
 
   return (
-    <li className={`nav-item ${isActive ? "menu-open" : ""}`}>
+    <li className={`nav-item`}>
       <a className={`nav-link ${isActive ? "active" : ""}`}>
         <i className={`nav-icon fas ${icon}`}></i>
         <p>
@@ -35,15 +35,15 @@ const SidebarMenu = ({ title, icon, items }) => {
 const Sidebar = () => {
   return (
     <aside className='main-sidebar sidebar-dark-primary elevation-4'>
-      <a href='/' className='brand-link'>
+      <NavLink to='/' className='brand-link'>
         <img
           src='dist/img/AdminLTELogo.png'
           alt='AdminLTE Logo'
           className='brand-image img-circle elevation-3'
           style={{ opacity: 0.8 }}
         />
-        <span className='brand-text font-weight-light'>AdminLTE 3</span>
-      </a>
+        <span className='brand-text font-weight-light'>Brickar</span>
+      </NavLink>
       <div className='sidebar'>
         <div className='user-panel mt-3 pb-3 mb-3 d-flex'>
           <div className='image'>
@@ -54,13 +54,13 @@ const Sidebar = () => {
             />
           </div>
           <div className='info'>
-            <a href='/' className='d-block'>
+            <NavLink to='/' className='d-block'>
               Alexander Pierce
-            </a>
+            </NavLink>
           </div>
         </div>
 
-        <div className='form-inline'>
+        {/* <div className='form-inline'>
           <div className='input-group' data-widget='sidebar-search'>
             <input
               className='form-control form-control-sidebar'
@@ -74,7 +74,7 @@ const Sidebar = () => {
               </button>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <nav className='mt-2'>
           <ul

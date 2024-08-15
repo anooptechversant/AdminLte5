@@ -1,44 +1,48 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import AddEducation from "./AddEducation";
 import Education from "./Education";
-
 import { getEducationData } from "../../Actions/educationActions";
 
 const EducationComponent = () => {
   const location = useLocation();
   const { id } = useParams();
   const dispatch = useDispatch();
-  const isEducationRoute = location.pathname === "/education";
-  const isAddEducationRoute = location.pathname === "/education/add-education";
-  const isEditEducationRoute = location.pathname.startsWith(
-    "/education/edit-education/"
+
+  // Memoize the route checks to avoid recalculating on every render
+  const isEducationRoute = useMemo(() => location.pathname === "/education", [location.pathname]);
+  const isAddEducationRoute = useMemo(() => location.pathname === "/education/add-education", [location.pathname]);
+  const isEditEducationRoute = useMemo(() => location.pathname.startsWith("/education/edit-education/"), [location.pathname]);
+
+  // Select only the education slice from the state
+  const { educationData, educationSuccess, educationError, educationLoading } = useSelector(
+    (state) => state.education
   );
-  const data = useSelector((state) => state);
-  const { educationData, educationSuccess, educationError, educationLoading } =
-    data.education;
+
+  // Always dispatch to get education data when the component mounts
   useEffect(() => {
-    dispatch(getEducationData("fetch"));
-  }, [dispatch, id, isEducationRoute]);
+    if (isEducationRoute || isAddEducationRoute || isEditEducationRoute) {
+      dispatch(getEducationData("fetch"));
+    }
+  }, [dispatch, id, isEducationRoute, isAddEducationRoute, isEditEducationRoute]);
+
+  // Determine which component to render
+  const CurrentComponent = useMemo(() => {
+    if (isAddEducationRoute || isEditEducationRoute) return AddEducation;
+    if (isEducationRoute) return Education;
+    return null;
+  }, [isAddEducationRoute, isEditEducationRoute, isEducationRoute]);
+
   return (
     <>
-      {isAddEducationRoute || isEditEducationRoute ? (
-        <AddEducation
+      {CurrentComponent && (
+        <CurrentComponent
           Data={educationData}
           Success={educationSuccess}
           Error={educationError}
           Loading={educationLoading}
         />
-      ) : isEducationRoute ? (
-        <Education
-          Data={educationData}
-          Success={educationSuccess}
-          Error={educationError}
-          Loading={educationLoading}
-        />
-      ) : (
-        ""
       )}
     </>
   );

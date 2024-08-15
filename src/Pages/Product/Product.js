@@ -145,10 +145,10 @@ const Product = ({
             className='btn btn-info btn-sm text-nowrap'
             onClick={() => handleProductView(row.id)}
           >
-            <i class='fas fa-solid fa-eye'></i>
+            <i className='fas fa-solid fa-eye'></i>
           </button>
           <div
-            class={`custom-control custom-switch x  ${
+            className={`custom-control custom-switch x  ${
               row.is_active
                 ? " custom-switch-on-success"
                 : "custom-switch-off-danger"
@@ -156,7 +156,7 @@ const Product = ({
           >
             <input
               type='checkbox'
-              class='custom-control-input'
+              className='custom-control-input'
               id='customSwitch3'
               checked={row.is_active}
               onChange={() => {
@@ -164,7 +164,7 @@ const Product = ({
               }}
             />
             <label
-              class={`custom-control-label ${
+              className={`custom-control-label ${
                 row.is_active ? "text-success" : "text-danger"
               } `}
               for='customSwitch3'

@@ -20,7 +20,6 @@ const OrderComponent = () => {
   const isUpdateOrderRoute = location.pathname.startsWith(
     "/orders/update-order/"
   );
-  const data = useSelector((state) => state);
   const {
     orderData,
     userOrderData,
@@ -28,7 +27,8 @@ const OrderComponent = () => {
     orderSuccess,
     orderError,
     deleteOrder,
-  } = data.order;
+  } = useSelector((state) => state.order);
+
   useEffect(() => {
     dispatch(getOrderData("fetch", limit, currPage, orderStatus));
     if (id) {

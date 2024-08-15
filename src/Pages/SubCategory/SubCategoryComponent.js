@@ -17,15 +17,14 @@ const SubCategoryComponent = () => {
   const isEditSubCategoryRoute = location.pathname.startsWith(
     "/sub-category/edit-sub-category/"
   );
-  const data = useSelector((state) => state);
   const {
     subCategoryData,
     subCategoryLoading,
     subCategorySuccess,
     subCategoryError,
     subCategoryIsActive,
-  } = data.subCategory;
-  const { categoryData } = data.category;
+  } = useSelector((state) => state.subCategory);
+  const { categoryData } = useSelector((state) => state.category);
 
   useEffect(() => {
     dispatch(getCategoryData("fetch"));

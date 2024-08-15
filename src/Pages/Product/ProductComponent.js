@@ -45,12 +45,7 @@ const ProductComponent = () => {
   );
 
   const data = useSelector((state) => state);
-  const product = useSelector((state) => state.product);
-  const brandProduct = useSelector((state) => state.brandProduct);
-  const category = useSelector((state) => state.category);
-  const brand = useSelector((state) => state.brand);
-
-  const {
+   const {
     productData,
     productSuccess,
     productError,
@@ -58,16 +53,17 @@ const ProductComponent = () => {
     singleProductData,
     productIsActive,
     prodImageSuccess,
-  } = product;
+  }= useSelector((state) => state.product);
   const {
     brandProductData,
     brandProductLoading,
     brandProductSuccess,
     brandProductError,
     brandProductIsActive,
-  } = brandProduct;
-  const { categoryData } = category;
-  const { brandData } = brand;
+  }  = useSelector((state) => state.brandProduct);
+  const { categoryData } = useSelector((state) => state.category);
+  const { brandData }  = useSelector((state) => state.brand);
+
   useEffect(() => {
     if (isProductRoute) dispatch(getProductData("fetch", limit, currPage));
     dispatch(getBrandProductData("fetch"));
