@@ -22,22 +22,11 @@ const Order = ({
     limit: 8,
   });
 
-  const orderData = Data;
   const successStatusData = Success;
   const errorStatusData = Error;
-  const loadingProduct = Loading;
   const pageTitle = "Orders";
   const tableTitle = "Orders";
-  const orderColumns = [
-    { key: "id", name: "ID" },
-    { key: "order_status", name: "Order Status" },
-    { key: "delivery_date", name: "Delivery Date" },
-    { key: "payment_type", name: "Payment Method" },
-    { key: "product_name", name: "Product Name" },
-    { key: "quantity", name: "Prod.QNTY" },
-
-    // Add more columns as needed
-  ];
+ 
   const navigate = useNavigate();
   const handleProductView = (id) => {
     navigate(`/orders/view-order/${id}`);
@@ -109,7 +98,7 @@ const Order = ({
       thClassName: "text-nowrap",
     },
     {
-      header: "Payment Method.",
+      header: "Payment Method",
       key: "payment_type",
       cell: (row) => <>{row?.payment_type}</>,
       tdClassName: "",
