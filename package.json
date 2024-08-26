@@ -1,7 +1,7 @@
 {
   "name": "brickar-admin-new",
   "version": "0.1.0",
-  "homepage": "https://www.brickar.com/ftest",
+  "homepage": "https://www.brickar.com/ftest2",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.11.4",
