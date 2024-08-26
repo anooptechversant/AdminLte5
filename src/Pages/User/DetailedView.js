@@ -48,14 +48,14 @@ const DetailedView = ({ Data, Success, Error, Loading }) => {
             <div className='container-fluid'>
               <div className='row mb-2'>
                 <div className='col-sm-6'>
-                  <h1>Supplier</h1>
+                  <h1>User Details</h1>
                 </div>
                 <div className='col-sm-6'>
                   <ol className='breadcrumb float-sm-right'>
                     <li className='breadcrumb-item'>
                       <Link href='/'>Home</Link>
                     </li>
-                    <li className='breadcrumb-item active'>Supplier</li>
+                    <li className='breadcrumb-item active'>User Details</li>
                   </ol>
                 </div>
               </div>
@@ -89,9 +89,7 @@ const DetailedView = ({ Data, Success, Error, Loading }) => {
                             </span>
                           </small>
                         </h3>
-                        <div className='card-tools'>
-                         
-                        </div>
+                        <div className='card-tools'></div>
                       </div>
                     </div>
                     <Card.Body className='bg-gray-100'>
