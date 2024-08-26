@@ -140,7 +140,7 @@ function renderRoutes(routes) {
 function App() {
   return (
     <Provider store={store}>
-      <BrowserRouter>
+      <BrowserRouter basename='/ftest'>
         <Routes>{renderRoutes(routesConfig)}</Routes>
       </BrowserRouter>
     </Provider>

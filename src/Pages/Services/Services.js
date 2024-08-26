@@ -87,14 +87,14 @@ const Services = ({ Data, Success, Error, Loading }) => {
             onClick={() => handleServiceEdit(row.id)}
           >
             <i className='fas fa-pencil-alt'></i>
-            Edit
+            
           </button>
           <button
             className='btn btn-danger btn-sm'
             onClick={() => handleDelete(row.id)}
           >
             <i className='fas fa-trash'></i>
-            Delete
+            
           </button>
         </div>
       ),
