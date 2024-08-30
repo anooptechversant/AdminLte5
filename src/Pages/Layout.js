@@ -40,7 +40,7 @@ function Layout() {
       <aside className='control-sidebar control-sidebar-dark'></aside>
       <footer className='main-footer'>
         <strong>
-          Copyright &copy; 2014-2021{" "}
+          Copyright &copy; 2024{" "}
           <a href='https://adminlte.io'>Brickar</a>.
         </strong>
         All rights reserved.

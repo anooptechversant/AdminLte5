@@ -170,7 +170,7 @@ const DetailedView = ({ Data, Success, Error, Loading }) => {
                             </div>
                             <div className='row justify-content-center mt-5'>
                               <div className='col-md-12'>
-                                <div className='panel'>
+                                <div className='card'>
                                   <div className='panel-heading'>
                                     <span className='panel-icon'>
                                       <i className='fa fa-star'></i>
@@ -179,7 +179,7 @@ const DetailedView = ({ Data, Success, Error, Loading }) => {
                                       User Details
                                     </span>
                                   </div>
-                                  <div className='pn'>
+                                  <div className='card-body p-0'>
                                     <table className='table mbn tc-icon-1 tc-med-2 tc-bold-last'>
                                       <thead>
                                         <tr className='hidden'>

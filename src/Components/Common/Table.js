@@ -2,7 +2,6 @@ import React, { Fragment, useEffect, useState } from "react";
 import Loading from "../Loader/Loading";
 import Pagination from "react-bootstrap/Pagination";
 import Toasts from "./Toasts";
-// import "bootstrap/dist/css/bootstrap.min.css";
 
 const Table = ({
   Data,
