@@ -20,7 +20,6 @@ const Product = ({
   const [inputLimit, setInputLimit] = useState({
     limit: 8,
   });
-  // console.log(tableData);
   const successStatusData = Success;
   const errorStatusData = Error;
   const pageTitle = "Product";
@@ -31,20 +30,7 @@ const Product = ({
         ? "Product activated successfully"
         : "Product deactivated successfully",
   };
-  const productColumns = [
-    { key: "id", name: "ID" },
-    { key: "brand_product.product_name", name: "Product Name" },
-    { key: "brand_product.brand.name", name: "Brand" },
-    // { key: "supplier_name", name: "Supplier" },
-    { key: "market_price", name: "Market Price" },
-    { key: "selling_price", name: "Selling Price" },
-    // { key: "price", name: "Prize" },
-    // { key: "min_purchase_quantity", name: " Quantity" },
-    // { key: "weight_value", name: "Weight Value" },
-    // { key: "weight_unit", name: "Weight Unit" },
-    // { key: "weight_description", name: "Weight Description" },
-    // Add more columns as needed
-  ];
+ 
   useEffect(() => {
     setTableData(Data);
   }, [Data]);
@@ -64,9 +50,7 @@ const Product = ({
     dispatch(getProductData("deactivate", data, id));
   };
 
-  const handleProductEdit = (id) => {
-    navigate(`/product/edit-product/${id}`);
-  };
+
   const handleProductView = (id) => {
     navigate(`/product/view-product/${id}`);
   };
@@ -111,8 +95,8 @@ const Product = ({
     {
       header: "Product Name",
       key: "brand_product.product_name",
-      cell: (row) => <>{row?.brand_product.product_name}</>,
-      tdClassName: "",
+      cell: (row) => <div style={{maxWidth:"20rem"}}>{row?.brand_product.product_name}</div>,
+      tdClassName: "mw-75",
       thClassName: "",
     },
     {
