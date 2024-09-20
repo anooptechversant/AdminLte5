@@ -18,7 +18,7 @@ export default function Dashboard() {
     dispatch(getProductData("fetch", 20, 1));
     dispatch(getOrderData("fetch", 20, 1, "PENDING"));
     dispatch(getUserData("fetch", 20, 1));
-    getUserData("unapproved", 20, 1, "B2B");
+    dispatch(getUserData("unapproved", 20, 1, "B2B"));
   }, [dispatch]);
 
   return (
@@ -87,7 +87,7 @@ export default function Dashboard() {
             <div className='col-lg-3 col-6'>
               <div className='small-box bg-warning'>
                 <div className='inner'>
-                  {userLoading ? (
+                  {!unapprovedUsers?.total_records ? (
                     <h3>loading...</h3>
                   ) : (
                     <h3>{unapprovedUsers.total_records}</h3>
