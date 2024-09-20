@@ -16,6 +16,8 @@ import productReducer from "./Features/ProductSlice.js";
 import userWorkTypeReducer from "./Features/userWorkTypeSlice.js";
 import userReducer from "./Features/userSlice.js";
 import orderReducer from "./Features/orderSlice.js";
+import locationReducer from "./Features/locationSlice.js";
+import enquiryReducer from "./Features/enquirySlice.js";
 
 const store = configureStore({
   reducer: {
@@ -36,6 +38,8 @@ const store = configureStore({
     userWorkType: userWorkTypeReducer,
     user: userReducer,
     order: orderReducer,
+    location: locationReducer,
+    enquiry: enquiryReducer,
   },
 });
 

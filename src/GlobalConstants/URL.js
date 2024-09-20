@@ -22,5 +22,7 @@ const urlConstants = {
   GET_PROJECT_URL: "api/v1/admin/project/",
   GET_BUDGET_URL: "api/v1/admin/budget/",
   GET_BRAND_SUPPLIER_URL: "api/v1/admin/brandsupplier/",
+  GET_LOCATION_URL: "api/v1/admin/supported_location/",
+  GET_ENQUIRY_URL: "api/v1/admin/enquiry/",
 };
 export default urlConstants;

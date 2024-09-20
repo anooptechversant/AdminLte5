@@ -120,6 +120,8 @@ const Sidebar = () => {
                 { to: "/supplier", text: "Supplier" },
                 { to: "/product", text: "Product" },
                 { to: "/orders", text: "Orders" },
+                { to: "/location", text: "Location" },
+                { to: "/enquiry", text: "Enquiry" },
               ]}
             />
           </ul>

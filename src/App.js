@@ -21,6 +21,8 @@ import ProductComponent from "./Pages/Product/ProductComponent";
 import UserComponent from "./Pages/User/UserComponent";
 import UserTypeComponent from "./Pages/UserType/UserTypeComponent";
 import OrderComponent from "./Pages/Order/OrderComponent";
+import LocationComponent from "./Pages/Location/LocationComponent";
+import EnquiryComponent from "./Pages/Enquiry/EnquiryComponent";
 
 const routesConfig = [
   { path: "login", element: <Login /> },
@@ -119,6 +121,9 @@ const routesConfig = [
         path: "orders/update-order/:order_details_id/:track_id/:id",
         element: <OrderComponent />,
       },
+      { path: "location", element: <LocationComponent /> },
+      { path: "location/add-location", element: <LocationComponent /> },
+      { path: "enquiry", element: <EnquiryComponent /> },
     ],
   },
 ];
