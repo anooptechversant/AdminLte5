@@ -284,7 +284,7 @@ const AddSupplier = ({ Data, viewData, Success, Error, Loading }) => {
                 <div className='col-sm-6'>
                   <ol className='breadcrumb float-sm-right'>
                     <li className='breadcrumb-item'>
-                      <Link href='/'>Home</Link>
+                      <Link to='/'>Home</Link>
                     </li>
                     <li className='breadcrumb-item active'>
                       {editAddress[0]
@@ -369,9 +369,7 @@ const AddSupplier = ({ Data, viewData, Success, Error, Loading }) => {
                                       setInputSupplier
                                     )
                                   }
-                                  propValidationError={
-                                    validationError.latitude
-                                  }
+                                  propValidationError={validationError.latitude}
                                   propAttributeValue='latitude'
                                   propValue={
                                     editData[0] ? editData[0].latitude : ""

@@ -192,7 +192,7 @@ const AddBrandProduct = ({
                   <div className='col-sm-6'>
                     <ol className='breadcrumb float-sm-right'>
                       <li className='breadcrumb-item'>
-                        <Link href='/'>Home</Link>
+                        <Link to='/'>Home</Link>
                       </li>
                       <li className='breadcrumb-item active'>
                         {editData && Object.keys(editData).length > 0

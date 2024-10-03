@@ -51,7 +51,7 @@ const AddImage = ({ Data, Success, Error, Loading }) => {
       Object.values(validationError).every((value) => !value)
     );
   }, [validationError]);
-  
+
   useEffect(() => {
     if (imageId !== undefined) {
       const filteredData = Data?.filter((obj) => obj.id == imageId);
@@ -146,7 +146,7 @@ const AddImage = ({ Data, Success, Error, Loading }) => {
                   <div className='col-sm-6'>
                     <ol className='breadcrumb float-sm-right'>
                       <li className='breadcrumb-item'>
-                        <Link href='/'>Home</Link>
+                        <Link to='/'>Home</Link>
                       </li>
                       <li className='breadcrumb-item active'>
                         {editData && Object.keys(editData).length > 0

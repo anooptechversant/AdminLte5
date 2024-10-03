@@ -30,7 +30,7 @@ const Product = ({
         ? "Product activated successfully"
         : "Product deactivated successfully",
   };
- 
+
   useEffect(() => {
     setTableData(Data);
   }, [Data]);
@@ -49,7 +49,6 @@ const Product = ({
 
     dispatch(getProductData("deactivate", data, id));
   };
-
 
   const handleProductView = (id) => {
     navigate(`/product/view-product/${id}`);
@@ -95,7 +94,11 @@ const Product = ({
     {
       header: "Product Name",
       key: "brand_product.product_name",
-      cell: (row) => <div style={{maxWidth:"20rem"}}>{row?.brand_product.product_name}</div>,
+      cell: (row) => (
+        <div style={{ maxWidth: "20rem" }}>
+          {row?.brand_product.product_name}
+        </div>
+      ),
       tdClassName: "mw-75",
       thClassName: "",
     },
@@ -174,7 +177,7 @@ const Product = ({
             <div className='col-sm-6'>
               <ol className='breadcrumb float-sm-right'>
                 <li className='breadcrumb-item'>
-                  <Link href='/'>Home</Link>
+                  <Link to='/'>Home</Link>
                 </li>
                 <li className='breadcrumb-item active'>{pageTitle}</li>
               </ol>

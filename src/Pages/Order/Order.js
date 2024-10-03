@@ -26,7 +26,7 @@ const Order = ({
   const errorStatusData = Error;
   const pageTitle = "Orders";
   const tableTitle = "Orders";
- 
+
   const navigate = useNavigate();
   const handleProductView = (id) => {
     navigate(`/orders/view-order/${id}`);
@@ -147,7 +147,7 @@ const Order = ({
             <div className='col-sm-6'>
               <ol className='breadcrumb float-sm-right'>
                 <li className='breadcrumb-item'>
-                  <Link href='/'>Home</Link>
+                  <Link to='/'>Home</Link>
                 </li>
                 <li className='breadcrumb-item active'>{pageTitle}</li>
               </ol>
