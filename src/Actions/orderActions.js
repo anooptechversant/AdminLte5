@@ -8,6 +8,7 @@ import {
   orderById,
   orderFail,
   deleteOrderSuccess,
+  orderDetailsFetch,
 } from "../Features/orderSlice";
 
 export const getOrderData = (arg, data, id, status) => async (dispatch) => {
@@ -58,6 +59,14 @@ export const getOrderData = (arg, data, id, status) => async (dispatch) => {
       );
       if (response.status === 204) {
         dispatch(deleteOrderSuccess(response));
+      }
+    } else if (arg === "detailsFetch") {
+      const response = await axiosConfig.get(
+        `${c.GET_TRACK_URL}${data}`,
+        usersConfig
+      );
+      if (response.status === 200) {
+        dispatch(orderDetailsFetch(response.data));
       }
     }
     setTimeout(() => {

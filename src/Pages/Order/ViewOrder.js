@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import Card from "react-bootstrap/Card";
 import Spinner from "../../Components/Loader/Loading";
 import Toasts from "../../Components/Common/Toasts";
@@ -17,6 +17,17 @@ const ViewOrder = ({ viewData, Success, Error, Loading }) => {
   const goBack = () => {
     window.history.back();
   };
+  const subtotal = useMemo(() => {
+    return viewData[0]?.order_details.reduce((acc, item) => {
+      return acc + item.quantity * item.product_price;
+    }, 0);
+  }, [viewData]);
+
+  const shippingCost = 0.0;
+  const tax = 0.0;
+
+  const total = subtotal + shippingCost + tax;
+
   const handleUpdateOrder = (order_details_id, order_track_id) => {
     navigate(
       `/orders/update-order/${order_details_id}/${order_track_id}/${viewData[0]?.id}`
@@ -27,7 +38,7 @@ const ViewOrder = ({ viewData, Success, Error, Loading }) => {
   };
   return (
     <>
-      {Loading && viewData.length > 0 ? (
+      {Loading ? (
         <Spinner />
       ) : (
         <div className='container-fluid'>
@@ -46,7 +57,7 @@ const ViewOrder = ({ viewData, Success, Error, Loading }) => {
                   <div className='col-sm-6'>
                     <ol className='breadcrumb float-sm-right'>
                       <li className='breadcrumb-item'>
-                        <Link href='/'>Home</Link>
+                        <Link to='/'>Home</Link>
                       </li>
                       <li className='breadcrumb-item active'>Order</li>
                     </ol>
@@ -54,312 +65,272 @@ const ViewOrder = ({ viewData, Success, Error, Loading }) => {
                 </div>
               </div>
             </section>
-            <section className='content'>
-              <div className='container-fluid'>
-                {viewData ? (
-                  <>
-                    <Card className='text-center'>
-                      <Toasts
-                        propResponseMessage={responseMessage}
-                        propActionType={"success"}
-                        propStatusData={{ successStatusData, errorStatusData }}
-                      />
+            <section class='content'>
+              <div class='container-fluid'>
+                <div class='row'>
+                  <div class='col-12'>
+                    {/* <div class='callout callout-info'>
+                      <h5>
+                        <i class='fas fa-info'></i> Note:
+                      </h5>
+                      This page has been enhanced for printing. Click the print
+                      button at the bottom of the invoice to test.
+                    </div> */}
 
-                      <div className='card card-primary'>
-                        <div className='card-header'>
-                          <h3 className='card-title'>
+                    <div class='invoice p-3 mb-3'>
+                      <div class='row'>
+                        <div class='col-12'>
+                          <h4>
                             <small>
                               {" "}
-                              <span className='' onClick={goBack}>
+                              <span onClick={goBack}>
                                 <i className='fa fa-chevron-left m-0 font-weight-bold'></i>
                                 <span className='add-label'> Back</span>
                               </span>
                             </small>
-                          </h3>
+                            {` Order ID : ${viewData[0]?.id}`}
+                            <small class='float-right'>
+                              {` Date: ${new Date(
+                                viewData[0]?.created_at
+                              ).toLocaleString()}`}
+                            </small>
+                          </h4>
                         </div>
                       </div>
-                      <Card.Body className='bg-gray-100'>
-                        <Card.Text>
-                          <section id='content' className='container'>
-                            <div className='page-heading'>
-                              <div className='media row d-flex justify-content-center'>
-                                {/* <div className='col-md-6 mt-5 media-left pr30'>
-                            <img
-                              className='media-object  img-fluid'
-                              src={
-                                Data.profile !== null
-                                  ? Data.profile.image
-                                  : profileImage
-                              }
-                              alt='...'
-                              width={250}
-                              height={250}
-                            />
-                          </div> */}
-                                <div className='col-md-6 media-body mt-5'>
-                                  <h1 className='media-heading'>
-                                    <small> Order No - </small>
 
-                                    {viewData[0]?.id}
-                                  </h1>
-                                  <p className='lead'>
-                                    <>
-                                      <h4 className='media-heading d-flex justify-content-between'>
-                                        {" "}
-                                        <span> Payment Type :</span>
-                                        <strong>
-                                          {" "}
-                                          {viewData[0]?.payment_type !== null
-                                            ? viewData[0]?.payment_type
-                                            : "NILL"}
-                                        </strong>
-                                      </h4>
-                                      {/* <h5 className='media-heading d-flex justify-content-between'>
-                                  {" "}
-                                  <span> Education :</span>
-                                  <strong>
-                                    {" "}
-                                    {Data.profile !== null
-                                      ? Data.profile.education
-                                      : "NILL"}
-                                  </strong>
-                                </h5>
-                                <h5 className='media-heading d-flex justify-content-between'>
-                                  {" "}
-                                  <span> Year Of experience :</span>
-                                  <strong>
-                                    {" "}
-                                    {Data.profile !== null
-                                      ? Data.profile.year_of_exp
-                                      : "NILL"}{" "}
-                                  </strong>
-                                </h5> */}
-                                    </>
-                                  </p>
-                                  <div className='media-links'>
-                                    <ul className='list-inline list-unstyled '>
-                                      {/* <li className=' d-flex justify-content-between'>
-                                  <a href='#' title='phone link'>
-                                    <span className='fa fa-phone-square fs35 text-system'></span>
-                                  </a>
-                                  <span className='ml-3'>
-                                    {Data.phone_prefix + "-" + Data.phone}
-                                  </span>
-                                </li>
-                                <li className=' d-flex justify-content-between'>
-                                  <a href='#' title='email link'>
-                                    <span className='fa fa-envelope-square fs35 text-muted'></span>
-                                  </a>
-                                  <span className='ml-3'>
-                                    {Data.email || "NILL"}
-                                  </span>
-                                </li> */}
-                                    </ul>
-                                  </div>
-                                </div>
-                              </div>
-                              <h2 className='mt-5'>Products</h2>
-                              {viewData[0]?.order_details.map((item, index) => (
-                                <div
-                                  key={item.product_name + index}
-                                  className='row justify-content-center '
-                                >
-                                  <div className='col-md-12'>
-                                    <div className='card card-widget widget-user-2'>
-                                      <div className='d-flex widget-user-header card-comments justify-content-between'>
-                                        <div className='d-flex '>
-                                          <span className='panel-icon'>
-                                            <i className='fa fa-star'></i>
-                                          </span>
-                                          <strong className='panel-title text-primary'>
-                                            {" "}
-                                            {item.product_name.length > 70
-                                              ? item.product_name.substring(
-                                                  0,
-                                                  70
-                                                ) + "..."
-                                              : item.product_name}
-                                          </strong>
-                                          <div>
-                                            <strong className='panel-title ml-2'>
-                                              - ₹ {item.product_price}
-                                              <span className='text-danger'>
-                                                {" "}
-                                                (QNTY : {item.quantity})
-                                              </span>
-                                            </strong>
-                                          </div>
-                                        </div>
-                                        <div className='d-flex justify-content-around align-items-center'>
-                                          <span
-                                            onClick={() => {
-                                              handleUpdateOrder(
-                                                item.order_track[0]
-                                                  .order_details_id,
-                                                item.order_track[0].id
-                                              );
-                                            }}
-                                            className='mt-2 btn btn-primary align-item-center justify-content-center btn-circle btn-sm'
-                                          >
-                                            <i className='fas fa-edit edit-icon text-light'></i>
-                                          </span>
-                                          <span
-                                            className='mt-2 btn btn-danger btn-circle btn-sm delete'
-                                            onClick={() =>
-                                              handleDelete(
-                                                item.order_track[0].id
-                                              )
-                                            }
-                                          >
-                                            <i className='fas fa-trash'></i>
-                                          </span>
-                                        </div>
-                                      </div>
-                                      <div>
-                                        <h4>Order Track Details</h4>
-                                        <table className='table mbn tc-icon-1 tc-med-2 tc-bold-last'>
-                                          {/* <thead>
-                                      <tr className='hidden'>
-                                        <th></th>
-                                        <th>Action</th>
-                                      </tr>
-                                    </thead> */}
-                                          <tbody>
-                                            <tr>
-                                              <td>
-                                                <strong>Order Status</strong>
-                                              </td>
-                                              <td className='text-primary'>
-                                                <h5>
-                                                  <strong>
-                                                    {item.order_track[0].status}
-                                                  </strong>
-                                                </h5>
-                                              </td>
-                                              <td>
-                                                {/* <span
-                                            className='btn btn-outline-primary rounded btn-sm'
-                                            onClick={() => {
-                                              handleProjectAdd();
-                                            }}
-                                          >
-                                            <i className='fas fa-add add-icon'></i>
-                                          </span> */}
-
-                                                {/* <span
-                                            onClick={() => {
-                                              handleProjectView();
-                                            }}
-                                            className='ml-2 btn btn-primary align-item-center justify-content-center btn-circle btn-sm'
-                                          >
-                                            <i className='fas fa-eye eye-icon '></i>
-                                          </span> */}
-                                              </td>
-                                            </tr>
-                                            <tr>
-                                              <td>
-                                                {" "}
-                                                <strong>Description</strong>
-                                              </td>{" "}
-                                              <td>
-                                                {" "}
-                                                <>
-                                                  {" "}
-                                                  {
-                                                    item.order_track[0]
-                                                      .description
-                                                  }
-                                                </>
-                                              </td>
-                                              <td>
-                                                {/* <span
-                                            className='btn btn-outline-primary rounded btn-sm'
-                                            onClick={() => {
-                                              handleBudgetAdd();
-                                            }}
-                                          >
-                                            <i className='fas fa-add add-icon'></i>
-                                          </span>
-                                          <span
-                                            onClick={() => {
-                                              handleBudgetView();
-                                            }}
-                                            className='ml-2 btn btn-primary align-item-center justify-content-center btn-circle btn-sm'
-                                          >
-                                            <i className='fas fa-eye eye-icon '></i>
-                                          </span> */}
-                                              </td>
-                                            </tr>{" "}
-                                            <tr>
-                                              <td>
-                                                {" "}
-                                                <strong>Delivery Date</strong>
-                                              </td>{" "}
-                                              <td>
-                                                {" "}
-                                                <>
-                                                  {" "}
-                                                  {/* {item.order_track[0].delivery_date} */}
-                                                  {new Date(
-                                                    item.order_track[0].delivery_date
-                                                  ).toLocaleString()}
-                                                </>
-                                              </td>
-                                              <td>
-                                                {/* <span
-                                            className='btn btn-outline-primary rounded btn-sm'
-                                            onClick={() => {
-                                              handleBudgetAdd();
-                                            }}
-                                          >
-                                            <i className='fas fa-add add-icon'></i>
-                                          </span>
-                                          <span
-                                            onClick={() => {
-                                              handleBudgetView();
-                                            }}
-                                            className='ml-2 btn btn-primary align-item-center justify-content-center btn-circle btn-sm'
-                                          >
-                                            <i className='fas fa-eye eye-icon '></i>
-                                          </span> */}
-                                              </td>
-                                            </tr>
-                                          </tbody>
-                                        </table>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <hr />
-                                </div>
-                              ))}
+                      <div class='row invoice-info'>
+                        <div class='col-sm-4 invoice-col'>
+                          User Info
+                          {viewData[0]?.user !== null ? (
+                            <address>
+                              <strong>
+                                {viewData[0]?.user?.name || "NILL"}
+                              </strong>
+                              <br />
+                              Longitude: {viewData[0]?.user?.longitude}
+                              <br />
+                              Latitude: {viewData[0]?.user?.latitude}
+                              <br />
+                              {`Phone: ${
+                                viewData[0]?.user?.phone
+                                  ? viewData[0]?.user?.phone_prefix +
+                                    "-" +
+                                    viewData[0]?.user?.phone
+                                  : "NILL"
+                              }`}
+                              <br />
+                              Email: {viewData[0]?.user?.email || "NILL"}
+                            </address>
+                          ) : (
+                            <div>
+                              <strong>NO User Details </strong>
                             </div>
-                          </section>
-                        </Card.Text>
-                        <span className='d-flex justify-content-evenly '>
-                          {/* <Button variant='primary'>
-                      <i className='fas fa-edit edit-icon text-light'></i>
-                      Edit
-                    </Button> */}
-                          {/* <Button
-                    variant={viewData.product.is_active ? "danger" : "success"}
-                    onClick={
-                      viewData.product.is_active
-                        ? handleProductDeactivate
-                        : handleProductActivate
-                    }
-                  >
-                    {viewData.product.is_active ? "Deactivate" : "Activate"}
-                  </Button> */}
-                        </span>
-                      </Card.Body>
-                      <Card.Footer className='text-muted'>
-                        {/* Updated At: {viewData.product.updated_at}{" "} */}
-                      </Card.Footer>
-                    </Card>
-                  </>
-                ) : (
-                  <div className=''>No Data Available</div>
-                )}
+                          )}
+                        </div>
+
+                        <div class='col-sm-4 invoice-col'>
+                          Delivery Address
+                          <address>
+                            <strong>{viewData[0]?.address?.full_name}</strong>
+                            <br />
+                            {`${viewData[0]?.address?.address_line1}, ${viewData[0]?.address?.address_line2} `}
+                            <br />
+                            {`${viewData[0]?.address?.city}, ${viewData[0]?.address?.district}, ${viewData[0]?.address?.pin_code}`}
+                            <br />
+                            Phone: {viewData[0]?.address.contact_number}
+                            <br />
+                            Landmark: {viewData[0]?.address.landmark || "NILL"}
+                          </address>
+                        </div>
+
+                        <div class='col-sm-4 invoice-col'>
+                          <b>
+                            User Type:{" "}
+                            {viewData[0]?.address.user_type || "NILL"}
+                          </b>
+                          <br />
+                          <br />
+                          <b>Order Count:</b>{" "}
+                          {viewData[0]?.order_details?.length}
+                          <br />
+                          <b>Payment Type:</b>{" "}
+                          {viewData[0]?.payment_type || "NILL"}
+                          <br />
+                          <b>Updated Time:</b>{" "}
+                          {new Date(viewData[0]?.updated_at).toLocaleString()}
+                        </div>
+                      </div>
+
+                      <div class='row'>
+                        <div class='col-12 table-responsive'>
+                          <table class='table table-striped'>
+                            <thead>
+                              <tr>
+                                <th>Product</th>
+                                <th>Status</th>
+                                <th>Description</th>
+                                <th>Delivery Date</th>
+                                <th>Price</th>
+                                <th>Qty</th>
+                                <th>Subtotal</th>
+                                <th>Actions</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {viewData[0]?.order_details.map((item, index) => (
+                                <tr key={item.product_name + index}>
+                                  <td className='text-nowrap'>
+                                    {item.product_name.length > 50
+                                      ? item.product_name.substring(0, 50) +
+                                        "..."
+                                      : item.product_name}
+                                  </td>
+                                  <td className='text-nowrap'>
+                                    {item.order_track[0].status}
+                                  </td>
+                                  <td className='text-nowrap'>
+                                    {item.order_track[0].description}
+                                  </td>
+                                  <td className='text-nowrap'>
+                                    {new Date(
+                                      item.order_track[0].delivery_date
+                                    ).toLocaleDateString()}
+                                  </td>
+                                  <td className='text-nowrap'>
+                                    ₹ {item.product_price} /-
+                                  </td>
+                                  <td className='text-nowrap'>
+                                    {item.quantity}
+                                  </td>
+                                  <td className='text-nowrap'>
+                                    ₹ {item.product_price * item.quantity} /-
+                                  </td>
+                                  <td>
+                                    {" "}
+                                    <div className='d-flex justify-content-around align-items-center'>
+                                      <span
+                                        onClick={() => {
+                                          handleUpdateOrder(
+                                            item.order_track[0]
+                                              .order_details_id,
+                                            item.order_track[0].id
+                                          );
+                                        }}
+                                        className='mx-2 align-item-center justify-content-center'
+                                      >
+                                        <i className='fas fa-edit edit-icon text-primary'></i>
+                                      </span>
+                                      <span
+                                        className='delete'
+                                        onClick={() =>
+                                          handleDelete(item.order_track[0].id)
+                                        }
+                                      >
+                                        <i className='fas fa-trash text-danger'></i>
+                                      </span>
+                                    </div>
+                                  </td>
+                                </tr>
+                              ))}
+                              {/* <tr>
+                                <td>1</td>
+                                <td>Need for Speed IV</td>
+                                <td>247-925-726</td>
+                                <td>Wes Anderson umami biodiesel</td>
+                                <td>$50.00</td>
+                              </tr> */}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+
+                      <div class='row'>
+                        <div class='col-6'>
+                          <p class='lead '>Payment Methods:</p>
+                          <img
+                            src='../../dist/img/credit/visa.png'
+                            alt='Visa'
+                          />
+                          <img
+                            src='../../dist/img/credit/mastercard.png'
+                            alt='Mastercard'
+                          />
+                          <img
+                            src='../../dist/img/credit/american-express.png'
+                            alt='American Express'
+                          />
+                          <img
+                            src='../../dist/img/credit/paypal2.png'
+                            alt='Paypal'
+                          />
+
+                          {/* <p class='text-muted well well-sm shadow-none mt-3'>
+                              Etsy doostang zoodles disqus groupon greplin oooj
+                              voxy zoodles, weebly ning heekya handango imeem
+                              plugg dopplr jibjab, movity jajah plickers sifteo
+                              edmodo ifttt zimbra.
+                            </p> */}
+                        </div>
+
+                        <div class='col-6'>
+                          <p class='lead'>Payment Details</p>
+
+                          <div class='table-responsive'>
+                            <table class='table'>
+                              <tr>
+                                <th className='w-[50%]'>Subtotal:</th>
+                                <td className='text-nowrap'>
+                                  ₹ {subtotal || 0} /-
+                                </td>
+                              </tr>
+                              <tr>
+                                <th>Tax (0%)</th>
+                                <td className='text-nowrap'>₹ {tax}</td>
+                              </tr>
+                              <tr>
+                                <th>Shipping:</th>
+                                <td className='text-nowrap'>
+                                  ₹ {shippingCost}
+                                </td>
+                              </tr>
+                              <tr>
+                                <th>Total:</th>
+                                <td className='text-nowrap'>
+                                  ₹ {total || 0} /-
+                                </td>
+                              </tr>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* <div class='row no-print'>
+                        <div class='col-12'>
+                          <a
+                            href='invoice-print.html'
+                            rel='noopener'
+                            target='_blank'
+                            class='btn btn-default'
+                          >
+                            <i class='fas fa-print'></i> Print
+                          </a>
+                          <button
+                            type='button'
+                            class='btn btn-success float-right'
+                          >
+                            <i class='far fa-credit-card'></i> Submit Payment
+                          </button>
+                          <button
+                            type='button'
+                            class='btn btn-primary float-right mr-3'
+                          >
+                            <i class='fas fa-download'></i> Generate PDF
+                          </button>
+                        </div>
+                      </div> */}
+                    </div>
+                  </div>
+                </div>
               </div>
             </section>
           </div>

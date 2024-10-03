@@ -3,10 +3,11 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   orderData: [],
   userOrderData: [],
+  userDetailsData: null,
   orderLoading: false,
   orderSuccess: null,
   orderError: null,
-  deleteOrder: null
+  deleteOrder: null,
 };
 
 const orderSlice = createSlice({
@@ -22,6 +23,10 @@ const orderSlice = createSlice({
     orderFetch: (state, action) => {
       state.orderLoading = false;
       state.orderData = action.payload;
+    },
+    orderDetailsFetch: (state, action) => {
+      state.orderLoading = false;
+      state.userDetailsData = action.payload;
     },
     orderById: (state, action) => {
       state.orderLoading = false;
@@ -41,7 +46,6 @@ const orderSlice = createSlice({
       state.deleteOrder = action.payload;
       state.orderError = null;
     },
-   
   },
 });
 
@@ -52,5 +56,6 @@ export const {
   orderSuccess,
   orderFail,
   deleteOrderSuccess,
+  orderDetailsFetch,
 } = orderSlice.actions;
 export default orderSlice.reducer;
