@@ -29,11 +29,11 @@ const Brand = ({ Data, Success, Error, Loading, isActiveData }) => {
   };
   const handleBrandDeactivate = (id) => {
     const data = { is_active: false };
-
     setResMsg(false);
     dispatch(getBrandData("deactivate", data, id));
   };
   const handleSwitchChange = (id, isActive) => {
+    console.log("object is deactivated", id, isActive);
     if (isActive) {
       handleBrandDeactivate(id);
     } else {
@@ -106,7 +106,7 @@ const Brand = ({ Data, Success, Error, Loading, isActiveData }) => {
             <input
               type='checkbox'
               className='custom-control-input'
-              id='customSwitch3'
+              id={`customSwitch-${row.id}`}
               checked={row.is_active}
               onChange={() => {
                 handleSwitchChange(row.id, row.is_active);
@@ -116,7 +116,7 @@ const Brand = ({ Data, Success, Error, Loading, isActiveData }) => {
               className={`custom-control-label ${
                 row.is_active ? "text-success" : "text-danger"
               } `}
-              for='customSwitch3'
+              htmlFor={`customSwitch-${row.id}`}
             >
               {row.is_active ? "Active" : "Inactive"}
             </label>

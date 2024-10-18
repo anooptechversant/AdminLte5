@@ -310,8 +310,8 @@ const ViewOrder = ({ viewData, Success, Error, Loading }) => {
                 {/* Payment Methods and Details */}
                 <div className='row'>
                   {/* Payment Methods */}
-                  <div class='col-6'>
-                    <p class='lead '>Payment Methods:</p>
+                  <div className='col-6'>
+                    <p className='lead '>Payment Methods:</p>
                     <img src='../../dist/img/credit/visa.png' alt='Visa' />
                     <img
                       src='../../dist/img/credit/mastercard.png'
@@ -323,7 +323,7 @@ const ViewOrder = ({ viewData, Success, Error, Loading }) => {
                     />
                     <img src='../../dist/img/credit/paypal2.png' alt='Paypal' />
 
-                    {/* <p class='text-muted well well-sm shadow-none mt-3'>
+                    {/* <p className='text-muted well well-sm shadow-none mt-3'>
                               Etsy doostang zoodles disqus groupon greplin oooj
                               voxy zoodles, weebly ning heekya handango imeem
                               plugg dopplr jibjab, movity jajah plickers sifteo

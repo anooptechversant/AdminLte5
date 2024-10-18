@@ -33,6 +33,8 @@ const SidebarMenu = ({ title, icon, items }) => {
 };
 
 const Sidebar = () => {
+  const username = localStorage.getItem("user_name");
+
   return (
     <aside className='main-sidebar sidebar-dark-primary elevation-4'>
       <NavLink to='/' className='brand-link'>
@@ -55,7 +57,7 @@ const Sidebar = () => {
           </div>
           <div className='info'>
             <NavLink to='/' className='d-block'>
-              Alexander Pierce
+              {username}
             </NavLink>
           </div>
         </div>

@@ -2,6 +2,7 @@
 const saveUserInfo = (data) => {
   localStorage.setItem("userInfo", data.access_token);
   localStorage.setItem("refreshToken", data.refresh_token);
+  localStorage.setItem("user_name", data.user_name);
   // window.location.href = "/";
 };
 
@@ -14,9 +15,10 @@ const saveAccessToken = (data) => {
 const removeUserInfo = () => {
   localStorage.removeItem("userInfo");
   localStorage.removeItem("refreshToken");
+  localStorage.removeItem("user_name");
   // window.location.href = "Login";
-
 };
+
 //To check user is loggedin or not ...
 const isLoggedIn = () => {
   try {

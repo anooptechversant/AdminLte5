@@ -21,29 +21,30 @@ export const logIn = (email, password) => async (dispatch) => {
     };
 
     dispatch(LoginReq());
-    
+
     const { data } = await axiosConfig.post(
-        c.LOGIN_URL,
-        {
-            username: email,
-            password: password,
-        },
-        config
-        );
+      c.LOGIN_URL,
+      {
+        username: email,
+        password: password,
+      },
+      config
+    );
     dispatch(LoginSuccess(data));
     saveUserInfo(data);
-     setTimeout(() => {
-       dispatch(LoginSuccess(null));
-     }, 5000);
+
+    setTimeout(() => {
+      dispatch(LoginSuccess(null));
+    }, 5000);
   } catch (error) {
     const errorIs =
       error.response && error.response.data.message
         ? error.response.data.message
         : error.message;
     dispatch(LoginFail(errorIs));
-     setTimeout(() => {
-       dispatch(LoginFail(null));
-     }, 5000);
+    setTimeout(() => {
+      dispatch(LoginFail(null));
+    }, 5000);
   }
 };
 

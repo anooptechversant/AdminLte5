@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import profileImage from "../../assets/Images/undraw_profile.svg";
 
 export default function Header() {
+  const username = localStorage.getItem("user_name");
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const logoutHandler = () => {
@@ -213,7 +215,7 @@ export default function Header() {
                 />
               </div>
               <div className='info d-none d-sm-inline-block'>
-                <div className='d-block'>Alexander Pierce</div>
+                <div className='d-block'>{username}</div>
               </div>
             </div>
           </a>

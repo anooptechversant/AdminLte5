@@ -150,7 +150,7 @@ const SubCategory = (props) => {
             <input
               type='checkbox'
               className='custom-control-input'
-              id='customSwitch3'
+              id={`customSwitch-${row.id}`}
               checked={row.is_active}
               onChange={() => {
                 handleSwitchChange(row.id, row.is_active);
@@ -160,7 +160,7 @@ const SubCategory = (props) => {
               className={`custom-control-label ${
                 row.is_active ? "text-success" : "text-danger"
               } `}
-              for='customSwitch3'
+              htmlFor={`customSwitch-${row.id}`}
             >
               {row.is_active ? "Active" : "Inactive"}
             </label>

@@ -50,7 +50,7 @@ export default function Dashboard() {
                   {productLoading ? (
                     <h3>loading...</h3>
                   ) : (
-                    <h3>{productData.total_records}</h3>
+                    <h3>{productData.total_records||0}</h3>
                   )}
 
                   <p>Total Products</p>
@@ -58,7 +58,7 @@ export default function Dashboard() {
                 <div className='icon'>
                   <i className='ion ion-bag'></i>
                 </div>
-                <Link href='/product' className='small-box-footer'>
+                <Link to='/product' className='small-box-footer'>
                   More info <i className='fas fa-arrow-circle-right'></i>
                 </Link>
               </div>
@@ -70,7 +70,7 @@ export default function Dashboard() {
                   {orderLoading ? (
                     <h3>loading...</h3>
                   ) : (
-                    <h3>{orderData.total_records}</h3>
+                    <h3>{orderData.total_records||0}</h3>
                   )}
 
                   <p>Total Orders</p>
@@ -90,7 +90,7 @@ export default function Dashboard() {
                   {!unapprovedUsers?.total_records ? (
                     <h3>loading...</h3>
                   ) : (
-                    <h3>{unapprovedUsers.total_records}</h3>
+                    <h3>{unapprovedUsers.total_records||0}</h3>
                   )}
 
                   <p>Unapproved Users</p>
@@ -113,7 +113,7 @@ export default function Dashboard() {
                   {userLoading ? (
                     <h3>loading...</h3>
                   ) : (
-                    <h3>{userData.total_records}</h3>
+                    <h3>{userData.total_records||0}</h3>
                   )}
 
                   <p>Total Users</p>

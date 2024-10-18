@@ -171,7 +171,7 @@ const Order = ({
                   propOnChange={handleStatusChange}
                   propValidationError={""}
                   propAttributeValue='order_status'
-                  firstOption={statusArray[0].value}
+                  // firstOption={statusArray[0].value}
                   options={statusArray}
                   propValue={inputStatus.order_status}
                 />
