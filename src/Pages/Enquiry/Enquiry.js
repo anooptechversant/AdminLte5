@@ -37,14 +37,6 @@ const Enquiry = ({ Data, Success, Error, Loading }) => {
 
   const columns = [
     {
-      header: "#",
-      key: "SL.No",
-      cell: (row, i) => <>{i + 1}</>,
-      tdClassName: "",
-      thClassName: "w-1",
-    },
-
-    {
       header: "Email",
       key: "enquiry",
       cell: (row) => <>{row?.email}</>,

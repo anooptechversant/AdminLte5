@@ -70,6 +70,19 @@ const Table = ({
   const paginatedData = CurrentPage
     ? Data
     : Data?.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+
+  const modifiedColumns = [
+    {
+      header: "#",
+      key: "serialNumber",
+      cell: (row, rowIndex) => (
+        <>{(currentPage - 1) * itemsPerPage + rowIndex + 1}</>
+      ),
+      tdClassName: "",
+      thClassName: "w-1 ",
+    },
+    ...Columns,
+  ];
   return (
     <>
       {loading && <Loading />}
@@ -82,7 +95,7 @@ const Table = ({
         <table className='table table-striped projects'>
           <thead>
             <tr>
-              {Columns.map((column, index) => (
+              {modifiedColumns.map((column, index) => (
                 <th key={index} className={column.thClassName}>
                   {column.header}
                 </th>
@@ -100,7 +113,7 @@ const Table = ({
             {paginatedData &&
               paginatedData.map((row, rowIndex) => (
                 <tr key={`expandRow-${rowIndex}`}>
-                  {Columns.map((column, colIndex) => (
+                  {modifiedColumns.map((column, colIndex) => (
                     <td
                       key={`expandCol-${colIndex}`}
                       className={column.tdClassName}

@@ -136,7 +136,7 @@ const ProductView = ({ viewData, Success, Error, Loading, isActiveData }) => {
                                 Edit Brand Product
                               </span>
                               <span
-                                className='btn btn-primary rounded btn-sm'
+                                className='btn btn-primary rounded btn-sm ml-2'
                                 onClick={EditBrandHandler}
                               >
                                 <i className='fas fa-edit edit-icon text-light'></i>
@@ -171,6 +171,31 @@ const ProductView = ({ viewData, Success, Error, Loading, isActiveData }) => {
                             " / " +
                             viewData.weight_description}
                           <br />
+                          <strong>Category:</strong>{" "}
+                          <img
+                            src={
+                              viewData.brand_product.subcategory.category.image
+                            }
+                            alt={
+                              viewData.brand_product.subcategory.category.image
+                            }
+                            className='img-fluid object-fit-contain rounded mr-2 border'
+                            width={"50px"}
+                            height={"50px"}
+                          />
+                          - {viewData.brand_product.subcategory.category.name}
+                          <br />
+                          <div className='mt-2'>
+                            <strong>Sub Category:</strong>{" "}
+                            <img
+                              src={viewData.brand_product.subcategory.image}
+                              alt={viewData.brand_product.subcategory.image}
+                              className='img-fluid object-fit-contain rounded mr-2 border'
+                              width={"50px"}
+                              height={"50px"}
+                            />
+                            - {viewData.brand_product.subcategory.name}
+                          </div>
                           <div className='col-12 mt-4' id='accordion'>
                             <div className='card card-primary card-outline'>
                               <a
@@ -188,7 +213,7 @@ const ProductView = ({ viewData, Success, Error, Loading, isActiveData }) => {
                                         Add Image
                                       </span>
                                       <span
-                                        className='btn btn-primary rounded btn-sm'
+                                        className='btn btn-primary rounded btn-sm ml-2'
                                         onClick={AddImageHandler}
                                       >
                                         <i className='fa fa-plus'></i>
@@ -212,8 +237,8 @@ const ProductView = ({ viewData, Success, Error, Loading, isActiveData }) => {
                                           : "text-danger"
                                       }`}
                                     >
-                                      <Card.Header className='d-flex justify-content-between'>
-                                        {image.tag}{" "}
+                                      <Card.Header className='d-flex justify-content-between align-content-center'>
+                                        <span>{image.tag}</span>
                                         <i
                                           className='fas fa-edit edit-icon text-primary'
                                           onClick={() =>
@@ -253,7 +278,7 @@ const ProductView = ({ viewData, Success, Error, Loading, isActiveData }) => {
                                         Add Supplier
                                       </span>
                                       <span
-                                        className='btn btn-primary rounded btn-sm'
+                                        className='btn btn-primary rounded btn-sm ml-2'
                                         onClick={AddSupplierHandler}
                                       >
                                         <i className='fa fa-plus'></i>

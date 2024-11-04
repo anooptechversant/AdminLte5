@@ -49,14 +49,6 @@ function Education({ Data, Success, Error, Loading }) {
 
   const columns = [
     {
-      header: "#",
-      key: "SL.No",
-      cell: (row, i) => <>{i + 1}</>,
-      tdClassName: "",
-      thClassName: "w-1",
-    },
-
-    {
       header: "Qualification",
       key: "qualification",
       cell: (row) => <>{row?.qualification}</>,

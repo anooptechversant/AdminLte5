@@ -48,14 +48,6 @@ const Services = ({ Data, Success, Error, Loading }) => {
 
   const columns = [
     {
-      header: "#",
-      key: "SL.No",
-      cell: (row, i) => <>{i + 1}</>,
-      tdClassName: "",
-      thClassName: "w-1",
-    },
-
-    {
       header: "Service Name",
       key: "service_name",
       cell: (row) => <>{row?.service_name}</>,
@@ -87,14 +79,12 @@ const Services = ({ Data, Success, Error, Loading }) => {
             onClick={() => handleServiceEdit(row.id)}
           >
             <i className='fas fa-pencil-alt'></i>
-            
           </button>
           <button
             className='btn btn-danger btn-sm'
             onClick={() => handleDelete(row.id)}
           >
             <i className='fas fa-trash'></i>
-            
           </button>
         </div>
       ),

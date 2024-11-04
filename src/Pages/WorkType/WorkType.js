@@ -45,14 +45,6 @@ function WorkType({ Data, Success, Error, Loading }) {
   };
   const columns = [
     {
-      header: "#",
-      key: "SL.No",
-      cell: (row, i) => <>{i + 1}</>,
-      tdClassName: "",
-      thClassName: "w-1",
-    },
-
-    {
       header: "Work Type",
       key: "worktype",
       cell: (row) => <>{row?.worktype}</>,

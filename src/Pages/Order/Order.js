@@ -76,14 +76,6 @@ const Order = ({
   }, [Data]);
   const columns = [
     {
-      header: "#",
-      key: "SL.No",
-      cell: (row, i) => <>{i + 1}</>,
-      tdClassName: "",
-      thClassName: "w-1",
-    },
-
-    {
       header: "Order Status",
       key: "order_status",
       cell: (row) => <>{row?.order_status}</>,

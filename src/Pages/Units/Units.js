@@ -44,14 +44,6 @@ const Units = ({ Data, Success, Error, Loading }) => {
 
   const columns = [
     {
-      header: "#",
-      key: "SL.No",
-      cell: (row, i) => <>{i + 1}</>,
-      tdClassName: "",
-      thClassName: "w-1",
-    },
-
-    {
       header: "Unit Name",
       key: "unit",
       cell: (row) => <>{row?.unit}</>,
@@ -62,20 +54,18 @@ const Units = ({ Data, Success, Error, Loading }) => {
       header: <span>Actions</span>,
       key: "",
       cell: (row) => (
-          <div className='d-flex justify-content-around'>
+        <div className='d-flex justify-content-around'>
           <button
             className='btn btn-info btn-sm'
             onClick={() => handleUnitEdit(row.id)}
           >
             <i className='fas fa-pencil-alt'></i>
-            
           </button>
           <button
             className='btn btn-danger btn-sm'
             onClick={() => handleDelete(row.id)}
           >
             <i className='fas fa-trash'></i>
-            
           </button>
         </div>
       ),

@@ -62,14 +62,6 @@ export default function Users(props) {
   }, [records]);
   const columns = [
     {
-      header: "#",
-      key: "SL.No",
-      cell: (row, i) => <>{i + 1}</>,
-      tdClassName: "",
-      thClassName: "w-1",
-    },
-
-    {
       header: "User Name",
       key: "name",
       cell: (row) => <>{row?.name}</>,

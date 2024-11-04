@@ -38,19 +38,11 @@ const Location = ({ Data, Success, Error, Loading }) => {
 
   const confirmDelete = () => {
     handleLocationDelete(itemToDelete);
-   setTableData(tableData.filter((obj) => obj.id !== itemToDelete));
+    setTableData(tableData.filter((obj) => obj.id !== itemToDelete));
     handleClose();
   };
 
   const columns = [
-    {
-      header: "#",
-      key: "SL.No",
-      cell: (row, i) => <>{i + 1}</>,
-      tdClassName: "",
-      thClassName: "w-1",
-    },
-
     {
       header: "Location Name",
       key: "location",

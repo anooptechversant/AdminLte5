@@ -84,14 +84,6 @@ const Product = ({
 
   const columns = [
     {
-      header: "#",
-      key: "SL.No",
-      cell: (row, i) => <>{i + 1}</>,
-      tdClassName: "",
-      thClassName: "w-1",
-    },
-
-    {
       header: "Product Name",
       key: "brand_product.product_name",
       cell: (row) => (

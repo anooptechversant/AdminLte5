@@ -62,14 +62,6 @@ const Project = ({ Data, Success, Error, Loading }) => {
 
   const columns = [
     {
-      header: "#",
-      key: "SL.No",
-      cell: (row, i) => <>{i + 1}</>,
-      tdClassName: "",
-      thClassName: "w-1",
-    },
-
-    {
       header: "Name",
       key: "name",
       cell: (row) => <>{row?.name}</>,
