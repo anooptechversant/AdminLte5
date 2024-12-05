@@ -1,36 +1,37 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import CategoryTable from "../../Components/Common/Table";
 import { useNavigate } from "react-router-dom";
 import { getCategoryData } from "../../Actions/categoryActions";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
+import DraggableCategory from "./DraggableCategory";
+import Spinner from "../../Components/Loader/Loading";
+import Toasts from "../../Components/Common/Toasts";
+
 const Category = ({ Data, Success, Error, Loading, isActiveData }) => {
-  const [resMsg, setResMsg] = useState(true);
-  const [tableData, setTableData] = useState(Data || []);
   const successStatusData = Success || isActiveData;
   const errorStatusData = Error;
   const responseMessage = {
-    success:
-      resMsg === true
-        ? "Category activated successfully"
-        : "Category deactivated successfully",
+    success: "successful",
   };
-
-  useEffect(() => {
-    setTableData(Data);
-  }, [Data]);
+  const [categories, setCategories] = useState(Data || []);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    setCategories(Data);
+  }, [Data]);
+
   const handleCategoryActivate = (id) => {
     const data = { is_active: true };
-    setResMsg(true);
     dispatch(getCategoryData("activate", data, id));
   };
+
   const handleCategoryDeactivate = (id) => {
     const data = { is_active: false };
-    setResMsg(false);
     dispatch(getCategoryData("deactivate", data, id));
   };
+
   const handleSwitchChange = (id, isActive) => {
     if (isActive) {
       handleCategoryDeactivate(id);
@@ -38,6 +39,7 @@ const Category = ({ Data, Success, Error, Loading, isActiveData }) => {
       handleCategoryActivate(id);
     }
   };
+
   const handleCategoryEdit = (id) => {
     navigate(`/category/edit-category/${id}`);
   };
@@ -46,71 +48,38 @@ const Category = ({ Data, Success, Error, Loading, isActiveData }) => {
     navigate("/category/add-category");
   };
 
-  const columns = [
-    {
-      header: "Category Name",
-      key: "name",
-      cell: (row) => <>{row?.name}</>,
-      tdClassName: "",
-      thClassName: "",
-    },
-    {
-      header: "Image",
-      key: "image",
-      cell: (row) => (
-        <>
-          <img alt={row?.name} className='table-avatar' src={row?.image} />
-        </>
-      ),
-      tdClassName: "",
-      thClassName: "",
-    },
+  const moveItem = (fromIndex, toIndex) => {
+    const updatedData = [...categories]; // Copy the data
+    const [movedItem] = updatedData.splice(fromIndex, 1);
+    updatedData.splice(toIndex, 0, movedItem);
+    setCategories(updatedData);
+  };
+  const moveCategory = (dragIndex, hoverIndex) => {
+    const updatedCategories = [...categories];
+    const draggedCategory = updatedCategories[dragIndex];
 
-    {
-      header: <span>Actions</span>,
-      key: "",
-      cell: (row) => (
-        <div className='d-flex justify-content-around'>
-          <button
-            className='btn btn-info btn-sm'
-            onClick={() => handleCategoryEdit(row.id)}
-          >
-            <i className='fas fa-pencil-alt'></i>
-          </button>
-          <div
-            className={`custom-control custom-switch x  ${
-              row.is_active
-                ? " custom-switch-on-success"
-                : "custom-switch-off-danger"
-            } `}
-          >
-            <input
-              type='checkbox'
-              className='custom-control-input'
-              id={`customSwitch-${row.id}`}
-              checked={row.is_active}
-              onChange={() => {
-                handleSwitchChange(row.id, row.is_active);
-              }}
-            />
-            <label
-              className={`custom-control-label ${
-                row.is_active ? "text-success" : "text-danger"
-              } `}
-              htmlFor={`customSwitch-${row.id}`}
-            >
-              {row.is_active ? "Active" : "Inactive"}
-            </label>
-          </div>
-        </div>
-      ),
-      tdClassName: "project-actions text-center",
-      thClassName: "text-center",
-    },
-  ];
+    updatedCategories.splice(dragIndex, 1);
+    updatedCategories.splice(hoverIndex, 0, draggedCategory);
+
+    setCategories(updatedCategories);
+  };
+
+  const saveCategoryOrder = async () => {
+    const formattedData = categories.map((category, index) => ({
+      id: category.id,
+      priority: index + 1,
+    }));
+    dispatch(getCategoryData("priority", formattedData));
+  };
+
   return (
-    <>
-      {" "}
+    <DndProvider backend={HTML5Backend}>
+      {Loading && <Spinner />}
+      <Toasts
+        propResponseMessage={responseMessage}
+        propActionType={"success"}
+        propStatusData={{ successStatusData, errorStatusData }}
+      />
       <section className='content-header'>
         <div className='container-fluid'>
           <div className='row mb-2'>
@@ -130,10 +99,8 @@ const Category = ({ Data, Success, Error, Loading, isActiveData }) => {
       </section>
       <section className='content'>
         <div className='container-fluid'>
-          <div className='card'>
-            <div className='card-header'>
-              <h3 className='card-title'>Category</h3>
-
+          <div className=''>
+            <div className='card-header mb-3'>
               <div className='card-tools'>
                 <button
                   className='btn btn-tool pointer-event'
@@ -143,19 +110,24 @@ const Category = ({ Data, Success, Error, Loading, isActiveData }) => {
                 </button>
               </div>
             </div>
-            <CategoryTable
-              Columns={columns}
-              Data={tableData}
-              loading={Loading}
-              Error={Error}
-              ErrorText={"No data available"}
-              ResponseMessage={responseMessage}
-              StatusData={{ successStatusData, errorStatusData }}
-            />
+            <ul style={{ listStyleType: "none", padding: 0 }}>
+              {categories.map((item, index) => (
+                <DraggableCategory
+                  key={item.id}
+                  item={item}
+                  index={index}
+                  moveItem={moveItem}
+                  onEdit={handleCategoryEdit}
+                  onSwitchChange={handleSwitchChange}
+                  moveCategory={moveCategory}
+                  saveCategoryOrder={saveCategoryOrder}
+                />
+              ))}
+            </ul>
           </div>
         </div>
       </section>
-    </>
+    </DndProvider>
   );
 };
 

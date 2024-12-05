@@ -92,7 +92,7 @@ const Product = ({
         </div>
       ),
       tdClassName: "mw-75",
-      thClassName: "",
+      thClassName: "text-nowrap",
     },
     {
       header: "Brand",

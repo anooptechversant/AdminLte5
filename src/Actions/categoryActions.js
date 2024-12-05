@@ -13,7 +13,7 @@ export const getCategoryData = (arg, data, id) => async (dispatch) => {
   try {
     let contentType;
 
-    if (arg === "deactivate" || arg === "activate") {
+    if (arg === "deactivate" || arg === "activate" || arg === "priority") {
       contentType = "application/json";
     } else {
       contentType = "multipart/form-data";
@@ -42,6 +42,15 @@ export const getCategoryData = (arg, data, id) => async (dispatch) => {
     } else if (arg === "update") {
       const response = await axiosConfig.put(
         `${c.GET_CATEGORY_URL}${id}`,
+        data,
+        usersConfig
+      );
+      if (response.status === 200) {
+        dispatch(categorySuccess(response));
+      }
+    } else if (arg === "priority") {
+      const response = await axiosConfig.put(
+        `${c.GET_CATEGORY_URL}`,
         data,
         usersConfig
       );

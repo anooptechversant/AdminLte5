@@ -79,8 +79,9 @@ const AddImage = ({ Data, Success, Error, Loading }) => {
       dispatch(getProdImage("insert", formData, prodId));
     } else if (type === "update" && imageId !== undefined) {
       const formData = new FormData();
-      formData.append("name", inputProdImage.tag);
-      // formData.append("is_active", inputProdImage.is_active);
+       formData.append("tag", inputProdImage.tag);
+       formData.append("is_active", inputProdImage.is_active);
+
 
       if (inputProdImage.media && inputProdImage.media instanceof File) {
         formData.append("image", inputProdImage.media);
@@ -92,6 +93,7 @@ const AddImage = ({ Data, Success, Error, Loading }) => {
           },
         ]);
       } else {
+        // formData.append("image", inputProdImage.media);
         setEditData([
           {
             is_active: inputProdImage.is_active,
@@ -100,7 +102,7 @@ const AddImage = ({ Data, Success, Error, Loading }) => {
           },
         ]);
       }
-      dispatch(getProdImage("update", formData, imageId));
+      dispatch(getProdImage("update", formData, imageId, prodId));
     } else if (type === "cancel") {
       window.history.back();
     }
