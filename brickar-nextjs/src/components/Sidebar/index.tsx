@@ -42,56 +42,64 @@ const menuGroups = [
           { label: "UnApproved Users", route: "/user/unapproved" },
         ],
       },
-      {
-        icon: <CalendarIcon />,
-        label: "Calendar",
-        route: "/calendar",
-      },
-      {
-        icon: <ProfileIcon />,
-        label: "Profile",
-        route: "/profile",
-      },
+      // {
+      //   icon: <CalendarIcon />,
+      //   label: "Calendar",
+      //   route: "/calendar",
+      // },
+      // {
+      //   icon: <ProfileIcon />,
+      //   label: "Profile",
+      //   route: "/profile",
+      // },
       {
         icon: <FormsIcon />,
-        label: "Forms",
+        label: "Master Section",
+        route: "#",
+        children: [
+          { label: "Work Types", route: "/work-type" },
+          { label: "Education", route: "/education" },
+        ],
+      },{
+        icon: <SettingsIcon />,
+        label: "Material Section",
         route: "#",
         children: [
           { label: "Form Elements", route: "/forms/form-elements" },
           { label: "Form Layout", route: "/forms/form-layout" },
         ],
       },
-      {
-        icon: <TableIcon />,
-        label: "Tables",
-        route: "/tables",
-      },
-      {
-        icon: <SettingsIcon />,
-        label: "Settings",
-        route: "/settings",
-      },
+      // {
+      //   icon: <TableIcon />,
+      //   label: "Tables",
+      //   route: "/tables",
+      // },
+      // {
+      //   icon: <SettingsIcon />,
+      //   label: "Settings",
+      //   route: "/settings",
+      // },
     ],
   },
-  {
-    name: "OTHERS",
-    menuItems: [
-      {
-        icon: <ChartIcon />,
-        label: "Chart",
-        route: "/chart",
-      },
-      {
-        icon: <AuthenticationIcon />,
-        label: "Authentication",
-        route: "#",
-        children: [
-          { label: "Sign In", route: "/auth/signin" },
-          { label: "Sign Up", route: "/auth/signup" },
-        ],
-      },
-    ],
-  },
+  // {
+  //   name: "OTHERS",
+  //   menuItems: [
+  //     {
+  //       icon: <ChartIcon />,
+  //       label: "Chart",
+  //       route: "/chart",
+  //     },
+  //     {
+  //       icon: <AuthenticationIcon />,
+  //       label: "Authentication",
+  //       route: "#",
+  //       children: [
+  //         { label: "Sign In", route: "/auth/signin" },
+  //         { label: "Sign Up", route: "/auth/signup" },
+  //       ],
+  //     },
+  //   ],
+  // },
 ];
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {

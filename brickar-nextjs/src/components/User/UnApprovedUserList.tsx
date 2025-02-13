@@ -139,12 +139,9 @@ const UnApprovedUserList = () => {
     },
   ];
   const roleArray = roleData
-
-    .filter((role) => role.type === "B2B") // Filter roles with type B2B
-
+    .filter((role) => role.type === "B2B") 
     .map((role) => ({
       option: role.role,
-
       value: role.id,
     }));
 
@@ -160,23 +157,23 @@ const UnApprovedUserList = () => {
         setCurrentPage={setCurrentPage}
         limit={limit}
         setLimit={setLimit}
-        customComponent={
-          <div>
-            <select
-              className="rounded border p-1"
-              value={roleType}
-              onChange={(e) => setRoleType(e.target.value)}
-            >
-              <option value="">Show all</option>
+        // customComponent={
+        //   <div>
+        //     <select
+        //       className="rounded border p-1"
+        //       value={roleType}
+        //       onChange={(e) => setRoleType(e.target.value)}
+        //     >
+        //       <option value="">Show all</option>
 
-              {roleArray?.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.option}
-                </option>
-              ))}
-            </select>
-          </div>
-        }
+        //       {roleArray?.map((option) => (
+        //         <option key={option.value} value={option.value}>
+        //           {option.option}
+        //         </option>
+        //       ))}
+        //     </select>
+        //   </div>
+        // }
       />
       <Modal open={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <div className="p-4">
