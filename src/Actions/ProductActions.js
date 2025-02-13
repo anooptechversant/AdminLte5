@@ -104,7 +104,7 @@ export const getProductData = (arg, data, id) => async (dispatch) => {
   }
 };
 
-export const getProdImage = (arg, data, id) => async (dispatch) => {
+export const getProdImage = (arg, data, id, prodId) => async (dispatch) => {
   try {
     const usersConfig = {
       headers: {
@@ -125,7 +125,7 @@ export const getProdImage = (arg, data, id) => async (dispatch) => {
       }
     } else if (arg === "update") {
       const response = await axiosConfig.put(
-        `${c.GET_PRODUCT_URL}images/${id}`,
+        `${c.GET_PRODUCT_URL}images/${id}/?product_id=${prodId}`,
         data,
         usersConfig
       );

@@ -326,7 +326,13 @@ const AddBrandProduct = ({
                                   propAttributeValue='name'
                                   options={categoryArray}
                                   propValue={
-                                    inputCategory ? inputCategory.name : ""
+                                    editData && Object.keys(editData).length > 0
+                                      ? categoryArray.find(
+                                          (item) =>
+                                            item.value ===
+                                            editData.subcategory?.category?.id
+                                        )?.value
+                                      : inputCategory.name
                                   }
                                 />
 

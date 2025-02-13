@@ -263,6 +263,7 @@ const B2BUser = (props) => {
                 TotalPages={unapprovedTotalPages}
                 ErrorText={"No data available"}
                 ResponseMessage={responseMessage}
+                itemsPerPage={inputLimit.limit}
                 StatusData={{ successStatusData, errorStatusData }}
               />
             </div>

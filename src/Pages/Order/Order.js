@@ -198,6 +198,7 @@ const Order = ({
               currentPageChange={currentPageChange}
               TotalPages={propTotalPages}
               ErrorText={"No data available"}
+              itemsPerPage={inputLimit.limit}
               ResponseMessage={"responseMessage is empty"}
               StatusData={{ successStatusData, errorStatusData }}
             />

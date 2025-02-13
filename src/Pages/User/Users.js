@@ -166,6 +166,7 @@ export default function Users(props) {
               TotalPages={totalPages}
               ErrorText={"No data available"}
               ResponseMessage={responseMessage}
+              itemsPerPage={inputLimit.limit}
               StatusData={{ successStatusData, errorStatusData }}
             />
           </div>

@@ -43,7 +43,7 @@ const AddBrand = ({ Data, Success, Error, Loading }) => {
       const inputData = {
         name: inputBrand.name,
         description: inputBrand.description,
-        is_active: false,
+        is_active: true,
       };
       const inputUpdateData = {
         name: inputBrand.name,
