@@ -1,12 +1,14 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
-import { usePathname } from 'next/navigation';
-import Link from 'next/link';
 import Image from 'next/image';
-import SidebarItem from '@/components/Sidebar/SidebarItem';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import React, { useEffect, useRef, useState } from 'react';
+
 import ClickOutside from '@/components/ClickOutside';
+import SidebarItem from '@/components/Sidebar/SidebarItem';
 import useLocalStorage from '@/hooks/useLocalStorage';
+
 import {
   AuthenticationIcon,
   CalendarIcon,
@@ -100,7 +102,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
 
         <div className="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear">
           {/* <!-- Sidebar Menu --> */}
-          <nav className="mt-5 px-4 py-4 lg:mt-9 lg:px-6">
+          <nav className="mt-5 p-4 lg:mt-9 lg:px-6">
             {menuGroups.map((group, groupIndex) => (
               <div key={groupIndex}>
                 <h3 className="mb-4 ml-4 text-sm font-semibold text-bodydark2">

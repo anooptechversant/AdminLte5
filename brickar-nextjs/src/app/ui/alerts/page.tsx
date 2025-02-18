@@ -1,5 +1,6 @@
-import Breadcrumb from '@/components/Breadcrumbs/Breadcrumb';
 import { Metadata } from 'next';
+
+import Breadcrumb from '@/components/Breadcrumbs/Breadcrumb';
 import DefaultLayout from '@/components/Layouts/DefaultLayout';
 
 export const metadata: Metadata = {
@@ -18,7 +19,7 @@ const Alerts = () => {
         <div className="flex flex-col gap-7.5">
           {/* <!-- Alerts Item --> */}
           <div className="flex w-full border-l-6 border-warning bg-warning bg-opacity-[15%] px-7 py-8 shadow-md dark:bg-[#1B1B24] dark:bg-opacity-30 md:p-9">
-            <div className="mr-5 flex h-9 w-9 items-center justify-center rounded-lg bg-warning bg-opacity-30">
+            <div className="mr-5 flex size-9 items-center justify-center rounded-lg bg-warning bg-opacity-30">
               <svg
                 width="19"
                 height="16"

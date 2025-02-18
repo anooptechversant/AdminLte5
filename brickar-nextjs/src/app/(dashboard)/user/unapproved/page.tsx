@@ -1,6 +1,7 @@
+import React from 'react';
+
 import Breadcrumb from '@/components/Breadcrumbs/Breadcrumb';
 import UnApprovedUserList from '@/components/User/UnApprovedUserList';
-import React from 'react';
 
 const UnApproved = async () => {
   return (

@@ -1,5 +1,6 @@
-import DefaultLayout from '@/components/Layouts/DefaultLayout';
 import Link from 'next/link';
+
+import DefaultLayout from '@/components/Layouts/DefaultLayout';
 
 export default async function NotFound() {
   return (
@@ -11,7 +12,7 @@ export default async function NotFound() {
       </h2>
       <Link
         href="/"
-        className="mt-6 rounded-md bg-primary pb-3 pl-6 pr-6 pt-3 text-white"
+        className="mt-6 rounded-md bg-primary px-6 py-3 text-white"
       >
         GO TO DASHBOARD
       </Link>

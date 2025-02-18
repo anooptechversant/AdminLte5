@@ -2,12 +2,13 @@ import { Trash01 } from '@untitled-ui/icons-react';
 import classNames from 'classnames';
 import cloneDeep from 'lodash/cloneDeep';
 import React, {
+  forwardRef,
   useCallback,
   useEffect,
   useRef,
   useState,
-  forwardRef,
 } from 'react';
+
 import FileItem from './FileItem';
 
 interface FileUploadProps {
@@ -169,7 +170,7 @@ const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>((props, ref) => {
                 className="mr-3 cursor-pointer"
               />
               {position && (
-                <div className="mr-1 mt-1 flex h-10 w-10 items-center justify-center rounded-lg border border-gray-300">
+                <div className="mr-1 mt-1 flex size-10 items-center justify-center rounded-lg border border-gray-300">
                   {photoPosition + index}
                 </div>
               )}

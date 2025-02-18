@@ -1,9 +1,9 @@
+import { Metadata } from 'next';
+import { Suspense } from 'react';
+
 import Breadcrumb from '@/components/Breadcrumbs/Breadcrumb';
 import Loader from '@/components/common/Loader';
 import QualificationForm from '@/components/Qualification/Form';
-
-import { Metadata } from 'next';
-import { Suspense } from 'react';
 
 export async function generateMetadata({
   searchParams: { id },

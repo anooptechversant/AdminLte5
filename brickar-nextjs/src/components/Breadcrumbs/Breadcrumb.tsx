@@ -43,7 +43,7 @@ const Breadcrumb = ({ items, title }: BreadcrumbProps) => {
               )}
               {index < defaultItems.length - 1 && (
                 <span className="mx-1">
-                  <ChevronRight className="text-gray-300 text-xs" />
+                  <ChevronRight className="text-xs text-gray-300" />
                 </span>
               )}
             </li>

@@ -1,13 +1,14 @@
 'use client';
 
-import Email from '@/components/Svg/Email';
-import Lock from '@/components/Svg/Lock';
-import useAuth from '@/hooks/useAuth';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast, ToastContainer } from 'react-toastify';
+
+import Email from '@/components/Svg/Email';
+import Lock from '@/components/Svg/Lock';
+import useAuth from '@/hooks/useAuth';
 
 interface FormData {
   email: string;

@@ -1,6 +1,6 @@
+import Multiselect from 'multiselect-react-dropdown';
 import React from 'react';
 import { Controller } from 'react-hook-form';
-import Multiselect from 'multiselect-react-dropdown';
 
 interface ControlledMultiselectProps {
   name: string;

@@ -1,15 +1,16 @@
+import 'react-quill/dist/quill.snow.css';
+import dynamic from 'next/dynamic';
 import React, { FC } from 'react';
 import { Controller } from 'react-hook-form';
-import dynamic from 'next/dynamic';
-
-import 'react-quill/dist/quill.snow.css';
-import Form from './Form/Form';
-import { CommonFormProps, Field } from '@/types/form';
-import FormRow from './Form/FormRow';
-import FormInput from './Form/FormInput';
-import Select from './Form/Select';
-import Files from './Form/File';
 import { ToastContainer } from 'react-toastify';
+
+import { CommonFormProps, Field } from '@/types/form';
+
+import Files from './Form/File';
+import Form from './Form/Form';
+import FormInput from './Form/FormInput';
+import FormRow from './Form/FormRow';
+import Select from './Form/Select';
 
 const QuillNoSSRWrapper = dynamic(
   async () => {

@@ -1,6 +1,7 @@
-import { FormRowProps } from '@/types/form';
 import classNames from 'classnames';
 import React, { FC } from 'react';
+
+import { FormRowProps } from '@/types/form';
 
 const FormRow: FC<FormRowProps> = ({
   label,

@@ -1,7 +1,9 @@
 import { UploadCloud02 } from '@untitled-ui/icons-react';
 import React from 'react';
-import FileUpload from './FileUpload';
+
 import { FilesProps, FileType } from '@/types/form';
+
+import FileUpload from './FileUpload';
 
 const Files: React.FC<FilesProps> = ({
   uploadedFile,
@@ -108,7 +110,7 @@ const Files: React.FC<FilesProps> = ({
         <FileUpload
           draggable
           beforeUpload={beforeUpload}
-          className="h-full w-full border-none"
+          className="size-full border-none"
           onChange={onFileUpload}
           limit={limit}
           multiple={multiple}
@@ -117,7 +119,7 @@ const Files: React.FC<FilesProps> = ({
           <div
             className={`flex flex-col items-center justify-center py-4 ${error ? 'border-2 border-red-500' : 'border border-gray-200'}`}
           >
-            <div className="flex h-8 w-8 items-center justify-center bg-gray-50">
+            <div className="flex size-8 items-center justify-center bg-gray-50">
               <UploadCloud02 className="bg-gray-100" />
             </div>
             <div className="flex gap-1">

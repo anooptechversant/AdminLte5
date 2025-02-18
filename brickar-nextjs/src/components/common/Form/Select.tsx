@@ -1,6 +1,7 @@
-import React from 'react';
-import classNames from 'classnames';
 import { ChevronDown } from '@untitled-ui/icons-react';
+import classNames from 'classnames';
+import React from 'react';
+
 import { SelectOption, SelectProps } from '@/types/form';
 
 const Select: React.FC<SelectProps> = ({
@@ -75,7 +76,7 @@ const Select: React.FC<SelectProps> = ({
             {value ? value.label : placeholder || 'Select...'}
           </span>
           <ChevronDown
-            className={`h-4 w-4 transition-transform ${
+            className={`size-4 transition-transform ${
               isOpen ? 'rotate-180 transform' : ''
             }`}
           />

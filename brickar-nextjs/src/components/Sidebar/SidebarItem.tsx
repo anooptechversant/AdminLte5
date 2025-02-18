@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import SidebarDropdown from '@/components/Sidebar/SidebarDropdown';
 import { usePathname } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
+
+import SidebarDropdown from '@/components/Sidebar/SidebarDropdown';
 
 const SidebarItem = ({ item, pageName, setPageName }: any) => {
   const [isClient, setIsClient] = useState(false);

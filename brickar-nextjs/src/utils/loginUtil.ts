@@ -1,4 +1,5 @@
 import { headers } from 'next/headers';
+
 import { apiRequest } from './api';
 
 // Define the structure of the authentication response

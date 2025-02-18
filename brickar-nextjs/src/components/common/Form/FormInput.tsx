@@ -110,7 +110,7 @@ const FormInput: FC<FormInputProps> = ({
           />
           {right && (
             <div
-              className={`absolute ${isInvalid ? 'border-red-500' : 'border-gray-300'} inset-y-0 right-0 flex h-10 w-10 items-center justify-center rounded-r-md border-y border-r bg-gray-100 text-sm`}
+              className={`absolute ${isInvalid ? 'border-red-500' : 'border-gray-300'} inset-y-0 right-0 flex size-10 items-center justify-center rounded-r-md border-y border-r bg-gray-100 text-sm`}
             >
               {right}
             </div>

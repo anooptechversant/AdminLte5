@@ -1,6 +1,7 @@
+import React from 'react';
+
 import Breadcrumb from '@/components/Breadcrumbs/Breadcrumb';
 import UserList from '@/components/User/UserList';
-import React from 'react';
 
 const User = async () => {
   return (

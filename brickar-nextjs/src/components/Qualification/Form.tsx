@@ -2,11 +2,13 @@
 
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
-import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
-import { apiRequest, getRequest } from '@/utils/api';
-import { CommonForm } from '../common/CommonForm';
+import { toast } from 'react-toastify';
+
 import { Qualification, QualificationProp } from '@/types/qualification';
+import { apiRequest, getRequest } from '@/utils/api';
+
+import { CommonForm } from '../common/CommonForm';
 
 const Form = ({ id }: QualificationProp) => {
   const router = useRouter();

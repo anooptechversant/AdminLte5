@@ -1,15 +1,17 @@
 'use client';
-import React, { useEffect, useState, useMemo } from 'react';
-import CommonTable from '../common/Table';
-import { apiRequest, getRequest } from '@/utils/api';
 import { ColumnDef } from '@tanstack/react-table';
-import Eye from '../Svg/Eye';
-import Tooltip from '../common/Tooltip';
-import Trash from '../Svg/Trash';
-import Check from '../Svg/Check';
+import { useRouter, useSearchParams } from 'next/navigation';
+import React, { useEffect, useMemo, useState } from 'react';
 import Modal from 'react-responsive-modal';
 import { toast } from 'react-toastify';
-import { useSearchParams, useRouter } from 'next/navigation';
+
+import { apiRequest, getRequest } from '@/utils/api';
+
+import CommonTable from '../common/Table';
+import Tooltip from '../common/Tooltip';
+import Check from '../Svg/Check';
+import Eye from '../Svg/Eye';
+import Trash from '../Svg/Trash';
 
 const UnApprovedUserList = () => {
   const searchParams = useSearchParams();
@@ -115,8 +117,8 @@ const UnApprovedUserList = () => {
       header: 'Actions',
       accessorKey: 'actions',
       cell: ({ row }) => (
-        <div className="flex items-center space-x-3.5">
-          <div className="group relative flex items-center  justify-end">
+        <div className="flex items-center justify-end space-x-3.5">
+          <div className="group relative flex items-center">
             <button
               className="hover:text-primary"
               onClick={() => console.log('View details for', row.original.id)}

@@ -1,12 +1,14 @@
 'use client';
 
-import React, { useEffect, useState, useMemo } from 'react';
 import { ColumnDef } from '@tanstack/react-table';
-import { useSearchParams, useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
+import React, { useEffect, useMemo, useState } from 'react';
+
 import { getRequest } from '@/utils/api';
-import Eye from '../Svg/Eye';
-import Tooltip from '../common/Tooltip';
+
 import CommonTable from '../common/Table';
+import Tooltip from '../common/Tooltip';
+import Eye from '../Svg/Eye';
 
 const UserList = () => {
   const searchParams = useSearchParams();

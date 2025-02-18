@@ -1,6 +1,7 @@
+import React from 'react';
+
 import Breadcrumb from '@/components/Breadcrumbs/Breadcrumb';
 import WorkTypeList from '@/components/WorkType/WorkTypeList';
-import React from 'react';
 
 const WorkType = async () => {
   return (

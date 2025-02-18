@@ -1,6 +1,7 @@
+import React from 'react';
+
 import Breadcrumb from '@/components/Breadcrumbs/Breadcrumb';
 import QualificationList from '@/components/Qualification/QualificationList';
-import React from 'react';
 
 const Qualification = async () => {
   return (

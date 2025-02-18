@@ -1,16 +1,18 @@
 'use client';
-import React, { useEffect, useState } from 'react';
-import WorkTypeListTable from '../common/Table';
-import { apiRequest, getRequest } from '@/utils/api';
-import Tooltip from '../common/Tooltip';
 import { ColumnDef } from '@tanstack/react-table';
-import Trash from '../Svg/Trash';
-import Edit from '../Svg/Edit';
 import Link from 'next/link';
-import Plus from '../Svg/Plus';
 import { useRouter } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
 import Modal from 'react-responsive-modal';
 import { toast } from 'react-toastify';
+
+import { apiRequest, getRequest } from '@/utils/api';
+
+import WorkTypeListTable from '../common/Table';
+import Tooltip from '../common/Tooltip';
+import Edit from '../Svg/Edit';
+import Plus from '../Svg/Plus';
+import Trash from '../Svg/Trash';
 
 const WorkTypeList = () => {
   const router = useRouter();

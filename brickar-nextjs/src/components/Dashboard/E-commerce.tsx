@@ -1,8 +1,8 @@
 'use client';
 import React from 'react';
 
-import TableOne from '../Tables/TableOne';
 import CardDataStats from '../CardDataStats';
+import TableOne from '../Tables/TableOne';
 
 const ECommerce: React.FC = () => {
   return (

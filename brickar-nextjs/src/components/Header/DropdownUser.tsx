@@ -1,6 +1,7 @@
-import { useState } from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
+import Link from 'next/link';
+import { useState } from 'react';
+
 import ClickOutside from '@/components/ClickOutside';
 import useAuth from '@/hooks/useAuth';
 
@@ -21,7 +22,7 @@ const DropdownUser = () => {
           <span className="block text-xs">UX Designer</span>
         </span>
 
-        <span className="h-12 w-12 rounded-full">
+        <span className="size-12 rounded-full">
           <Image
             width={112}
             height={112}

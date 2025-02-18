@@ -1,19 +1,21 @@
 'use client';
 
-import React, { useEffect, useState, useMemo } from 'react';
+import 'react-loading-skeleton/dist/skeleton.css';
 import {
   flexRender,
   getCoreRowModel,
-  useReactTable,
   getSortedRowModel,
   SortingState,
+  useReactTable,
 } from '@tanstack/react-table';
-import { toast, ToastContainer } from 'react-toastify';
-import Pagination from './Pagination';
-import { useSearchParams, useRouter } from 'next/navigation';
-import 'react-loading-skeleton/dist/skeleton.css';
+import { useRouter, useSearchParams } from 'next/navigation';
+import React, { useEffect, useMemo, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
+import { toast, ToastContainer } from 'react-toastify';
+
 import { CommonTableProps } from '@/types/common';
+
+import Pagination from './Pagination';
 
 const LIMIT_OPTIONS = [5, 10, 20, 50];
 
@@ -122,7 +124,7 @@ const CommonTable = <T,>({
                 {headerGroup.headers.map((header) => (
                   <th
                     key={header.id}
-                    className={`min-w-[50px] cursor-pointer whitespace-nowrap px-4 py-4 font-medium text-black dark:text-white ${
+                    className={`min-w-[50px] cursor-pointer whitespace-nowrap p-4 font-medium text-black dark:text-white ${
                       header.id === 'actions' ? 'text-right' : ''
                     }`}
                     // className="min-w-[50px] cursor-pointer whitespace-nowrap px-4 py-4 font-medium text-black dark:text-white"
