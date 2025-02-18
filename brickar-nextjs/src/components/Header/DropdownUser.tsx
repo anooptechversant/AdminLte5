@@ -1,12 +1,12 @@
-import { useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import ClickOutside from "@/components/ClickOutside";
-import useAuth from "@/hooks/useAuth";
+import { useState } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import ClickOutside from '@/components/ClickOutside';
+import useAuth from '@/hooks/useAuth';
 
 const DropdownUser = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const {userInfo, logout } = useAuth();
+  const { userInfo, logout } = useAuth();
   return (
     <ClickOutside onClick={() => setDropdownOpen(false)} className="relative">
       <Link
@@ -25,10 +25,10 @@ const DropdownUser = () => {
           <Image
             width={112}
             height={112}
-            src={"/images/user/user-01.png"}
+            src={'/images/user/user-01.png'}
             style={{
-              width: "auto",
-              height: "auto",
+              width: 'auto',
+              height: 'auto',
             }}
             alt="User"
           />

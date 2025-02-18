@@ -1,11 +1,11 @@
-import qs from "qs";
+import qs from 'qs';
 
 const baseURL = process.env.NEXT_PUBLIC_API_URL;
-const apiKey = process.env.NEXT_PUBLIC_API_KEY || "";
+const apiKey = process.env.NEXT_PUBLIC_API_KEY || '';
 
 // A flag to prevent infinite loops on token refresh calls.
 interface ApiRequestOptions {
-  method: "GET" | "POST" | "PATCH" | "DELETE" | "PUT" | "HEAD";
+  method: 'GET' | 'POST' | 'PATCH' | 'DELETE' | 'PUT' | 'HEAD';
   path: string;
   params?: Record<string, any>;
   data?: Record<string, any> | FormData;
@@ -28,19 +28,19 @@ export const apiRequest = async ({
   skipAuthRetry = false,
 }: ApiRequestOptions): Promise<any> => {
   const queryParams = qs.stringify(params, { encode: true });
-  const url = `${baseURL}${path}${queryParams ? `?${queryParams}` : ""}`;
+  const url = `${baseURL}${path}${queryParams ? `?${queryParams}` : ''}`;
 
   // Create headers and add the API key
   const headersObject = new Headers();
-  headersObject.append("x-api-key", apiKey);
+  headersObject.append('x-api-key', apiKey);
 
   // Add the access token if available (and if not already provided)
-  let storedAccessToken = localStorage.getItem("access_token");
-   if (storedAccessToken) {
-     storedAccessToken = storedAccessToken.replace(/^"(.*)"$/, "$1"); // ✅ Remove surrounding quotes
-   }
-  if (storedAccessToken && !headersObject.has("Authorization")) {
-    headersObject.append("Authorization", `Bearer ${storedAccessToken}`);
+  let storedAccessToken = localStorage.getItem('access_token');
+  if (storedAccessToken) {
+    storedAccessToken = storedAccessToken.replace(/^"(.*)"$/, '$1'); // ✅ Remove surrounding quotes
+  }
+  if (storedAccessToken && !headersObject.has('Authorization')) {
+    headersObject.append('Authorization', `Bearer ${storedAccessToken}`);
   }
 
   // Append any additional headers
@@ -51,16 +51,16 @@ export const apiRequest = async ({
   const fetchOptions: RequestInit = {
     method,
     headers: headersObject,
-    cache: "no-store",
+    cache: 'no-store',
   };
 
-  if (method !== "GET" && method !== "HEAD") {
+  if (method !== 'GET' && method !== 'HEAD') {
     if (data instanceof FormData) {
       fetchOptions.body = data;
       // Let the browser set the correct Content-Type for FormData
-      headersObject.delete("Content-Type");
+      headersObject.delete('Content-Type');
     } else {
-      headersObject.set("Content-Type", "application/json");
+      headersObject.set('Content-Type', 'application/json');
       fetchOptions.body = JSON.stringify(data);
     }
   }
@@ -70,14 +70,14 @@ export const apiRequest = async ({
   if (
     response.status === 401 &&
     !skipAuthRetry &&
-    !path.includes("admin/refresh-token")
+    !path.includes('admin/refresh-token')
   ) {
     const refreshSuccessful = await refreshAccessToken();
     if (refreshSuccessful) {
       // Update the Authorization header with the new token
-      const newToken = localStorage.getItem("access_token");
+      const newToken = localStorage.getItem('access_token');
       if (newToken) {
-        headersObject.set("Authorization", `Bearer ${newToken}`);
+        headersObject.set('Authorization', `Bearer ${newToken}`);
         fetchOptions.headers = headersObject;
         response = await fetch(url, fetchOptions);
       }
@@ -96,7 +96,7 @@ export const apiRequest = async ({
       responseData?.message ||
       responseData?.errors?.[0]?.message ||
       `Error ${response.status}: ${response.statusText}` ||
-      "Something went wrong";
+      'Something went wrong';
     throw new Error(errorMessage);
   }
 
@@ -108,7 +108,7 @@ export const apiRequest = async ({
  * Returns true if refresh was successful.
  */
 const refreshAccessToken = async (): Promise<boolean> => {
-  const refreshToken = localStorage.getItem("refresh_token");
+  const refreshToken = localStorage.getItem('refresh_token');
   // if (!refreshToken) {
   //   logout();
   //   return false;
@@ -116,18 +116,18 @@ const refreshAccessToken = async (): Promise<boolean> => {
   try {
     // Note: We pass skipAuthRetry so that the refresh request does not trigger recursion.
     const response = await apiRequest({
-      method: "POST",
-      path: "admin/refresh-token/",
+      method: 'POST',
+      path: 'admin/refresh-token/',
       headers: {
         Authorization: `Bearer ${refreshToken}`,
       },
       skipAuthRetry: true,
     });
     // Update the access token in localStorage
-    localStorage.setItem("access_token", response.access_token);
+    localStorage.setItem('access_token', response.access_token);
     return true;
   } catch (error) {
-    console.error("Failed to refresh token:", error);
+    console.error('Failed to refresh token:', error);
     logout();
     return false;
   }
@@ -138,11 +138,11 @@ const refreshAccessToken = async (): Promise<boolean> => {
  * You can replace this with your own logout logic.
  */
 const logout = () => {
-  localStorage.removeItem("access_token");
-  localStorage.removeItem("refresh_token");
-  localStorage.removeItem("user_info");
+  localStorage.removeItem('access_token');
+  localStorage.removeItem('refresh_token');
+  localStorage.removeItem('user_info');
   // For client-side navigation in Next.js app directory, you might use:
-  window.location.href = "/login";
+  window.location.href = '/login';
 };
 
 /**
@@ -159,7 +159,7 @@ const logout = () => {
 export const getRequest = async (path: string) => {
   try {
     const data = await apiRequest({
-      method: "GET",
+      method: 'GET',
       path,
     });
     return data;

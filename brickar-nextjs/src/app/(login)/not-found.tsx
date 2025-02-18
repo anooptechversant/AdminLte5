@@ -1,5 +1,5 @@
-import DefaultLayout from "@/components/Layouts/DefaultLayout";
-import Link from "next/link";
+import DefaultLayout from '@/components/Layouts/DefaultLayout';
+import Link from 'next/link';
 
 export default async function LogInNotFound() {
   return (

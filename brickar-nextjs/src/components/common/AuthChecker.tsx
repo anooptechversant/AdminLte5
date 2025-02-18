@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
-import useAuth from "@/hooks/useAuth";
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import useAuth from '@/hooks/useAuth';
 
 const AuthChecker = ({ children }: { children: React.ReactNode }) => {
   const { userInfo, accessToken } = useAuth();
@@ -10,7 +10,7 @@ const AuthChecker = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     if (!userInfo || !accessToken) {
-      router.push("/login");
+      router.push('/login');
     }
   }, [userInfo, accessToken, router]);
 

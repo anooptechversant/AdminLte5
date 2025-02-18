@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import React, { useEffect, useRef, useState } from "react";
-import { usePathname } from "next/navigation";
-import Link from "next/link";
-import Image from "next/image";
-import SidebarItem from "@/components/Sidebar/SidebarItem";
-import ClickOutside from "@/components/ClickOutside";
-import useLocalStorage from "@/hooks/useLocalStorage";
+import React, { useEffect, useRef, useState } from 'react';
+import { usePathname } from 'next/navigation';
+import Link from 'next/link';
+import Image from 'next/image';
+import SidebarItem from '@/components/Sidebar/SidebarItem';
+import ClickOutside from '@/components/ClickOutside';
+import useLocalStorage from '@/hooks/useLocalStorage';
 import {
   AuthenticationIcon,
   CalendarIcon,
@@ -17,7 +17,7 @@ import {
   RightArrow,
   SettingsIcon,
   TableIcon,
-} from "./SidebarIcons";
+} from './SidebarIcons';
 
 interface SidebarProps {
   sidebarOpen: boolean;
@@ -26,91 +26,54 @@ interface SidebarProps {
 
 const menuGroups = [
   {
-    name: "MENU",
+    name: 'MENU',
     menuItems: [
       {
         icon: <DashboardIcon />,
-        label: "Dashboard",
-        route: "/",
+        label: 'Dashboard',
+        route: '/',
       },
       {
         icon: <ProfileIcon />,
-        label: "Manage Users",
-        route: "#",
+        label: 'Manage Users',
+        route: '#',
         children: [
-          { label: "Users", route: "/user" },
-          { label: "UnApproved Users", route: "/user/unapproved" },
+          { label: 'Users', route: '/user' },
+          { label: 'UnApproved Users', route: '/user/unapproved' },
         ],
       },
-      // {
-      //   icon: <CalendarIcon />,
-      //   label: "Calendar",
-      //   route: "/calendar",
-      // },
-      // {
-      //   icon: <ProfileIcon />,
-      //   label: "Profile",
-      //   route: "/profile",
-      // },
+
       {
         icon: <FormsIcon />,
-        label: "Master Section",
-        route: "#",
+        label: 'Master Section',
+        route: '#',
         children: [
-          { label: "Work Types", route: "/work-type" },
-          { label: "Education", route: "/education" },
-        ],
-      },{
-        icon: <SettingsIcon />,
-        label: "Material Section",
-        route: "#",
-        children: [
-          { label: "Form Elements", route: "/forms/form-elements" },
-          { label: "Form Layout", route: "/forms/form-layout" },
+          { label: 'Work Types', route: '/work-type' },
+          { label: 'Qualification', route: '/qualification' },
         ],
       },
-      // {
-      //   icon: <TableIcon />,
-      //   label: "Tables",
-      //   route: "/tables",
-      // },
-      // {
-      //   icon: <SettingsIcon />,
-      //   label: "Settings",
-      //   route: "/settings",
-      // },
+      {
+        icon: <SettingsIcon />,
+        label: 'Material Section',
+        route: '#',
+        children: [
+          { label: 'Form Elements', route: '/forms/form-elements' },
+          { label: 'Form Layout', route: '/forms/form-layout' },
+        ],
+      },
     ],
   },
-  // {
-  //   name: "OTHERS",
-  //   menuItems: [
-  //     {
-  //       icon: <ChartIcon />,
-  //       label: "Chart",
-  //       route: "/chart",
-  //     },
-  //     {
-  //       icon: <AuthenticationIcon />,
-  //       label: "Authentication",
-  //       route: "#",
-  //       children: [
-  //         { label: "Sign In", route: "/auth/signin" },
-  //         { label: "Sign Up", route: "/auth/signup" },
-  //       ],
-  //     },
-  //   ],
-  // },
 ];
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
   const pathname = usePathname();
-  const [pageName, setPageName] = useLocalStorage("selectedMenu", "dashboard");
+  const [pageName, setPageName] = useLocalStorage('selectedMenu', 'dashboard');
 
   return (
     <ClickOutside onClick={() => setSidebarOpen(false)}>
       <aside
         className={`fixed left-0 top-0 z-9999 flex h-screen w-72.5 flex-col overflow-y-hidden bg-black duration-300 ease-linear dark:bg-boxdark lg:translate-x-0 ${
-          sidebarOpen ? "translate-x-0" : "-translate-x-full"
+          sidebarOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
         {/* <!-- SIDEBAR HEADER --> */}
@@ -119,7 +82,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
             <Image
               width={176}
               height={32}
-              src={"/images/logo/logo.svg"}
+              src={'/images/logo/logo.svg'}
               alt="Logo"
               priority
             />

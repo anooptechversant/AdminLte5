@@ -1,4 +1,4 @@
-import { cookies } from "next/headers";
+import { cookies } from 'next/headers';
 
 const baseURL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -6,8 +6,8 @@ export const verifySession = async () => {
   const cookieString = (await getCookieData()) as string;
   try {
     const response = await fetch(`${baseURL}/user`, {
-      method: "GET",
-      credentials: "include",
+      method: 'GET',
+      credentials: 'include',
       headers: { Cookie: cookieString },
     });
 
@@ -18,7 +18,7 @@ export const verifySession = async () => {
     const responseData = await response.json();
     return { isAuth: true, user: responseData };
   } catch (error) {
-    console.error("Failed to verify session:", error);
+    console.error('Failed to verify session:', error);
     return { isAuth: false, user: null };
   }
 };

@@ -1,18 +1,18 @@
-import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
-import UserList from "@/components/User/UserList";
-import React from "react";
+import Breadcrumb from '@/components/Breadcrumbs/Breadcrumb';
+import WorkTypeList from '@/components/WorkType/WorkTypeList';
+import React from 'react';
 
-const User = async () => {
+const WorkType = async () => {
   return (
     <>
-      <Breadcrumb items={[{ label: "User" }]} />
+      <Breadcrumb items={[{ label: 'Work Type' }]} title="Work Type List" />
       {/* <Suspense fallback={<Loader />}> */}
-      <div className="0">
-        <UserList />
+      <div className="flex flex-col gap-10">
+        <WorkTypeList />
       </div>
       {/* </Suspense> */}
     </>
   );
 };
 
-export default User;
+export default WorkType;

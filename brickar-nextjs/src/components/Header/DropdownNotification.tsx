@@ -1,6 +1,6 @@
-import { useState } from "react";
-import Link from "next/link";
-import ClickOutside from "@/components/ClickOutside";
+import { useState } from 'react';
+import Link from 'next/link';
+import ClickOutside from '@/components/ClickOutside';
 
 const DropdownNotification = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -19,7 +19,7 @@ const DropdownNotification = () => {
         >
           <span
             className={`absolute -top-0.5 right-0 z-1 h-2 w-2 rounded-full bg-meta-1 ${
-              notifying === false ? "hidden" : "inline"
+              notifying === false ? 'hidden' : 'inline'
             }`}
           >
             <span className="absolute -z-1 inline-flex h-full w-full animate-ping rounded-full bg-meta-1 opacity-75"></span>
@@ -59,7 +59,7 @@ const DropdownNotification = () => {
                   <p className="text-sm">
                     <span className="text-black dark:text-white">
                       Edit your information in a swipe
-                    </span>{" "}
+                    </span>{' '}
                     Sint occaecat cupidatat non proident, sunt in culpa qui
                     officia deserunt mollit anim.
                   </p>
@@ -75,7 +75,7 @@ const DropdownNotification = () => {
                   <p className="text-sm">
                     <span className="text-black dark:text-white">
                       It is a long established fact
-                    </span>{" "}
+                    </span>{' '}
                     that a reader will be distracted by the readable.
                   </p>
 
@@ -90,7 +90,7 @@ const DropdownNotification = () => {
                   <p className="text-sm">
                     <span className="text-black dark:text-white">
                       There are many variations
-                    </span>{" "}
+                    </span>{' '}
                     of passages of Lorem Ipsum available, but the majority have
                     suffered
                   </p>
@@ -106,7 +106,7 @@ const DropdownNotification = () => {
                   <p className="text-sm">
                     <span className="text-black dark:text-white">
                       There are many variations
-                    </span>{" "}
+                    </span>{' '}
                     of passages of Lorem Ipsum available, but the majority have
                     suffered
                   </p>

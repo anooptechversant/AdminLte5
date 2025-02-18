@@ -1,4 +1,5 @@
-import Link from "next/link";
+import { ChevronRight } from '@untitled-ui/icons-react';
+import Link from 'next/link';
 
 interface BreadcrumbItem {
   label: string;
@@ -7,36 +8,43 @@ interface BreadcrumbItem {
 
 interface BreadcrumbProps {
   items: BreadcrumbItem[];
+  title?: string;
 }
 
-const Breadcrumb = ({ items }: BreadcrumbProps) => {
+const Breadcrumb = ({ items, title }: BreadcrumbProps) => {
   const defaultItems: BreadcrumbItem[] = [
-    { label: "Dashboard", href: "/" },
+    { label: 'Dashboard', href: '/' },
     ...items,
   ];
 
   return (
     <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-      <h2 className="text-title-md2 font-semibold text-black dark:text-white">
-        {defaultItems[defaultItems.length - 1]?.label}
-      </h2>
+      <span>
+        {title && (
+          <h2 className="text-title-md2 font-semibold text-black dark:text-white">
+            {title}
+          </h2>
+        )}
+      </span>
 
       <nav>
-        <ol className="flex items-center gap-2">
+        <ol className="flex items-center gap-1">
           {defaultItems.map((item, index) => (
             <li key={index} className="flex items-center">
               {item.href ? (
                 <Link
-                  className="font-medium text-gray-600 hover:text-black"
+                  className="font-normal text-gray-600 hover:text-black dark:text-gray-400 dark:hover:text-gray-300"
                   href={item.href}
                 >
                   {item.label}
                 </Link>
               ) : (
-                <span className="font-medium text-primary">{item.label}</span>
+                <span className="font-normal text-primary">{item.label}</span>
               )}
               {index < defaultItems.length - 1 && (
-                <span className="mx-2">/</span>
+                <span className="mx-1">
+                  <ChevronRight className="text-gray-300 text-xs" />
+                </span>
               )}
             </li>
           ))}

@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import Email from "@/components/Svg/Email";
-import Lock from "@/components/Svg/Lock";
-import useAuth from "@/hooks/useAuth";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { toast, ToastContainer } from "react-toastify";
+import Email from '@/components/Svg/Email';
+import Lock from '@/components/Svg/Lock';
+import useAuth from '@/hooks/useAuth';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { toast, ToastContainer } from 'react-toastify';
 
 interface FormData {
   email: string;
@@ -39,14 +39,14 @@ const LoginForm = () => {
       const password = data?.password;
 
       await login(email, password);
-      router.push("/");
+      router.push('/');
     } catch (error: any) {
-      toast.error(error.message || "Something went wrong, try again later");
+      toast.error(error.message || 'Something went wrong, try again later');
     } finally {
       setIsLoading(false);
     }
   };
-console.log(showPassword);
+  console.log(showPassword);
   return (
     <div className="flex min-h-screen items-center justify-center">
       <ToastContainer />
@@ -65,12 +65,12 @@ console.log(showPassword);
                   </label>
                   <div className="relative">
                     <input
-                      {...register("email", { required: "Email is required*" })}
+                      {...register('email', { required: 'Email is required*' })}
                       type="text"
                       placeholder="Enter your email"
                       className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                       style={{
-                        borderColor: errors.email ? "red" : "",
+                        borderColor: errors.email ? 'red' : '',
                       }}
                     />
                     {errors.email && (
@@ -88,20 +88,20 @@ console.log(showPassword);
                   </label>
                   <div className="relative">
                     <input
-                      {...register("password", {
-                        required: "Password is required*",
+                      {...register('password', {
+                        required: 'Password is required*',
                       })}
-                      type={showPassword ? "text" : "password"}
+                      type={showPassword ? 'text' : 'password'}
                       placeholder="Enter Password"
                       className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                       style={{
-                        borderColor: errors.password ? "red" : "",
+                        borderColor: errors.password ? 'red' : '',
                       }}
                     />
                     {errors.password && (
                       <p className="errorMessage">{errors.password.message}</p>
                     )}
-                    <span 
+                    <span
                       className="absolute right-4 top-4 cursor-pointer select-none"
                       onClick={() => setShowPassword((prev) => !prev)}
                     >
@@ -118,7 +118,7 @@ console.log(showPassword);
                   >
                     {isLoading ? (
                       <div className="flex items-center justify-center">
-                        {" "}
+                        {' '}
                         <span className="animate-spin">
                           <svg
                             width="24"
@@ -141,7 +141,7 @@ console.log(showPassword);
                         Loading...
                       </div>
                     ) : (
-                      "Sign In"
+                      'Sign In'
                     )}
                   </button>
                 </div>

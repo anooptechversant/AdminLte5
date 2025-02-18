@@ -1,5 +1,5 @@
-import useAuth from "@/hooks/useAuth";
-import { redirect } from "next/navigation";
+import useAuth from '@/hooks/useAuth';
+import { redirect } from 'next/navigation';
 
 export default async function RootLayout({
   children,

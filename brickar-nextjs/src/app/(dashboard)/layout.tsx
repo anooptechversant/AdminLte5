@@ -1,4 +1,5 @@
-import AuthChecker from "@/components/common/AuthChecker";
+import AuthChecker from '@/components/common/AuthChecker';
+import 'react-responsive-modal/styles.css';
 
 export default async function RootLayout({
   children,
