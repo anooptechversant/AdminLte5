@@ -1,31 +1,24 @@
 'use client';
 import { ColumnDef } from '@tanstack/react-table';
-import { useRouter, useSearchParams } from 'next/navigation';
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Modal from 'react-responsive-modal';
 import { toast } from 'react-toastify';
+import { Tooltip } from 'react-tooltip';
 
 import { apiRequest, getRequest } from '@/utils/api';
 
 import CommonTable from '../common/Table';
-import Tooltip from '../common/Tooltip';
 import Check from '../Svg/Check';
 import Eye from '../Svg/Eye';
 import Trash from '../Svg/Trash';
 
-const UnApprovedUserList = () => {
-  const searchParams = useSearchParams();
-  const router = useRouter();
-
-  const currentPage = useMemo(
-    () => Number(searchParams.get('page')) || 1,
-    [searchParams],
-  );
-  const limit = useMemo(
-    () => Number(searchParams.get('limit')) || 10,
-    [searchParams],
-  );
-
+const UnApprovedUserList = ({
+  page = '1',
+  limit = '10',
+}: {
+  page?: string;
+  limit?: string;
+}) => {
   const [data, setData] = useState<any[]>([]);
   const [totalPages, setTotalPages] = useState<number>(0);
   const [errorMessage, setErrorMessage] = useState<string | undefined>(
@@ -42,7 +35,7 @@ const UnApprovedUserList = () => {
       try {
         setIsLoading(true);
         const response = await getRequest(
-          `admin/user/unapproved/B2B/?page=${currentPage}&limit=${limit}`,
+          `admin/user/unapproved/B2B/?page=${page}&limit=${limit}`,
         );
         const roleResponse = await getRequest('common/roles/');
         setRoleData(roleResponse);
@@ -55,7 +48,7 @@ const UnApprovedUserList = () => {
       }
     };
     fetchData();
-  }, [currentPage, limit]);
+  }, [page, limit]);
 
   const handleAction = (type: string, id: string) => {
     setModalType(type);
@@ -122,39 +115,39 @@ const UnApprovedUserList = () => {
             <button
               className="hover:text-primary"
               onClick={() => console.log('View details for', row.original.id)}
+              data-tooltip-id="view-tooltip"
             >
               <Eye />
             </button>
-            <Tooltip content="View" />
           </div>
           <div className="group relative flex items-center">
             <button
               className="hover:text-primary"
               onClick={() => handleAction('approve', row.original.id)}
+              data-tooltip-id="approve-tooltip"
             >
               <Check />
             </button>
-            <Tooltip content="Approve" />
           </div>
           <div className="group relative flex items-center">
             <button
               className="hover:text-primary"
               onClick={() => handleAction('delete', row.original.id)}
+              data-tooltip-id="delete-tooltip"
             >
               <Trash />
             </button>
-            <Tooltip content="Delete" />
           </div>
         </div>
       ),
     },
   ];
-  const roleArray = roleData
-    .filter((role) => role.type === 'B2B')
-    .map((role) => ({
-      option: role.role,
-      value: role.id,
-    }));
+  // const roleArray = roleData
+  //   .filter((role) => role.type === 'B2B')
+  //   .map((role) => ({
+  //     option: role.role,
+  //     value: role.id,
+  //   }));
 
   return (
     <>
@@ -183,6 +176,9 @@ const UnApprovedUserList = () => {
         //   </div>
         // }
       />
+      <Tooltip id="view-tooltip" place="top" content="View" />
+      <Tooltip id="approve-tooltip" place="top" content="Approve" />
+      <Tooltip id="delete-tooltip" place="top" content="Delete" />
       <Modal open={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <div className="p-4">
           <h2 className="text-lg font-bold">Confirmation</h2>

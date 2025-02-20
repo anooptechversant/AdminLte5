@@ -1,7 +1,10 @@
 import { Metadata } from 'next';
-import React from 'react';
+import React, { Suspense } from 'react';
 
+// import Loader from '@/components/common/Loader/LoginLoader';
+import Loader from '@/components/common/Loader';
 import LoginForm from '@/components/Login/Form';
+import AuthLogin from '@/components/common/AuthLogin';
 
 export const metadata: Metadata = {
   title: 'Brickar SignIn Page | Brickar Admin',
@@ -9,7 +12,13 @@ export const metadata: Metadata = {
 };
 
 const SignIn = async () => {
-  return <LoginForm />;
+  return (
+    <Suspense fallback={<Loader />}>
+      <AuthLogin>
+        <LoginForm />
+      </AuthLogin>
+    </Suspense>
+  );
 };
 
 export default SignIn;

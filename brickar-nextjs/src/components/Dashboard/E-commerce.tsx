@@ -2,7 +2,7 @@
 import React from 'react';
 
 import CardDataStats from '../CardDataStats';
-import TableOne from '../Tables/TableOne';
+// import TableOne from '../Tables/TableOne';
 
 const ECommerce: React.FC = () => {
   return (

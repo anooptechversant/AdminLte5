@@ -5,19 +5,15 @@ import Breadcrumb from '@/components/Breadcrumbs/Breadcrumb';
 import Loader from '@/components/common/Loader';
 import WorkTypeForm from '@/components/WorkType/Form';
 
-export async function generateMetadata({
-  searchParams: { id },
-}: {
-  searchParams: { id: string };
-}): Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata> {
   return {
     title: `Edit Work Type" | Brickar`,
     description: `"Edit Work Type" | Brickar`,
   };
 }
 
-const Form = ({ searchParams }: any) => {
-  const { id } = searchParams;
+const page = async ({ params }: any) => {
+  const { id } = params;
 
   return (
     <>
@@ -29,11 +25,11 @@ const Form = ({ searchParams }: any) => {
         title="Edit Work Type"
       />
 
-      {/* <Suspense fallback={<Loader />}> */}
-      <WorkTypeForm id={id} />
-      {/* </Suspense> */}
+      <Suspense fallback={<Loader />}>
+        <WorkTypeForm id={id} />
+      </Suspense>
     </>
   );
 };
 
-export default Form;
+export default page;

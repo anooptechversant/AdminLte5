@@ -13,6 +13,7 @@ import { CommonForm } from '../common/CommonForm';
 const Form = ({ id }: WorkTypeProp) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+  const [dataLoading, setDataLoading] = useState(false);
   const [data, setData] = useState<any>([]);
   const [errorMessage, setErrorMessage] = useState<string | undefined>(
     undefined,
@@ -20,19 +21,17 @@ const Form = ({ id }: WorkTypeProp) => {
   const form = useForm<WorkType>({
     mode: 'onChange',
   });
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = form;
+  const { reset } = form;
   const fetchData = async () => {
+    setDataLoading(true);
     try {
       const response = await getRequest(`admin/worktype/common`);
 
       setData(response.filter((obj: any) => obj.id == id));
     } catch (error: any) {
       setErrorMessage(error.message || 'Failed to fetch work type');
+    } finally {
+      setDataLoading(false);
     }
   };
 
@@ -99,6 +98,7 @@ const Form = ({ id }: WorkTypeProp) => {
         form={form}
         onFinish={onSubmit}
         submitButtonLabel={id ? 'Update' : 'Save'}
+        isLoading={isLoading || dataLoading}
       />
     </div>
   );

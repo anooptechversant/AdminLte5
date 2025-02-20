@@ -6,11 +6,11 @@ import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import Modal from 'react-responsive-modal';
 import { toast } from 'react-toastify';
+import { Tooltip } from 'react-tooltip';
 
 import { apiRequest, getRequest } from '@/utils/api';
 
 import CommonTable from '../common/Table';
-import Tooltip from '../common/Tooltip';
 import Edit from '../Svg/Edit';
 import Plus from '../Svg/Plus';
 import Trash from '../Svg/Trash';
@@ -70,7 +70,7 @@ const QualificationList = () => {
   };
 
   const handleEdit = (id: string) => {
-    router.push(`/qualification/edit?id=${id}`);
+    router.push(`/qualification/edit${id}`);
   };
   const columns: ColumnDef<any>[] = [
     {
@@ -87,19 +87,19 @@ const QualificationList = () => {
             <button
               className="hover:text-primary"
               onClick={() => handleEdit(row.original.id)}
+              data-tooltip-id="edit-tooltip"
             >
               <Edit />
             </button>
-            <Tooltip content="Edit" />
           </div>
           <div className="group relative flex items-center">
             <button
               className="hover:text-primary"
               onClick={() => handleDelete(row.original.id)}
+              data-tooltip-id="delete-tooltip"
             >
               <Trash />
             </button>
-            <Tooltip content="Delete" />
           </div>
         </div>
       ),
@@ -121,6 +121,8 @@ const QualificationList = () => {
           </Link>
         }
       />
+      <Tooltip id="edit-tooltip" place="top" content="Edit" />
+      <Tooltip id="delete-tooltip" place="top" content="Delete" />
       <Modal open={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <div className="p-4">
           <h2 className="text-lg font-bold">Confirmation</h2>

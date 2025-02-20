@@ -1,7 +1,5 @@
 import Link from 'next/link';
 
-import DefaultLayout from '@/components/Layouts/DefaultLayout';
-
 export default async function LogInNotFound() {
   return (
     <div className="flex h-96 w-full flex-col items-center justify-center text-center">

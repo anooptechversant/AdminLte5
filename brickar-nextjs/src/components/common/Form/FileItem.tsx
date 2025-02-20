@@ -20,7 +20,7 @@ interface FileItemProps {
 
 const FileItem: React.FC<FileItemProps> = ({ file, children, limit }) => {
   const { type, name, size } = file;
-  const percent = (size / limit) * 100;
+  const _percent = (size / limit) * 100;
 
   const renderThumbnail = () => {
     const isImageFile =

@@ -13,26 +13,26 @@ import { CommonForm } from '../common/CommonForm';
 const Form = ({ id }: QualificationProp) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+  const [dataLoading, setDataLoading] = useState(false);
   const [data, setData] = useState<any>([]);
   const [errorMessage, setErrorMessage] = useState<string | undefined>(
     undefined,
   );
+
   const form = useForm<Qualification>({
     mode: 'onChange',
   });
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = form;
+  const { reset } = form;
   const fetchData = async () => {
+    setDataLoading(true);
     try {
-      const response = await getRequest(`admin/education/`);
+      const response = await getRequest(`common/education/`);
 
       setData(response.filter((obj: any) => obj.id == id));
     } catch (error: any) {
       setErrorMessage(error.message || 'Failed to fetch qualification');
+    } finally {
+      setDataLoading(false);
     }
   };
 
@@ -76,7 +76,6 @@ const Form = ({ id }: QualificationProp) => {
 
       setTimeout(() => {
         router.push('/qualification');
-        // router.refresh();
       }, 1000);
     } catch (error: any) {
       toast.error(error.message || 'Something went wrong, try again later');
@@ -101,6 +100,7 @@ const Form = ({ id }: QualificationProp) => {
         form={form}
         onFinish={onSubmit}
         submitButtonLabel={id ? 'Update' : 'Save'}
+        isLoading={isLoading || dataLoading}
       />
     </div>
   );
