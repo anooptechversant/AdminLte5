@@ -21,9 +21,9 @@ const Breadcrumb = ({ items, title }: BreadcrumbProps) => {
     <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
       <span>
         {title && (
-          <h2 className="text-title-md2 font-semibold text-black dark:text-white">
+          <h3 className="text-title-sm2 font-semibold text-black dark:text-white">
             {title}
-          </h2>
+          </h3>
         )}
       </span>
 

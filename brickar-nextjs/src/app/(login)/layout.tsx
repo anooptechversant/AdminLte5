@@ -1,11 +1,9 @@
-import { redirect } from 'next/navigation';
-
-import useAuth from '@/hooks/useAuth';
+import AuthLayout from '@/components/Layouts/AuthLayout';
 
 export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return children;
+  return <AuthLayout>{children}</AuthLayout>;
 }

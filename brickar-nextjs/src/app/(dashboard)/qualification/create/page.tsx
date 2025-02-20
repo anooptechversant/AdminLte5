@@ -23,9 +23,9 @@ const Form = () => {
         title="Add Qualification"
       />
 
-      {/* <Suspense fallback={<Loader />}> */}
-      <QualificationForm />
-      {/* </Suspense> */}
+      <Suspense fallback={<Loader />}>
+        <QualificationForm />
+      </Suspense>
     </>
   );
 };

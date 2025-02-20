@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 
 import Breadcrumb from '@/components/Breadcrumbs/Breadcrumb';
+import Loader from '@/components/common/Loader';
 import QualificationList from '@/components/Qualification/QualificationList';
 
 const Qualification = async () => {
@@ -10,11 +11,11 @@ const Qualification = async () => {
         items={[{ label: 'Qualification' }]}
         title="Qualification List"
       />
-      {/* <Suspense fallback={<Loader />}> */}
-      <div className="flex flex-col gap-10">
-        <QualificationList />
-      </div>
-      {/* </Suspense> */}
+      <Suspense fallback={<Loader />}>
+        <div className="flex flex-col gap-10">
+          <QualificationList />
+        </div>
+      </Suspense>
     </>
   );
 };

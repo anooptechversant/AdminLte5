@@ -7,7 +7,7 @@ import useAuth from '@/hooks/useAuth';
 
 const DropdownUser = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const { userInfo, logout } = useAuth();
+  const { logout } = useAuth();
   return (
     <ClickOutside onClick={() => setDropdownOpen(false)} className="relative">
       <Link

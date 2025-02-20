@@ -20,7 +20,6 @@ const FormInput: FC<FormInputProps> = ({
   errorMessage,
   right,
   className,
-  values,
   ...rest
 }) => {
   const [pwInputType, setPwInputType] = useState<'password' | 'text'>(

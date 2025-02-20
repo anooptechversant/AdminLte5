@@ -52,7 +52,7 @@ const Files: React.FC<FilesProps> = ({
     });
   };
 
-  const onFileUpload = async (files: FileList) => {
+  const onFileUpload = async (files: File[]) => {
     try {
       form.clearErrors(fieldName);
       const fileArray = Array.from(files);
@@ -68,15 +68,16 @@ const Files: React.FC<FilesProps> = ({
       setUploadedFile(newFiles);
       form.setValue(fieldName, newFiles);
       await form.trigger(fieldName);
-    } catch (error) {
-      form.setError(fieldName, { message: 'Error uploading file' });
+    } catch (error: any) {
+      form.setError(fieldName, {
+        message: error.message || 'Error uploading file',
+      });
     }
   };
 
-  const beforeUpload = async (fileList: FileList): Promise<boolean> => {
+  const beforeUpload = async (newFiles: File[]): Promise<boolean> => {
     try {
-      const fileArray: File[] = Array.from(fileList);
-      for (const file of fileArray) {
+      for (const file of newFiles) {
         if (Filetype === 'image' && !file.type.startsWith('image/')) {
           throw new Error('Only image files (JPG, PNG, etc.) are allowed.');
         }
@@ -114,7 +115,7 @@ const Files: React.FC<FilesProps> = ({
           onChange={onFileUpload}
           limit={limit}
           multiple={multiple}
-          fileList={uploadedFile}
+          fileList={uploadedFile.map((file) => file.file)}
         >
           <div
             className={`flex flex-col items-center justify-center py-4 ${error ? 'border-2 border-red-500' : 'border border-gray-200'}`}

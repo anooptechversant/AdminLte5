@@ -11,6 +11,7 @@ import Form from './Form/Form';
 import FormInput from './Form/FormInput';
 import FormRow from './Form/FormRow';
 import Select from './Form/Select';
+import Loader from './Loader';
 
 const QuillNoSSRWrapper = dynamic(
   async () => {
@@ -31,6 +32,7 @@ export const CommonForm: FC<CommonFormProps> = ({
   submitButtonLabel = 'Submit',
   formatData,
   onFinish,
+  isLoading,
 }) => {
   const {
     register,
@@ -199,6 +201,7 @@ export const CommonForm: FC<CommonFormProps> = ({
   return (
     <div className="rounded-lg border border-stroke bg-white px-5  py-6 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:py-6">
       <ToastContainer />
+      {isLoading && <Loader />}
       <Form onSubmit={handleSubmit(onSubmit)}>
         {fields.map((field) =>
           field.type === 'upload' ? (

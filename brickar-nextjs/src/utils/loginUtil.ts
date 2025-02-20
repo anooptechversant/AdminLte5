@@ -1,7 +1,3 @@
-import { headers } from 'next/headers';
-
-import { apiRequest } from './api';
-
 // Define the structure of the authentication response
 interface AuthData {
   access_token: string;

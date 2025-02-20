@@ -1,7 +1,5 @@
 import Link from 'next/link';
 
-import DefaultLayout from '@/components/Layouts/DefaultLayout';
-
 export default async function NotFound() {
   return (
     <div className="flex h-screen  w-full flex-col items-center justify-center text-center">

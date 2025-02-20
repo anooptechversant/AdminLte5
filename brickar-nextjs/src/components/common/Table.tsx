@@ -31,20 +31,18 @@ const CommonTable = <T,>({
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  const currentPage = useMemo(
-    () => Number(searchParams.get('page')) || 1,
-    [searchParams],
-  );
-  const limit = useMemo(
-    () => Number(searchParams.get('limit')) || 10,
-    [searchParams],
-  );
+  const [currentPage, setCurrentPage] = useState(1);
+  const [limit, setLimit] = useState(10);
+  const [sorting, setSorting] = useState<SortingState>([]);
+
+  useEffect(() => {
+    setCurrentPage(Number(searchParams.get('page')) || 1);
+    setLimit(Number(searchParams.get('limit')) || 10);
+  }, [searchParams]);
 
   useEffect(() => {
     if (error) toast.error(error);
   }, [error]);
-
-  const [sorting, setSorting] = useState<SortingState>([]);
 
   const updatedColumns = useMemo(
     () => [
@@ -94,7 +92,7 @@ const CommonTable = <T,>({
   );
 
   return (
-    <div className="rounded-sm border border-stroke bg-white px-5 pb-2.5 pt-6 shadow-default dark:border-strokedark dark:bg-boxdark xl:pb-1">
+    <div className="rounded-lg border border-stroke bg-white px-5 pb-2.5 pt-6 shadow-default dark:border-strokedark dark:bg-boxdark xl:pb-1">
       <ToastContainer />
       <div className="mb-2 flex items-center justify-between">
         <span>
@@ -113,8 +111,8 @@ const CommonTable = <T,>({
         </span>
         {customComponent && <div className="ml-4">{customComponent}</div>}
       </div>
-      <div className="max-w-full overflow-x-auto">
-        <table className="w-full min-w-[600px] table-auto border-collapse">
+      <div className="w-full overflow-x-auto">
+        <table className="w-full table-auto border-collapse">
           <thead>
             {table.getHeaderGroups().map((headerGroup) => (
               <tr
@@ -164,7 +162,7 @@ const CommonTable = <T,>({
                   {row.getVisibleCells().map((cell) => (
                     <td
                       key={cell.id}
-                      className="border-b border-[#eee] px-4 py-5 pl-5 dark:border-strokedark"
+                      className="overflow-x-hidden border-b border-[#eee] px-4 py-5 pl-5  dark:border-strokedark"
                     >
                       {flexRender(
                         cell.column.columnDef.cell,

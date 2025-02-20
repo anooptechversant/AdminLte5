@@ -5,19 +5,15 @@ import Breadcrumb from '@/components/Breadcrumbs/Breadcrumb';
 import Loader from '@/components/common/Loader';
 import QualificationForm from '@/components/Qualification/Form';
 
-export async function generateMetadata({
-  searchParams: { id },
-}: {
-  searchParams: { id: string };
-}): Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: `Edit Qualification" | Brickar`,
-    description: `"Edit Qualification" | Brickar`,
+    title: `Edit Qualification | Brickar`,
+    description: `Edit Qualification | Brickar`,
   };
 }
 
-const Form = ({ searchParams }: any) => {
-  const { id } = searchParams;
+const Form = ({ params }: any) => {
+  const { id } = params;
 
   return (
     <>
@@ -29,9 +25,9 @@ const Form = ({ searchParams }: any) => {
         title="Edit Qualification"
       />
 
-      {/* <Suspense fallback={<Loader />}> */}
-      <QualificationForm id={id} />
-      {/* </Suspense> */}
+      <Suspense fallback={<Loader />}>
+        <QualificationForm id={id} />
+      </Suspense>
     </>
   );
 };

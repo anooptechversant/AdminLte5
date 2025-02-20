@@ -2,23 +2,21 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import React, { useEffect, useRef, useState } from 'react';
 
 import ClickOutside from '@/components/ClickOutside';
 import SidebarItem from '@/components/Sidebar/SidebarItem';
 import useLocalStorage from '@/hooks/useLocalStorage';
 
 import {
-  AuthenticationIcon,
-  CalendarIcon,
-  ChartIcon,
+  // AuthenticationIcon,
+  // CalendarIcon,
+  // ChartIcon,
   DashboardIcon,
   FormsIcon,
   ProfileIcon,
   RightArrow,
   SettingsIcon,
-  TableIcon,
+  // TableIcon,
 } from './SidebarIcons';
 
 interface SidebarProps {
@@ -68,7 +66,6 @@ const menuGroups = [
 ];
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
-  const pathname = usePathname();
   const [pageName, setPageName] = useLocalStorage('selectedMenu', 'dashboard');
 
   return (

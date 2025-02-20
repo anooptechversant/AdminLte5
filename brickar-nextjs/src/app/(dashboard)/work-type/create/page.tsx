@@ -23,9 +23,9 @@ const Form = () => {
         title="Add Work Type"
       />
 
-      {/* <Suspense fallback={<Loader />}> */}
-      <WorkTypeForm />
-      {/* </Suspense> */}
+      <Suspense fallback={<Loader />}>
+        <WorkTypeForm />
+      </Suspense>
     </>
   );
 };

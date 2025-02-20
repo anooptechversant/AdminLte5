@@ -89,6 +89,7 @@ export const apiRequest = async ({
     responseData = await response.json();
   } catch (jsonError) {
     // In case response is not JSON
+    console.log(jsonError);
   }
 
   if (!response.ok) {
@@ -142,7 +143,7 @@ const logout = () => {
   localStorage.removeItem('refresh_token');
   localStorage.removeItem('user_info');
   // For client-side navigation in Next.js app directory, you might use:
-  window.location.href = '/login';
+  // window.location.href = '/login';
 };
 
 /**

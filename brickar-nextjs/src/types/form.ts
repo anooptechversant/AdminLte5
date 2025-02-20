@@ -51,6 +51,7 @@ export type CommonFormProps = {
   submitButtonLabel?: string;
   formatData?: (data: any) => any;
   onFinish: (data: any) => Promise<void>;
+  isLoading?: boolean;
 };
 
 export type FormInputProps = {
@@ -120,4 +121,26 @@ export type FilesProps = {
   maxWidth?: number;
   maxHeight?: number;
   multiple?: boolean;
+};
+
+export type FileUploadProps = {
+  accept?: string;
+  beforeUpload?: (
+    newFiles: File[],
+    files: File[],
+  ) => Promise<boolean | string> | boolean | string | any;
+  disabled?: boolean;
+  draggable?: boolean;
+  fileList: File[];
+  multiple?: boolean;
+  onChange?: (files: File[]) => void;
+  onFileRemove?: (files: File[]) => void;
+  showList?: boolean;
+  tip?: string | React.ReactNode;
+  uploadLimit?: number;
+  className?: string;
+  limit?: number | any;
+  position?: any;
+  photoPosition?: any;
+  children?: React.ReactNode;
 };
