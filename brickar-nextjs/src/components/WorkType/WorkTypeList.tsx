@@ -117,11 +117,12 @@ const WorkTypeList = () => {
         isLoading={isLoading}
         customComponent={
           <Link href="/work-type/create">
-            <span className="flex items-center gap-2 whitespace-nowrap rounded bg-primary px-4.5 py-2 font-medium text-white hover:bg-opacity-80">
+            <span className="flex items-center gap-2 whitespace-nowrap rounded bg-gray-800 px-4.5 py-2 font-medium text-white hover:bg-opacity-80">
               <Plus /> Add Work Type
             </span>
           </Link>
         }
+        title="work type"
       />
       <Tooltip id="edit-tooltip" place="top" content="Edit" />
       <Tooltip id="delete-tooltip" place="top" content="Delete" />

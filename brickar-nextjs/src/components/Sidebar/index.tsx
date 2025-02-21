@@ -50,6 +50,7 @@ const menuGroups = [
         children: [
           { label: 'Work Types', route: '/work-type' },
           { label: 'Qualification', route: '/qualification' },
+          { label: 'Units', route: '/unit' },
         ],
       },
       {

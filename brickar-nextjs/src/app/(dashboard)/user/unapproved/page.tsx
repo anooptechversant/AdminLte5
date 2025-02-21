@@ -16,7 +16,7 @@ const UnApproved = async ({
         title="UnApproved Users List"
       />
       <Suspense fallback={<Loader />}>
-        <div className="flex flex-col gap-10">
+        <div className="flex flex-col">
           <UnApprovedUserList
             page={searchParams.page}
             limit={searchParams.limit}

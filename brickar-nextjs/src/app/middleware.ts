@@ -1,5 +1,5 @@
-import { NextResponse, type NextRequest } from 'next/server';
 import { getCookie } from 'cookies-next';
+import { type NextRequest, NextResponse } from 'next/server';
 
 export function middleware(request: NextRequest) {
   const accessToken = request.cookies.get('access_token')?.value;

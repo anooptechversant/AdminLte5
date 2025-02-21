@@ -2,7 +2,9 @@
 
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
+
 import useAuth from '@/hooks/useAuth';
+
 import Loader from './Loader';
 
 const AuthLogin = ({ children }: { children: React.ReactNode }) => {

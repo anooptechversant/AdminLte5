@@ -15,7 +15,7 @@ import Edit from '../Svg/Edit';
 import Plus from '../Svg/Plus';
 import Trash from '../Svg/Trash';
 
-const QualificationList = () => {
+const UnitList = () => {
   const router = useRouter();
   const [data, setData] = useState<any[]>([]);
   const [errorMessage, setErrorMessage] = useState<string | undefined>(
@@ -29,7 +29,7 @@ const QualificationList = () => {
     const fetchData = async () => {
       try {
         setIsLoading(true);
-        const response = await getRequest(`common/education/`);
+        const response = await getRequest(`common/units/`);
 
         if (Array.isArray(response)) {
           setData(response);
@@ -38,7 +38,7 @@ const QualificationList = () => {
           setData(response.records || []);
         }
       } catch (error: any) {
-        setErrorMessage(error.message || 'Failed to fetch qualification');
+        setErrorMessage(error.message || 'Failed to fetch units');
       } finally {
         setIsLoading(false);
       }
@@ -57,12 +57,12 @@ const QualificationList = () => {
     try {
       await apiRequest({
         method: 'DELETE',
-        path: `admin/education/${selectedId}`,
+        path: `admin/unit/${selectedId}`,
       });
       setData((prevData) => prevData.filter((item) => item.id !== selectedId));
-      toast.success('Qualification deleted successfully!');
+      toast.success('Unit deleted successfully!');
     } catch (error: any) {
-      setErrorMessage(error.message || 'Failed to delete qualification');
+      setErrorMessage(error.message || 'Failed to delete unit');
     } finally {
       setIsModalOpen(false);
       setSelectedId(null);
@@ -70,13 +70,13 @@ const QualificationList = () => {
   };
 
   const handleEdit = (id: string) => {
-    router.push(`/qualification/edit/${id}`);
+    router.push(`/unit/edit/${id}`);
   };
   const columns: ColumnDef<any>[] = [
     {
-      header: 'Qualification',
-      accessorKey: 'qualification',
-      cell: ({ row }) => <span>{row.original.qualification || 'N/A'}</span>,
+      header: 'Unit Name',
+      accessorKey: 'unit',
+      cell: ({ row }) => <span>{row.original.unit || 'N/A'}</span>,
     },
     {
       header: 'Actions',
@@ -114,22 +114,20 @@ const QualificationList = () => {
         error={errorMessage}
         isLoading={isLoading}
         customComponent={
-          <Link href="/qualification/create">
+          <Link href="/unit/create">
             <span className="flex items-center gap-2 whitespace-nowrap rounded bg-gray-800 px-4.5 py-2 font-medium text-white hover:bg-opacity-80">
-              <Plus /> Add Qualification
+              <Plus /> Add unit
             </span>
           </Link>
         }
-        title="qualification"
+        title="units"
       />
       <Tooltip id="edit-tooltip" place="top" content="Edit" />
       <Tooltip id="delete-tooltip" place="top" content="Delete" />
       <Modal open={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <div className="p-4">
           <h2 className="text-lg font-bold">Confirmation</h2>
-          <p className="mt-2">
-            Are you sure you want to delete this qualification?
-          </p>
+          <p className="mt-2">Are you sure you want to delete this unit?</p>
           <div className="mt-4 flex justify-around gap-10">
             <button
               className="flex-grow rounded bg-gray-400 p-2 font-medium text-white hover:bg-opacity-90"
@@ -150,4 +148,4 @@ const QualificationList = () => {
   );
 };
 
-export default QualificationList;
+export default UnitList;

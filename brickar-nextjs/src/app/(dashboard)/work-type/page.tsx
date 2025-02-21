@@ -9,7 +9,7 @@ const WorkType = async () => {
     <>
       <Breadcrumb items={[{ label: 'Work Type' }]} title="Work Type List" />
       <Suspense fallback={<Loader />}>
-        <div className="flex flex-col gap-10">
+        <div className="flex flex-col">
           <WorkTypeList />
         </div>
       </Suspense>

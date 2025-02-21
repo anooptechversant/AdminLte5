@@ -2,22 +2,19 @@ import React, { Suspense } from 'react';
 
 import Breadcrumb from '@/components/Breadcrumbs/Breadcrumb';
 import Loader from '@/components/common/Loader';
-import QualificationList from '@/components/Qualification/QualificationList';
+import UnitList from '@/components/Units/UnitList';
 
-const Qualification = async () => {
+const Unit = async () => {
   return (
     <>
-      <Breadcrumb
-        items={[{ label: 'Qualification' }]}
-        title="Qualification List"
-      />
+      <Breadcrumb items={[{ label: 'Unit' }]} title="Units List" />
       <Suspense fallback={<Loader />}>
         <div className="flex flex-col">
-          <QualificationList />
+          <UnitList />
         </div>
       </Suspense>
     </>
   );
 };
 
-export default Qualification;
+export default Unit;

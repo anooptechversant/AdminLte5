@@ -98,6 +98,7 @@ const UserList = ({
         error={errorMessage}
         isLoading={isLoading}
         totalPages={totalPages}
+        title="user list"
       />
       <Tooltip id="view-tooltip" place="top" content="View" />
     </>

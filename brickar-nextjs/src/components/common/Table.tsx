@@ -15,6 +15,7 @@ import { toast, ToastContainer } from 'react-toastify';
 
 import { CommonTableProps } from '@/types/common';
 
+import NoData from './NoData';
 import Pagination from './Pagination';
 
 const LIMIT_OPTIONS = [5, 10, 20, 50];
@@ -27,6 +28,7 @@ const CommonTable = <T,>({
   totalPages: TotalPages,
   dashBoard,
   customComponent,
+  title,
 }: CommonTableProps<T>) => {
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -92,107 +94,126 @@ const CommonTable = <T,>({
   );
 
   return (
-    <div className="rounded-lg border border-stroke bg-white px-5 pb-2.5 pt-6 shadow-default dark:border-strokedark dark:bg-boxdark xl:pb-1">
-      <ToastContainer />
-      <div className="mb-2 flex items-center justify-between">
-        <span>
-          <span className="mr-2 text-sm">Rows per page:</span>
-          <select
-            className="rounded border bg-white p-1 text-black dark:bg-gray-800 dark:text-white"
-            value={limit}
-            onChange={(e) => handleLimitChange(Number(e.target.value))}
-          >
-            {LIMIT_OPTIONS.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
-        </span>
-        {customComponent && <div className="ml-4">{customComponent}</div>}
-      </div>
-      <div className="w-full overflow-x-auto">
-        <table className="w-full table-auto border-collapse">
-          <thead>
-            {table.getHeaderGroups().map((headerGroup) => (
-              <tr
-                key={headerGroup.id}
-                className="bg-gray-100 text-left dark:bg-meta-4"
-              >
-                {headerGroup.headers.map((header) => (
-                  <th
-                    key={header.id}
-                    className={`min-w-[50px] cursor-pointer whitespace-nowrap p-4 font-medium text-black dark:text-white ${
-                      header.id === 'actions' ? 'text-right' : ''
-                    }`}
-                    // className="min-w-[50px] cursor-pointer whitespace-nowrap px-4 py-4 font-medium text-black dark:text-white"
-                    onClick={header.column.getToggleSortingHandler()}
-                  >
-                    {flexRender(
-                      header.column.columnDef.header,
-                      header.getContext(),
-                    )}
-                    {header.column.getIsSorted() === 'asc'
-                      ? ' 🔼'
-                      : header.column.getIsSorted() === 'desc'
-                        ? ' 🔽'
-                        : ''}
-                  </th>
-                ))}
-              </tr>
-            ))}
-          </thead>
-          <tbody>
-            {isLoading ? (
-              [...Array(limit)].map((_, index) => (
-                <tr key={index}>
-                  {updatedColumns.map((_, i) => (
-                    <td
-                      key={i}
-                      className="border-b border-[#eee] px-4 py-5 pl-5 dark:border-strokedark"
-                    >
-                      <Skeleton height={20} />
-                    </td>
-                  ))}
-                </tr>
-              ))
-            ) : table.getRowModel().rows.length > 0 ? (
-              table.getRowModel().rows.map((row) => (
-                <tr key={row.id}>
-                  {row.getVisibleCells().map((cell) => (
-                    <td
-                      key={cell.id}
-                      className="overflow-x-hidden border-b border-[#eee] px-4 py-5 pl-5  dark:border-strokedark"
+    <>
+      <div className="rounded-lg border border-stroke bg-white px-5  pt-6 shadow-default dark:border-strokedark dark:bg-boxdark xl:pb-1">
+        <ToastContainer />
+        <div className="mb-2 flex items-center justify-between">
+          <span>
+            <span className="mr-2 text-sm">Rows per page:</span>
+            <select
+              className="rounded border bg-white p-1 text-black dark:bg-gray-800 dark:text-white"
+              value={limit}
+              onChange={(e) => handleLimitChange(Number(e.target.value))}
+            >
+              {LIMIT_OPTIONS.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+          </span>
+          {customComponent && <div className="ml-4">{customComponent}</div>}
+        </div>
+        <div className="w-full overflow-x-auto">
+          <table className="w-full table-auto border-collapse">
+            <thead>
+              {table.getHeaderGroups().map((headerGroup) => (
+                <tr
+                  key={headerGroup.id}
+                  className="bg-gray-100 text-left dark:bg-meta-4"
+                >
+                  {headerGroup.headers.map((header) => (
+                    <th
+                      key={header.id}
+                      className={`min-w-[50px] cursor-pointer whitespace-nowrap p-4 font-medium text-black dark:text-white ${
+                        header.id === 'actions' ? 'text-right' : ''
+                      }`}
+                      // className="min-w-[50px] cursor-pointer whitespace-nowrap px-4 py-4 font-medium text-black dark:text-white"
+                      onClick={header.column.getToggleSortingHandler()}
                     >
                       {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext(),
+                        header.column.columnDef.header,
+                        header.getContext(),
                       )}
-                    </td>
+                      {header.column.getIsSorted() === 'asc'
+                        ? ' 🔼'
+                        : header.column.getIsSorted() === 'desc'
+                          ? ' 🔽'
+                          : ''}
+                    </th>
                   ))}
                 </tr>
-              ))
-            ) : (
-              <tr>
-                <td
-                  colSpan={columns.length}
-                  className="p-4 text-xl text-gray-500 dark:text-gray-400"
-                >
-                  No data available.
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
-        <Pagination
-          totalItems={totalPages * limit}
-          itemsPerPage={limit}
-          dashBoard={dashBoard}
-          currentPage={currentPage}
-          onPageChange={handlePageChange}
-        />
+              ))}
+            </thead>
+            <tbody>
+              {isLoading ? (
+                [...Array(limit)].map((_, index) => (
+                  <tr key={index}>
+                    {updatedColumns.map((_, i) => (
+                      <td
+                        key={i}
+                        className={`px-4 py-5 pl-5 dark:border-strokedark ${
+                          index === limit - 1 ? '' : 'border-b border-[#eee]'
+                        }`}
+                      >
+                        <Skeleton height={20} className="opacity-50" />
+                      </td>
+                    ))}
+                  </tr>
+                ))
+              ) : table.getRowModel().rows.length > 0 ? (
+                table.getRowModel().rows.map((row, rowIndex, arr) => (
+                  <tr key={row.id}>
+                    {row.getVisibleCells().map((cell) => (
+                      <td
+                        key={cell.id}
+                        className={`overflow-x-hidden px-4 py-5 pl-5 dark:border-strokedark ${
+                          rowIndex === arr.length - 1
+                            ? ''
+                            : 'border-b border-[#eee]'
+                        }`}
+                      >
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext(),
+                        )}
+                      </td>
+                    ))}
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td
+                    colSpan={columns.length + 1}
+                    className="w-full p-4 text-center text-xl text-gray-500 dark:text-gray-400"
+                    // style={{
+                    //   display: 'table-cell',
+                    //   verticalAlign: 'middle', // Vertically center the content
+                    //   textAlign: 'center', // Horizontally center the content
+                    // }}
+                  >
+                    <div className="  ">
+                      <NoData title={title} />
+                    </div>
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
+      {!dashBoard && (
+        <Pagination
+          total={totalPages * limit || 1}
+          currentPage={currentPage || 1}
+          pageSize={limit || 1}
+          onChange={handlePageChange}
+          // displayTotal={true}
+          onlyArrow={false}
+          // className="flex justify-between"
+        />
+      )}
+    </>
   );
 };
 

@@ -13,7 +13,7 @@ export default async function DashboardNotFound() {
         </h2>
         <Link
           href="/"
-          className="bg-light-green mt-6 rounded-md px-6 py-3 text-white"
+          className="mt-6 rounded-md bg-slate-500 px-6 py-3 text-white"
         >
           GO TO DASHBOARD
         </Link>

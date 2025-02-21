@@ -8,4 +8,5 @@ export type CommonTableProps<T> = {
   totalPages?: number;
   dashBoard?: boolean;
   customComponent?: React.ReactNode;
+  title: string;
 };

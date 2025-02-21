@@ -13,7 +13,7 @@ const User = async ({
     <>
       <Breadcrumb items={[{ label: 'User' }]} title="Users List" />
       <Suspense fallback={<Loader />}>
-        <div className="flex flex-col gap-10">
+        <div className="flex flex-col">
           <UserList page={searchParams.page} limit={searchParams.limit} />
         </div>
       </Suspense>

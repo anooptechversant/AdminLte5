@@ -221,7 +221,7 @@ export const CommonForm: FC<CommonFormProps> = ({
         <FormRow hasButton hasBorder={false}>
           <button
             type="submit"
-            className="flex w-1/6 justify-center rounded bg-primary p-3 font-medium text-gray hover:bg-opacity-90"
+            className="flex w-1/6 justify-center rounded bg-gray-800 p-3 font-medium text-gray hover:bg-opacity-90"
             disabled={isSubmitting}
           >
             {submitButtonLabel}
