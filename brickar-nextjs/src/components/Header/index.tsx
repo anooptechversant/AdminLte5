@@ -62,7 +62,7 @@ const Header = (props: {
               className="hidden dark:block"
               width={32}
               height={32}
-              src={'/images/logo/logo-dark-icon.svg'}
+              src={`${process.env.NEXT_PUBLIC_BASE_PATH}/images/logo/logo-dark-icon.svg`}
               alt="Logo"
             />
 
@@ -70,7 +70,7 @@ const Header = (props: {
               className="dark:hidden"
               width={32}
               height={32}
-              src={'/images/logo/logo-icon.svg'}
+              src={`${process.env.NEXT_PUBLIC_BASE_PATH}/images/logo/logo-icon.svg`}
               alt="Logo"
             />
           </Link>

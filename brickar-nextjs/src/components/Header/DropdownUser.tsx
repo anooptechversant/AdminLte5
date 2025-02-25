@@ -26,7 +26,7 @@ const DropdownUser = () => {
           <Image
             width={112}
             height={112}
-            src={'/images/user/user-01.png'}
+            src={`${process.env.NEXT_PUBLIC_BASE_PATH}/images/user/user-01.png`}
             style={{
               width: 'auto',
               height: 'auto',

@@ -1,14 +1,89 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
+
+import { getRequest } from '@/utils/api';
 
 import CardDataStats from '../CardDataStats';
 // import TableOne from '../Tables/TableOne';
 
 const ECommerce: React.FC = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [dataLoading, setDataLoading] = useState(false);
+  const [data, setData] = useState({
+    totalProducts: 0,
+    totalUsers: 0,
+    totalUnapprovedUsers: 0,
+    totalOrders: 0,
+  });
+  const [errorMessage, setErrorMessage] = useState<string | undefined>(
+    undefined,
+  );
+
+  const fetchData = async () => {
+    setDataLoading(true);
+    try {
+      const results = await Promise.allSettled([
+        getRequest(`admin/products/?page=1&limit=10`),
+        getRequest(`admin/user/?page=1&limit=10`),
+        getRequest(`admin/user/unapproved/B2B/?page=1&limit=10`),
+        getRequest(`admin/order/?order_status=PENDING&page=1&limit=10`),
+      ]);
+
+      setData({
+        totalProducts:
+          results[0].status === 'fulfilled'
+            ? results[0].value?.total_records || 0
+            : 0,
+        totalUsers:
+          results[1].status === 'fulfilled'
+            ? results[1].value?.total_records || 0
+            : 0,
+        totalUnapprovedUsers:
+          results[2].status === 'fulfilled'
+            ? results[2].value?.total_records || 0
+            : 0,
+        totalOrders:
+          results[3].status === 'fulfilled'
+            ? results[3].value?.total_records || 0
+            : 0,
+      });
+
+      const errors = results
+        .filter((res) => res.status === 'rejected')
+        .map((res) => res.reason?.message || 'API Error');
+      if (errors.length > 0) {
+        setErrorMessage(errors.join(', '));
+      }
+    } catch (error: any) {
+      toast.error(error.message || 'Failed to fetch data');
+      setErrorMessage(error.message || 'Failed to fetch data');
+    } finally {
+      setDataLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  // console.log({ data });
   return (
     <>
+      {/* <button
+        onClick={fetchData}
+        className="mb-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+        disabled={dataLoading}
+      >
+        {dataLoading ? 'Loading...' : 'Refresh Data'}
+      </button> */}
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
-        <CardDataStats title="Total views" total="$3.456K" rate="0.43%" levelUp>
+        <CardDataStats
+          title="Unapproved Users"
+          total={data.totalUnapprovedUsers.toString()}
+          rate="0.43%"
+          levelUp
+        >
           <svg
             className="fill-primary dark:fill-white"
             width="22"
@@ -27,7 +102,12 @@ const ECommerce: React.FC = () => {
             />
           </svg>
         </CardDataStats>
-        <CardDataStats title="Total Profit" total="$45,2K" rate="4.35%" levelUp>
+        <CardDataStats
+          title="Pending Orders"
+          total={data.totalOrders.toString()}
+          rate="4.35%"
+          levelUp
+        >
           <svg
             className="fill-primary dark:fill-white"
             width="20"
@@ -50,7 +130,12 @@ const ECommerce: React.FC = () => {
             />
           </svg>
         </CardDataStats>
-        <CardDataStats title="Total Product" total="2.450" rate="2.59%" levelUp>
+        <CardDataStats
+          title="Total Products"
+          total={data.totalProducts.toString()}
+          rate="2.59%"
+          levelUp
+        >
           <svg
             className="fill-primary dark:fill-white"
             width="22"
@@ -69,7 +154,12 @@ const ECommerce: React.FC = () => {
             />
           </svg>
         </CardDataStats>
-        <CardDataStats title="Total Users" total="3.456" rate="0.95%" levelDown>
+        <CardDataStats
+          title="Total Users"
+          total={data.totalUsers.toString()}
+          rate="0.95%"
+          levelDown
+        >
           <svg
             className="fill-primary dark:fill-white"
             width="22"

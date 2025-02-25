@@ -16,7 +16,7 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({
       <div className="grid h-full lg:grid-cols-2 xl:grid-cols-3">
         <div className="col-span-1 hidden flex-col justify-between bg-gray-900 bg-cover px-16 py-6 lg:flex xl:col-span-2">
           <Image
-            src="/images/logo/logo.svg"
+            src={`${process.env.NEXT_PUBLIC_BASE_PATH}/images/logo/logo.svg`}
             width={95}
             height={19}
             alt="Brickar"

@@ -8,7 +8,7 @@ export default async function DashboardNotFound() {
     <DefaultLayout>
       <div className="flex h-[90] w-full flex-col items-center justify-center text-center">
         <Image
-          src="/images/others/permission.png"
+          src={`${process.env.NEXT_PUBLIC_BASE_PATH}/images/others/permission.png`}
           alt="Not found"
           width={250}
           height={250}

@@ -157,6 +157,7 @@ const UnApprovedUserList = ({
         error={errorMessage}
         isLoading={isLoading}
         totalPages={totalPages}
+        title="unApproved user list"
 
         // customComponent={
         //   <div>

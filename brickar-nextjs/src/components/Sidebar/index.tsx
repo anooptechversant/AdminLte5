@@ -82,7 +82,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
             <Image
               width={176}
               height={32}
-              src={'/images/logo/logo.svg'}
+              src={`${process.env.NEXT_PUBLIC_BASE_PATH}/images/logo/logo.svg`}
               alt="Logo"
               priority
             />
