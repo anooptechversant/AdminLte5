@@ -8,8 +8,7 @@ import CardDataStats from '../CardDataStats';
 // import TableOne from '../Tables/TableOne';
 
 const ECommerce: React.FC = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [dataLoading, setDataLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState({
     totalProducts: 0,
     totalUsers: 0,
@@ -21,7 +20,7 @@ const ECommerce: React.FC = () => {
   );
 
   const fetchData = async () => {
-    setDataLoading(true);
+    setIsLoading(true);
     try {
       const results = await Promise.allSettled([
         getRequest(`admin/products/?page=1&limit=10`),
@@ -59,7 +58,7 @@ const ECommerce: React.FC = () => {
       toast.error(error.message || 'Failed to fetch data');
       setErrorMessage(error.message || 'Failed to fetch data');
     } finally {
-      setDataLoading(false);
+      setIsLoading(false);
     }
   };
 
@@ -67,7 +66,6 @@ const ECommerce: React.FC = () => {
     fetchData();
   }, []);
 
-  // console.log({ data });
   return (
     <>
       {/* <button
@@ -80,7 +78,9 @@ const ECommerce: React.FC = () => {
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
         <CardDataStats
           title="Unapproved Users"
-          total={data.totalUnapprovedUsers.toString()}
+          total={
+            isLoading ? 'Loading...' : data.totalUnapprovedUsers.toString()
+          }
           rate="0.43%"
           levelUp
         >
@@ -104,7 +104,7 @@ const ECommerce: React.FC = () => {
         </CardDataStats>
         <CardDataStats
           title="Pending Orders"
-          total={data.totalOrders.toString()}
+          total={isLoading ? 'Loading...' : data.totalOrders.toString()}
           rate="4.35%"
           levelUp
         >
@@ -132,7 +132,7 @@ const ECommerce: React.FC = () => {
         </CardDataStats>
         <CardDataStats
           title="Total Products"
-          total={data.totalProducts.toString()}
+          total={isLoading ? 'Loading...' : data.totalProducts.toString()}
           rate="2.59%"
           levelUp
         >
@@ -156,7 +156,7 @@ const ECommerce: React.FC = () => {
         </CardDataStats>
         <CardDataStats
           title="Total Users"
-          total={data.totalUsers.toString()}
+          total={isLoading ? 'Loading...' : data.totalUsers.toString()}
           rate="0.95%"
           levelDown
         >

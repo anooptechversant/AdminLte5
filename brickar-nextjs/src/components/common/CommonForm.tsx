@@ -14,15 +14,15 @@ import Select from './Form/Select';
 import Loader from './Loader';
 
 const QuillNoSSRWrapper = dynamic(
-  async () => {
-    const { default: RQ } = await import('react-quill');
-    const Component = ({ forwardedRef, ...props }: any) => (
-      <RQ ref={forwardedRef} {...props} />
-    );
-    Component.displayName = 'QuillNoSSRWrapper';
-    return Component;
-  },
-  { ssr: false },
+  () =>
+    import('react-quill').then((mod) => {
+      const Component = ({ forwardedRef, ...props }: any) => (
+        <mod.default ref={forwardedRef} {...props} />
+      );
+      Component.displayName = 'QuillNoSSRWrapper';
+      return Component;
+    }),
+  { ssr: false, loading: () => <p>Loading...</p> },
 );
 
 export const CommonForm: FC<CommonFormProps> = ({

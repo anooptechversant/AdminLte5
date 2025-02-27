@@ -51,6 +51,8 @@ const menuGroups = [
           { label: 'Work Types', route: '/work-type' },
           { label: 'Qualification', route: '/qualification' },
           { label: 'Units', route: '/unit' },
+          { label: 'Roles', route: '/role' },
+          { label: 'Service', route: '/service' },
         ],
       },
       {

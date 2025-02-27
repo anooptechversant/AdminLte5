@@ -40,6 +40,7 @@ const Select: React.FC<SelectProps> = ({
     }
   };
 
+  // Dark mode classes
   const containerClass = classNames(
     'relative w-full',
     className,
@@ -47,22 +48,25 @@ const Select: React.FC<SelectProps> = ({
   );
 
   const triggerClass = classNames(
-    'flex items-center justify-between w-full px-3 py-2 text-sm bg-white border rounded-md focus:outline-none',
-    invalid ? 'border-red-500' : 'border-gray-300',
-    !disabled && 'hover:border-gray-400',
+    'flex items-center justify-between w-full px-3 py-2 text-sm bg-white border-2 rounded-md focus:outline-none',
+    'dark:bg-boxdark dark:border-strokedark dark:text-white',
+    invalid ? '!border-red' : 'border-gray-300 dark:border-strokedark',
+    !disabled && 'hover:border-gray-400 dark:hover:border-gray-600',
     'cursor-pointer h-10',
   );
 
   const dropdownClass = classNames(
-    'absolute z-50 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg',
+    'absolute z-50 w-full mt-1 bg-white bor-der border-gray-300 rounded-md shadow-lg',
+    'dark:bg-boxdark dark:border-strokedark dark:text-white',
     'max-h-60 overflow-auto',
   );
 
   const optionClass = (option: SelectOption) =>
     classNames(
       'px-3 py-2 text-sm cursor-pointer hover:bg-gray-100',
+      'dark:hover:bg-gray-700 dark:text-white',
       option.disabled && 'opacity-50 cursor-not-allowed',
-      value?.value === option.value && 'bg-gray-100',
+      value?.value === option.value && 'bg-gray-100 dark:bg-gray-700',
     );
 
   return (
