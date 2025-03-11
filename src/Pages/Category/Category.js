@@ -54,6 +54,7 @@ const Category = ({ Data, Success, Error, Loading, isActiveData }) => {
     updatedData.splice(toIndex, 0, movedItem);
     setCategories(updatedData);
   };
+  
   const moveCategory = (dragIndex, hoverIndex) => {
     const updatedCategories = [...categories];
     const draggedCategory = updatedCategories[dragIndex];

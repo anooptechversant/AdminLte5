@@ -20,7 +20,7 @@ interface FileUploadProps {
   ) => Promise<boolean | string> | boolean | string;
   disabled?: boolean;
   draggable?: boolean;
-  fileList: File[];
+  fileList: any[];
   multiple?: boolean;
   onChange?: (files: File[]) => void;
   onFileRemove?: (files: File[]) => void;
@@ -99,6 +99,7 @@ const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>((props, ref) => {
   const onNewFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) return;
     const newFiles = Array.from(e.target.files);
+
     let result = beforeUpload ? await beforeUpload(newFiles, files) : true;
 
     if (result === false || typeof result === 'string') {
@@ -108,6 +109,11 @@ const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>((props, ref) => {
 
     const updatedFiles = addNewFiles(newFiles);
     onChange?.(updatedFiles);
+
+    // ✅ Reset file input
+    if (fileInputField.current) {
+      fileInputField.current.value = '';
+    }
   };
 
   const removeFile = (fileIndex: number) => {
@@ -145,11 +151,15 @@ const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>((props, ref) => {
     }
   }, [draggable]);
 
-  const handleDragOver = useCallback(() => {
-    if (draggable && !disabled) {
-      setDragOver(true);
-    }
-  }, [draggable, disabled]);
+  const handleDragOver = useCallback(
+    (event: React.DragEvent<HTMLDivElement>) => {
+      event.preventDefault(); // ✅ Prevent browser behavior
+      if (draggable && !disabled) {
+        setDragOver(true);
+      }
+    },
+    [draggable, disabled],
+  );
 
   const handleDrop = useCallback(
     (event: React.DragEvent<HTMLDivElement>) => {
@@ -217,7 +227,7 @@ const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>((props, ref) => {
           {files.map((file, index) => (
             <FileItem
               file={file}
-              key={file.name + index}
+              // key={file.name + index}
               limit={limit}
               // position={position}
             >

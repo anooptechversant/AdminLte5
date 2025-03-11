@@ -1,5 +1,5 @@
 import { UploadCloud02 } from '@untitled-ui/icons-react';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { FilesProps, FileType } from '@/types/form';
 
@@ -56,14 +56,19 @@ const Files: React.FC<FilesProps> = ({
     try {
       form.clearErrors(fieldName);
       const fileArray = Array.from(files);
-      const newFiles: FileType[] = fileArray.map((file) => ({
-        file,
-        fileId: Math.random().toString(36).substr(2, 9),
-        name: file.name,
-        size: file.size,
-        url: URL.createObjectURL(file),
-        type: file.type,
-      }));
+      const newFiles: FileType[] = await Promise.all(
+        fileArray.map(async (file) => {
+          await validateImageDimensions(file);
+          return {
+            file,
+            fileId: Math.random().toString(36).substr(2, 9),
+            name: file.name,
+            size: file.size,
+            url: URL.createObjectURL(file), // ✅ Create URL
+            type: file.type,
+          };
+        }),
+      );
 
       setUploadedFile(newFiles);
       form.setValue(fieldName, newFiles);
@@ -74,6 +79,13 @@ const Files: React.FC<FilesProps> = ({
       });
     }
   };
+
+  // // ✅ Cleanup URLs when file list changes
+  useEffect(() => {
+    return () => {
+      uploadedFile.forEach((file) => URL.revokeObjectURL(file.url));
+    };
+  }, [uploadedFile]);
 
   const beforeUpload = async (newFiles: File[]): Promise<boolean> => {
     try {
@@ -99,7 +111,7 @@ const Files: React.FC<FilesProps> = ({
 
   return (
     <div
-      className={`${isFullWidth ? 'my-1 w-full py-1' : 'relative mb-6 flex flex-col sm:flex-row'}`}
+      className={`${isFullWidth ? 'my-1 w-full flex-row gap-4 py-1' : 'relative mb-6 flex flex-col gap-5 border-b pb-5 sm:flex-row'}`}
     >
       <div className="basis-1/3 pt-2">
         <h5 className="text-sm font-semibold text-gray-900">{label}</h5>
@@ -111,17 +123,17 @@ const Files: React.FC<FilesProps> = ({
         <FileUpload
           draggable
           beforeUpload={beforeUpload}
-          className="size-full border-none"
+          className="size-full cursor-pointer border-none"
           onChange={onFileUpload}
           limit={limit}
           multiple={multiple}
-          fileList={uploadedFile.map((file) => file.file)}
+          fileList={uploadedFile}
         >
           <div
-            className={`flex flex-col items-center justify-center py-4 ${error ? 'border-2 border-red-500' : 'border border-gray-200'}`}
+            className={`flex w-full flex-col items-center justify-center gap-2 rounded-lg py-4 ${error ? 'border-2 border-red-500' : 'border border-gray-200'}`}
           >
-            <div className="flex size-8 items-center justify-center bg-gray-50">
-              <UploadCloud02 className="bg-gray-100" />
+            <div className="flex size-8 items-center justify-center  rounded-full bg-gray-50">
+              <UploadCloud02 className="rounded-full bg-gray-100" />
             </div>
             <div className="flex gap-1">
               <p className="text-sm font-semibold text-gray-900">
@@ -129,14 +141,18 @@ const Files: React.FC<FilesProps> = ({
               </p>
               <p className="text-sm text-gray-500">or drag and drop</p>
             </div>
-            <p className="text-xs text-gray-500">
+            <p className="text-center text-xs leading-4 text-gray-500">
               {Filetype === 'image'
                 ? `PNG, JPG (max. ${Math.ceil(limit / 1024)} KB ${maxWidth && maxHeight ? `, ${maxWidth}x${maxHeight}px` : ''})`
                 : 'PDF'}
             </p>
           </div>
         </FileUpload>
-        {error && <span className="text-sm text-red-500">{error}</span>}
+        {error && (
+          <span className="opacity-1 h-fit text-sm text-red-500 duration-300 ease-in-out">
+            {error}
+          </span>
+        )}
       </div>
     </div>
   );

@@ -5,12 +5,12 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 
-import { Role, RoleProps } from '@/types/role';
+import { Brand, BrandProps } from '@/types/brand';
 import { apiRequest, getRequest } from '@/utils/api';
 
 import { CommonForm } from '../common/CommonForm';
 
-const Form = ({ id }: RoleProps) => {
+const Form = ({ id }: BrandProps) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [dataLoading, setDataLoading] = useState(false);
@@ -19,18 +19,18 @@ const Form = ({ id }: RoleProps) => {
     undefined,
   );
 
-  const form = useForm<Role>({
+  const form = useForm<Brand>({
     mode: 'onChange',
   });
   const { reset } = form;
   const fetchData = async () => {
     setDataLoading(true);
     try {
-      const response = await getRequest(`common/roles/`);
+      const response = await getRequest(`admin/brands/`);
 
       setData(response.filter((obj: any) => obj.id == id));
     } catch (error: any) {
-      setErrorMessage(error.message || 'Failed to fetch roles');
+      setErrorMessage(error.message || 'Failed to fetch brands');
     } finally {
       setDataLoading(false);
     }
@@ -43,16 +43,13 @@ const Form = ({ id }: RoleProps) => {
   useEffect(() => {
     if (data) {
       reset({
-        role: data[0]?.role || '',
-        type: data[0]?.type || '',
+        name: data[0]?.name || '',
+        is_active: data[0]?.is_active || '',
         description: data[0]?.description || '',
       });
     }
   }, [data, reset]);
-  const typeOption = [
-    { label: 'B2B', value: 'B2B' },
-    { label: 'B2C', value: 'B2C' },
-  ];
+
   useEffect(() => {
     if (errorMessage) {
       toast.error(
@@ -61,24 +58,25 @@ const Form = ({ id }: RoleProps) => {
     }
   }, [errorMessage]);
 
-  const onSubmit = async (data: Role) => {
+  const onSubmit = async (formData: Brand) => {
     setIsLoading(true);
     const dataToSend = {
-      ...data,
+      ...formData,
+      is_active: id ? formData.is_active : true,
     };
     try {
       await apiRequest({
         method: id ? 'PUT' : 'POST',
-        path: id ? `admin/role/${id}` : 'admin/role/',
+        path: id ? `admin/brands/${id}` : 'admin/brands/',
         data: dataToSend,
       });
 
       toast.success(
-        id ? 'Successfully updated role' : 'Successfully added role',
+        id ? 'Successfully updated brand' : 'Successfully added brands',
       );
 
       setTimeout(() => {
-        router.push('/role');
+        router.push('/brand');
       }, 1000);
     } catch (error: any) {
       toast.error(error.message || 'Something went wrong, try again later');
@@ -107,19 +105,12 @@ const Form = ({ id }: RoleProps) => {
   const formFields = useMemo(
     () => [
       {
-        name: 'role',
-        label: 'Role Name',
+        name: 'name',
+        label: 'Brand Name',
         type: 'text',
-        placeholder: 'Enter the role name',
+        placeholder: 'Enter the brand name',
         // subLabel: 'You can add the ',
-        validate: { required: 'Please enter a role' },
-      },
-      {
-        name: 'type',
-        label: 'Type',
-        type: 'select',
-        options: typeOption,
-        validate: { required: 'Please select type' },
+        validate: { required: 'Please enter a brand' },
       },
       {
         name: 'description',
@@ -130,7 +121,7 @@ const Form = ({ id }: RoleProps) => {
         quillModules: descriptionModules,
       },
     ],
-    [typeOption],
+    [],
   );
   return (
     <div className="flex flex-col">

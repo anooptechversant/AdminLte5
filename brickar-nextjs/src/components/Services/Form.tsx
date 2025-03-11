@@ -62,7 +62,7 @@ const Form = ({ id }: ServiceProps) => {
       });
     }
   }, [data, reset]);
-  const roleOption = roles.map((role) => ({
+  const roleOption = roles.map((role: any) => ({
     label: role.role,
     value: role.id,
   }));
@@ -74,7 +74,7 @@ const Form = ({ id }: ServiceProps) => {
     }
   }, [errorMessage]);
 
-  const onSubmit = async (data: Role) => {
+  const onSubmit = async (data: Service) => {
     setIsLoading(true);
     const dataToSend = {
       ...data,

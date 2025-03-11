@@ -20,7 +20,7 @@ export type FormRowProps = {
 
 export type FieldOption = {
   label: string;
-  value: string | number;
+  value: string | number | any;
 };
 
 export type Field = {

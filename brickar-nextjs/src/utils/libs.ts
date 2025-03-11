@@ -1,9 +1,9 @@
-// import { decode as decodeHtml } from "he";
+import { decode as decodeHtml } from 'he';
 
-// export const stripHtml = (html: string): string => {
-//   const decoded = decodeHtml(html);
-//   return decoded.replace(/<[^>]+>/g, "");
-// };
+export const stripHtml = (html: string): string => {
+  const decoded = decodeHtml(html);
+  return decoded.replace(/<[^>]+>/g, '');
+};
 
 // export const extractYouTubeVideoId = (url: string): string | null => {
 //   try {

@@ -42,41 +42,38 @@ export const CommonForm: FC<CommonFormProps> = ({
   } = form;
 
   const onSubmit = async (values: any) => {
-    let data = formatData ? formatData(values) : values;
-    let formData = new FormData();
-    let hasFiles = false;
-
-    const uploadFields = fields
-      .filter((field) => field.type === 'upload')
-      .map((field) => field.name);
-
-    let processedData: Record<string, any> = {};
-
-    Object.keys(data).forEach((key) => {
-      if (uploadFields.includes(key)) {
-        if (Array.isArray(data[key]) && data[key].length > 0) {
-          data[key].forEach((file: any) => {
-            if (file?.file) {
-              formData.append(key, file.file);
-              hasFiles = true;
-            }
-          });
-        }
-      } else {
-        processedData[key] = data[key];
-      }
-    });
-
     try {
+      let data = formatData ? formatData(values) : values;
+      const formData = new FormData();
+      let hasFiles = false;
+
+      const uploadFields = fields
+        .filter((field) => field.type === 'upload')
+        .map((field) => field.name);
+
+      Object.keys(data).forEach((key) => {
+        if (uploadFields.includes(key)) {
+          if (Array.isArray(data[key]) && data[key].length > 0) {
+            data[key].forEach((file: any) => {
+              if (file?.file) {
+                formData.append(key, file.file);
+                hasFiles = true;
+              }
+            });
+          }
+        } else {
+          formData.append(key, data[key]);
+        }
+      });
+
       if (hasFiles) {
-        // Send FormData when files are present
-        await onFinish(formData);
+        await onFinish(data);
       } else {
-        // Send JSON when no files are present
-        await onFinish(processedData);
+        await onFinish(data);
       }
     } catch (error) {
       console.error('Submission error:', error);
+      throw error;
     }
   };
 

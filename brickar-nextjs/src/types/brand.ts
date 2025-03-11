@@ -1,8 +1,9 @@
-export type BRAND = {
-  logo: string;
+export type Brand = {
+  id: string;
   name: string;
-  visitors: number;
-  revenues: string;
-  sales: number;
-  conversion: number;
+  is_active: string;
+  description: string;
+};
+export type BrandProps = {
+  id?: string | null;
 };

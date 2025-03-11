@@ -19,16 +19,17 @@ interface FileItemProps {
 }
 
 const FileItem: React.FC<FileItemProps> = ({ file, children, limit }) => {
-  const { type, name, size } = file;
+  const { type, name, size, url } = file;
   const _percent = (size / limit) * 100;
 
   const renderThumbnail = () => {
     const isImageFile =
       type?.split('/')[0] === 'image' ||
-      file.mime_type?.split('/')[0] === 'image';
+      file.mime_type?.split('/')[0] === 'image' ||
+      url?.startsWith('http');
 
     if (isImageFile) {
-      const imageUrl = file?.url || URL.createObjectURL(file);
+      const imageUrl = url || URL.createObjectURL(file);
       return (
         <img className="upload-file-image" src={imageUrl} alt="file preview" />
       );

@@ -15,10 +15,6 @@ interface ApiRequestOptions {
   skipAuthRetry?: boolean;
 }
 
-/**
- * A common function to perform API calls with fetch.
- * It automatically retries the request if a 401 is encountered.
- */
 export const apiRequest = async ({
   method,
   path,
