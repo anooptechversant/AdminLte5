@@ -2,8 +2,8 @@ import { Metadata } from 'next';
 import { Suspense } from 'react';
 
 import Breadcrumb from '@/components/Breadcrumbs/Breadcrumb';
-import CategoryForm from '@/components/Category/Form';
 import Loader from '@/components/common/Loader';
+import CategoryForm from '@/components/SubCategory/Form';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -17,8 +17,8 @@ const Form = () => {
     <>
       <Breadcrumb
         items={[
-          { label: 'Category', href: '/category' },
-          { label: 'Add Category' },
+          { label: 'Category', href: '/sub-category' },
+          { label: 'Add Sub Category' },
         ]}
         title="Create Category"
       />

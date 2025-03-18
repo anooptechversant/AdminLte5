@@ -1,20 +1,23 @@
 import React, { Suspense } from 'react';
 
 import Breadcrumb from '@/components/Breadcrumbs/Breadcrumb';
-import CategoryList from '@/components/Category/CategoryList';
 import Loader from '@/components/common/Loader';
+import SubCategoryList from '@/components/SubCategory/SubCategoryList';
 
-const Category = async () => {
+const SubCategory = async () => {
   return (
     <>
-      <Breadcrumb items={[{ label: 'Category' }]} title="Category List" />
+      <Breadcrumb
+        items={[{ label: 'Sub Category' }]}
+        title="Sub Category List"
+      />
       <Suspense fallback={<Loader />}>
         <div className="flex flex-col">
-          <CategoryList />
+          <SubCategoryList />
         </div>
       </Suspense>
     </>
   );
 };
 
-export default Category;
+export default SubCategory;

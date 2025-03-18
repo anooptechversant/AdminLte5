@@ -4,6 +4,13 @@ export type Category = {
   image: any;
   is_active: boolean;
 };
+export type SubCategory = {
+  id: string;
+  name: string;
+  image: any;
+  category_id: string;
+  is_active: boolean;
+};
 export type CategoryProps = {
   id?: string | null;
 };
